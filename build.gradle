@@ -6,7 +6,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://github.com/leonardocardoso/mvn-repo/raw/master/maven-deploy' }
         maven { url "https://plugins.gradle.org/m2/" }
