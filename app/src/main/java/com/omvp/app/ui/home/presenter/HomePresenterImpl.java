@@ -7,6 +7,7 @@ import com.omvp.app.ui.home.view.HomeView;
 
 import javax.inject.Inject;
 
+
 public class HomePresenterImpl extends BasePresenter<HomeView> implements HomePresenter {
 
     @Inject

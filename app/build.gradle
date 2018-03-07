@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: "org.sonarqube"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -29,8 +32,8 @@ android {
             properties.load(project.rootProject.file('local.properties').newDataInputStream())
             if (!properties.isEmpty()) {
                 for (String key : properties.keySet()) {
-                    String parsedKey = key.replaceAll("\\.","_").toUpperCase()
-                    String parsedValue = "\""+properties.getProperty(key).replaceAll("\\\\","/")+"\""
+                    String parsedKey = key.replaceAll("\\.", "_").toUpperCase()
+                    String parsedValue = "\"" + properties.getProperty(key).replaceAll("\\\\", "/") + "\""
                     buildConfigField "String", parsedKey, parsedValue
                 }
             }
@@ -101,14 +104,14 @@ android {
             dimension "tier"
             applicationIdSuffix ".mock"
             versionNameSuffix "-mock"
-            resValue "string", "app_name", rootProject.ext.androidAppName+" Mock"
+            resValue "string", "app_name", rootProject.ext.androidAppName + " Mock"
             resConfigs "xxhdpi"
         }
         dev {
             dimension "tier"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
-            resValue "string", "app_name", rootProject.ext.androidAppName+" Dev"
+            resValue "string", "app_name", rootProject.ext.androidAppName + " Dev"
             resConfigs "xxhdpi"
         }
         prod {
@@ -169,6 +172,7 @@ dependencies {
     testImplementation deps.app.testImplementation
     testAnnotationProcessor deps.app.testAnnotationProcessor
     androidTestAnnotationProcessor deps.app.testAnnotationProcessor
+    kapt deps.app.kapt
 
     implementation("com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}@aar") {
         transitive = true
