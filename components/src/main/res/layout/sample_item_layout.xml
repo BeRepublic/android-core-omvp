@@ -16,7 +16,7 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/text"
-        style="@style/CodeFont.Medium.Black"
+        style="@style/CodeFont.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/sample_size"
