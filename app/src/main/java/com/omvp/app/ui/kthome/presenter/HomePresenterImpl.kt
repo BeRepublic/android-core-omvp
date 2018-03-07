@@ -1,8 +1,8 @@
-package com.omvp.app.ui.homekt.presenter
+package com.omvp.app.ui.kthome.presenter
 
 
 import com.omvp.app.base.mvp.presenter.BasePresenter
-import com.omvp.app.ui.homekt.view.HomeView
+import com.omvp.app.ui.kthome.view.HomeView
 
 import javax.inject.Inject
 

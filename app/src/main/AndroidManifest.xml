@@ -62,7 +62,17 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ui.homekt.HomeActivity"
+            android:name=".ui.kthome.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.ktsamples.ktsample.SampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.ktsamples.ktsamplelist.SampleListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"/>

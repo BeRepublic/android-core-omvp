@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt.view
+package com.omvp.app.ui.kthome.view
 
 import com.omvp.app.base.mvp.view.BaseView
 

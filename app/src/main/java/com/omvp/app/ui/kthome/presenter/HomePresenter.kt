@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt.presenter
+package com.omvp.app.ui.kthome.presenter
 
 import com.omvp.app.base.mvp.presenter.Presenter
 

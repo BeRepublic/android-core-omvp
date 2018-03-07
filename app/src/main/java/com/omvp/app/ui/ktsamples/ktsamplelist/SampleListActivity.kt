@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt
+package com.omvp.app.ui.ktsamples.ktsamplelist
 
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
@@ -6,7 +6,8 @@ import android.view.View
 
 import com.omvp.app.R
 import com.omvp.app.base.mvp.BaseFragmentActivity
-import com.omvp.app.ui.homekt.view.HomeFragment
+import com.omvp.app.ui.ktsamples.ktsamplelist.view.SampleListFragment
+import com.omvp.domain.SampleDomain
 import com.raxdenstudios.square.interceptor.Interceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback
@@ -15,8 +16,9 @@ import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptorCa
 
 import javax.inject.Inject
 
-
-class HomeActivity : BaseFragmentActivity(), ToolbarInterceptorCallback, InjectFragmentInterceptorCallback<HomeFragment>, HomeFragment.FragmentCallback {
+class SampleListActivity :
+        BaseFragmentActivity(),
+        SampleListFragment.FragmentCallback, ToolbarInterceptorCallback, InjectFragmentInterceptorCallback<SampleListFragment> {
 
     @Inject
     internal lateinit var mToolbarInterceptor: ToolbarInterceptor
@@ -24,7 +26,7 @@ class HomeActivity : BaseFragmentActivity(), ToolbarInterceptorCallback, InjectF
     internal lateinit var mInjectFragmentInterceptor: InjectFragmentInterceptor
 
     private lateinit var mToolbar: Toolbar
-    private lateinit var mFragment: HomeFragment
+    private lateinit var mFragment: SampleListFragment
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -42,11 +44,11 @@ class HomeActivity : BaseFragmentActivity(), ToolbarInterceptorCallback, InjectF
         return findViewById(R.id.content)
     }
 
-    override fun onCreateFragment(): HomeFragment {
-        return HomeFragment.newInstance(mExtras)
+    override fun onCreateFragment(): SampleListFragment {
+        return SampleListFragment.newInstance(mExtras)
     }
 
-    override fun onFragmentLoaded(fragment: HomeFragment) {
+    override fun onFragmentLoaded(fragment: SampleListFragment) {
         mFragment = fragment
     }
 
@@ -58,19 +60,8 @@ class HomeActivity : BaseFragmentActivity(), ToolbarInterceptorCallback, InjectF
         interceptorList.add(mInjectFragmentInterceptor)
     }
 
-    override fun onSampleViewSelected() {
-        mNavigationHelper.launchSample()
+    override fun onSampleItemSelected(sampleDomain: SampleDomain) {
+        mNavigationHelper.launchSample(sampleDomain.id)
     }
 
-    override fun onSampleListSelected() {
-        mNavigationHelper.launchSampleList()
-    }
-
-    override fun onSamplePagerSelected() {
-        mNavigationHelper.launchSamplePager()
-    }
-
-    override fun onSampleMultipleSelected() {
-        mNavigationHelper.launchSampleMap()
-    }
 }

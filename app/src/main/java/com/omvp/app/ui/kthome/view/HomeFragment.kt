@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt.view
+package com.omvp.app.ui.kthome.view
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import butterknife.OnClick
 import com.omvp.app.R
 import com.omvp.app.base.mvp.view.BaseViewFragment
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback
-import com.omvp.app.ui.homekt.presenter.HomePresenter
+import com.omvp.app.ui.kthome.presenter.HomePresenter
 
 class HomeFragment : BaseViewFragment<HomePresenter, HomeFragment.FragmentCallback>(), HomeView {
 
@@ -42,10 +42,8 @@ class HomeFragment : BaseViewFragment<HomePresenter, HomeFragment.FragmentCallba
 
     companion object {
 
-        fun newInstance(bundle: Bundle?): HomeFragment {
-            return HomeFragment().apply {
-                arguments = bundle ?: Bundle()
-            }
+        fun newInstance(bundle: Bundle?) = HomeFragment().apply {
+            arguments = bundle ?: Bundle()
         }
     }
 }

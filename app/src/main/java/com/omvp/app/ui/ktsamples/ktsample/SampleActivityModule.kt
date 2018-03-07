@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt
+package com.omvp.app.ui.ktsamples.ktsample
 
 import android.app.Activity
 
@@ -7,8 +7,8 @@ import com.omvp.app.base.BaseActivityModule
 import com.omvp.app.base.mvp.BaseFragmentActivityModule
 import com.omvp.app.injector.scope.PerActivity
 import com.omvp.app.injector.scope.PerFragment
-import com.omvp.app.ui.homekt.view.HomeFragment
-import com.omvp.app.ui.homekt.view.HomeFragmentModule
+import com.omvp.app.ui.ktsamples.ktsample.view.SampleFragment
+import com.omvp.app.ui.ktsamples.ktsample.view.SampleFragmentModule
 import com.omvp.app.ui.splash.view.SplashFragment
 
 import dagger.Binds
@@ -19,7 +19,7 @@ import dagger.android.ContributesAndroidInjector
  * Provides splash activity dependencies
  */
 @Module(includes = arrayOf(BaseFragmentActivityModule::class))
-abstract class HomeActivityModule {
+abstract class SampleActivityModule {
 
     /**
      * As per the contract specified in [BaseActivityModule]; "This must be included in all
@@ -34,17 +34,17 @@ abstract class HomeActivityModule {
      */
     @Binds
     @PerActivity
-    internal abstract fun activity(activity: HomeActivity): Activity
+    internal abstract fun activity(activity: SampleActivity): Activity
 
     /**
-     * The main activity listens to the events in the [SplashFragment].
+     * The main activity listens to the events in the [SampleFragment].
      *
      * @param activity the activity
      * @return the main fragment callback
      */
     @Binds
     @PerActivity
-    internal abstract fun fragmentCallback(activity: HomeActivity): HomeFragment.FragmentCallback
+    internal abstract fun fragmentCallback(activity: SampleActivity): SampleFragment.FragmentCallback
 
     // =============================================================================================
 
@@ -53,7 +53,7 @@ abstract class HomeActivityModule {
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = arrayOf(HomeFragmentModule::class))
-    internal abstract fun fragmentInjector(): HomeFragment
+    @ContributesAndroidInjector(modules = arrayOf(SampleFragmentModule::class))
+    internal abstract fun fragmentInjector(): SampleFragment
 
 }

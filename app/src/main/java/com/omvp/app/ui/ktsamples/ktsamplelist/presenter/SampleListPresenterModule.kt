@@ -1,4 +1,4 @@
-package com.omvp.app.ui.homekt.presenter
+package com.omvp.app.ui.ktsamples.ktsamplelist.presenter
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule
 import com.omvp.app.injector.scope.PerFragment
@@ -10,10 +10,10 @@ import dagger.Module
  * Provides SampleListPresenterModule dependencies.
  */
 @Module(includes = arrayOf(BasePresenterModule::class))
-abstract class HomePresenterModule {
+abstract class SampleListPresenterModule {
 
     @Binds
     @PerFragment
-    internal abstract fun presenter(presenter: HomePresenterImpl): HomePresenter
+    internal abstract fun presenter(presenter: SampleListPresenterImpl): SampleListPresenter
 
 }
