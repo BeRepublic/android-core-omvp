@@ -17,5 +17,6 @@
 <resources>
 
     <dimen name="sample_size">10dp</dimen>
+    <dimen name="sample_margin">16dp</dimen>
 
 </resources>

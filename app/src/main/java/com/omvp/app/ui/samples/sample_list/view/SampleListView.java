@@ -12,4 +12,8 @@ public interface SampleListView extends BaseView {
     void showEmptyView();
 
     void onSampleItemSelected(SampleDomain sampleDomain);
+
+    void drawRemoveAnimation(int position);
+
+    void drawAddAnimation(SampleModel model);
 }

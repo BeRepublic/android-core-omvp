@@ -14,6 +14,7 @@ public class SampleModel {
     String title;
     String link;
     String pubdate;
+    Integer imageResId;
 
     public SampleModel() {
 

@@ -18,6 +18,7 @@ public class SampleDomain {
     String title;
     Uri link;
     LocalDateTime pubdate;
+    Integer imageResId;
 
     public SampleDomain() {
 

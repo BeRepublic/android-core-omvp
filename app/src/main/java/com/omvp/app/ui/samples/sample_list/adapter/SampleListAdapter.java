@@ -15,6 +15,8 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
 
     public interface AdapterCallback {
         void sampleItemSelected(int position);
+
+        void sampleItemDeleteSelected(int position);
     }
 
     public SampleListAdapter(Context context, AdapterCallback callback) {
@@ -45,10 +47,17 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
 
             mItemView = itemView;
             mItemView.setOnClickListener(this);
+            mItemView.setDeleteClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mAdapterCallback.sampleItemDeleteSelected(getAdapterPosition());
+                }
+            });
         }
 
         public void bindView(SampleModel data) {
             mItemView.setSampleText(data.getTitle());
+            mItemView.setSampleImage(data.getImageResId());
         }
 
         @Override

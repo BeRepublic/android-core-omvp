@@ -2,6 +2,7 @@ package com.omvp.app.ui.samples.sample_list;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.omvp.app.R;
@@ -41,6 +42,12 @@ public class SampleListActivity extends BaseFragmentActivity implements
     @Override
     public void onToolbarViewCreated(Toolbar toolbar) {
         mToolbar = toolbar;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mFragment.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
     // =============== InjectFragmentInterceptorCallback ===========================================
