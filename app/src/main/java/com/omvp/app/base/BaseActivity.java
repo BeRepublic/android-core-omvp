@@ -1,6 +1,7 @@
 package com.omvp.app.base;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -72,6 +73,7 @@ public abstract class BaseActivity extends SquareActivity implements
         mDisposableManager.dispose();
     }
 
+
     // ========= AutoInflateLayoutInterceptorCallback ==============================================
 
     @Override
@@ -94,34 +96,20 @@ public abstract class BaseActivity extends SquareActivity implements
         interceptorList.add(mOperationBroadcastInterceptor);
     }
 
-    // ========= PermissionInterceptorCallback =====================================================
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
 
-//    protected void requestLocationPermission() {
-//        mPermissionInterceptor.requestPermission(PermissionActivityInterceptor.Permission.LOCATION);
-//    }
-//
-//    protected boolean hasLocationPermission() {
-//        return mPermissionInterceptor.hasPermission(PermissionActivityInterceptor.Permission.LOCATION);
-//    }
-//
-//    @Override
-//    public void onPermissionGranted(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionGranted %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionAlreadyGranted(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionAlreadyGranted %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionDenied(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionDenied %s", permission != null ? permission.toString() : "");
-//    }
-//
-//    @Override
-//    public void onPermissionDeniedForEver(PermissionActivityInterceptor.Permission permission) {
-//        Timber.d("onPermissionDeniedForEver %s", permission != null ? permission.toString() : "");
-//    }
+    public void finishWithResultOK() {
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    public void finishWithResultOK(Intent data) {
+        setResult(RESULT_OK, data);
+        finish();
+    }
 
 }
