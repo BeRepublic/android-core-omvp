@@ -2,7 +2,7 @@ package com.omvp.app.injector.module;
 
 import android.app.Activity;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.ToolbarActivityInterceptor;
@@ -11,13 +11,10 @@ import com.omvp.app.interceptor.google.GoogleApiClientInterceptor;
 import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
 import com.omvp.app.interceptor.location.LocationActivityInterceptor;
 import com.omvp.app.interceptor.location.LocationInterceptor;
-import com.omvp.app.interceptor.location.LocationInterceptorCallback;
-import com.omvp.app.interceptor.permission.PermissionActivityInterceptor;
-import com.omvp.app.interceptor.permission.PermissionInterceptor;
-import com.omvp.app.interceptor.permission.PermissionInterceptorCallback;
+import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
+import com.omvp.app.interceptor.operation.OperationBroadcastInterceptor;
 import com.omvp.app.interceptor.takePicture.TakePictureActivityInterceptor;
 import com.omvp.app.interceptor.takePicture.TakePictureInterceptor;
-import com.omvp.app.interceptor.takePicture.TakePictureInterceptorCallback;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutActivityInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflatelayout.AutoInflateLayoutInterceptorCallback;
@@ -102,29 +99,15 @@ public abstract class InterceptorActivityModule {
 
     @Provides
     @PerActivity
-    static LocationInterceptor provideLocationInterceptor(Activity activity, LocationRequest locationRequest) {
-        if (activity instanceof LocationInterceptorCallback) {
-            return new LocationActivityInterceptor(activity, locationRequest, (LocationInterceptorCallback) activity);
-        } else {
-            return null;
-        }
+    static LocationInterceptor locationInterceptor(Activity activity, LocationRequest locationRequest) {
+        return new LocationActivityInterceptor(activity, locationRequest);
     }
 
     @Provides
     @PerActivity
-    static PermissionInterceptor providePermissionInterceptor(Activity activity) {
-        if (activity instanceof PermissionInterceptorCallback) {
-            return new PermissionActivityInterceptor(activity, (PermissionInterceptorCallback) activity);
-        } else {
-            return null;
-        }
-    }
-
-    @Provides
-    @PerActivity
-    static GoogleApiClientInterceptor provideGoogleApiClientInterceptor(Activity activity, GoogleSignInOptions googleSignInOptions) {
+    static GoogleApiClientInterceptor googleApiClientInterceptor(Activity activity, GoogleApiClient.Builder builder) {
         if (activity instanceof GoogleApiClientInterceptorCallback) {
-            return new GoogleApiClientActivityInterceptor(activity, googleSignInOptions, (GoogleApiClientInterceptorCallback) activity);
+            return new GoogleApiClientActivityInterceptor(activity, builder, (GoogleApiClientInterceptorCallback) activity);
         } else {
             return null;
         }
@@ -132,12 +115,14 @@ public abstract class InterceptorActivityModule {
 
     @Provides
     @PerActivity
-    static TakePictureInterceptor provideGalleryInterceptor(Activity activity) {
-        if (activity instanceof TakePictureInterceptorCallback) {
-            return new TakePictureActivityInterceptor(activity, (TakePictureInterceptorCallback) activity);
-        } else {
-            return null;
-        }
+    static TakePictureInterceptor galleryInterceptor(Activity activity) {
+        return new TakePictureActivityInterceptor(activity);
+    }
+  
+    @Provides
+    @PerActivity
+    static OperationBroadcastInterceptor operationBroadcastInterceptor(Activity activity) {
+        return new OperationBroadcastActivityInterceptor(activity);
     }
 
 }
