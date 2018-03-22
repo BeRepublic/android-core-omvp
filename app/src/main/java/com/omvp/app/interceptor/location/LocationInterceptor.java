@@ -9,10 +9,6 @@ public interface LocationInterceptor extends Interceptor {
 
     Location getCurrentLocation();
 
-    void startLocationUpdates();
-
-    void stopLocationUpdates();
-
     void addLocationListener(LocationListener locationListener);
 
 }

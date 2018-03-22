@@ -1,4 +1,4 @@
-======================================== HOW IS THAT ===============================================
+======= HOW IS THAT ================================================================================
 
     This project is created like a template to start another projets. It`s based in MVP pattern and
     Onion arquitecture, besides use Dagger2 to injection dependencies, RX2 to reactive programing
@@ -12,10 +12,9 @@
     - crashlytics - Library to register any crash in app.
     - calligraphyVersion - Library to use custom fonts.
     - threeTen - Library to use dates
-    - autoFitTextView - Library to use TextViews with autoresize property.
     - modelmapper - Library to map any object to another.
 
-================================== STEPS TO CONFIGURE PROJECT ======================================
+======= STEPS TO CONFIGURE PROJECT =================================================================
 
     1. Rename androidApplicationId and testApplicationId in build.gradle.
         com.omvp.app -> com.companyname.proyectname
@@ -50,10 +49,14 @@
         + dev/res/xml/app_tracker.xml
         + prod/res/xml/app_tracker.xml
 
-============================================= TIPS =================================================
+======= TIPS =======================================================================================
 
     1. All project configuration is located in build.gradle
     2. Library dependency configuration is located in buildSystem/dependencies.gradle.
     3. keystore's is located in buildSystem/*
 
+======= STEPS TO DELIVERY PROJECT ==================================================================
 
+    1. Remove every sample class or file from project.
+    2. Remove any permission (androidManifest.xml) that is not necessary for the project.
+    3. Remove any dependencies that is not necessary for the project.
