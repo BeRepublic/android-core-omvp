@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 
 import static junit.framework.Assert.assertNotNull;
 
-public class SamplePresenterTest extends BaseTest {
+public class SampleLocalePresenterTest extends BaseTest {
 
     @Mock
     SampleView view;

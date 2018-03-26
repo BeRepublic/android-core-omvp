@@ -14,17 +14,12 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
         void onSampleViewSelected();
-
         void onSampleListSelected();
-
         void onSamplePagerSelected();
-
         void onSampleMultipleSelected();
-
-        void onSampleLocationSelected();
-
+        void onSampleLocationSelected ();
         void onSampleTakePictureSelected();
-
+        void onSampleLocaleSelected();
         void onSampleHorizontalListClicked();
     }
 
@@ -70,4 +65,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         mCallback.onSampleHorizontalListClicked();
     }
 
+    @OnClick(R.id.button_locale)
+    public void onSampleLocaleClicked(View view) {
+        mCallback.onSampleLocaleSelected();
+    }
 }

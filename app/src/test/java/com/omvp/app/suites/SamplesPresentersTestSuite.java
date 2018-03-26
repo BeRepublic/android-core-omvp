@@ -1,7 +1,7 @@
 package com.omvp.app.suites;
 
 
-import com.omvp.app.ui.samples.sample.SamplePresenterTest;
+import com.omvp.app.ui.samples.sample.SampleLocalePresenterTest;
 import com.omvp.app.ui.samples.sample_list.SampleListPresenterTest;
 import com.omvp.app.ui.samples.sample_multiple.SampleBottomPresenterTest;
 import com.omvp.app.ui.samples.sample_multiple.SampleTopPresenterTest;
@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        SamplePresenterTest.class,
+        SampleLocalePresenterTest.class,
         SampleListPresenterTest.class,
         SampleBottomPresenterTest.class,
         SampleTopPresenterTest.class,

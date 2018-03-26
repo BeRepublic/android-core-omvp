@@ -60,6 +60,7 @@ android {
                             'src/main/res/layouts/sample_list_horizontal',
                             'src/main/res/layouts/sample_pager',
                             'src/main/res/layouts/sample_multiple',
+                            'src/main/res/layouts/sample_locale',
                             'src/main/res/layouts/sample_location',
                             'src/main/res/layouts/sample_take_picture',
                             'src/main/res/layouts/splash',

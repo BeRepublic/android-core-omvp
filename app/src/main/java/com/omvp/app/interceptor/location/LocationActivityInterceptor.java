@@ -48,6 +48,7 @@ import timber.log.Timber;
 public class LocationActivityInterceptor extends ActivitySimpleInterceptor implements LocationInterceptor {
 
     private final static String KEY_REQUESTING_LOCATION_UPDATES = "requesting-location-updates";
+    private final static String KEY_REQUESTING_LOCATION_PERMISSIONS = "requesting-permissions";
     private final static String KEY_LOCATION = "location";
 
     /**
@@ -183,21 +184,22 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
 
     private void storeDataToBundle(Bundle outState) {
         outState.putBoolean(KEY_REQUESTING_LOCATION_UPDATES, mRequestingLocationUpdates);
+        outState.putBoolean(KEY_REQUESTING_LOCATION_PERMISSIONS, mRequestingLocationPermissions);
         outState.putParcelable(KEY_LOCATION, mCurrentLocation);
     }
 
     private void restoreDataFromBundle(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that
-            // the Start Updates and Stop Updates buttons are correctly enabled or disabled.
+            // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that the Start Updates and Stop Updates buttons are correctly enabled or disabled.
             if (savedInstanceState.keySet().contains(KEY_REQUESTING_LOCATION_UPDATES)) {
                 mRequestingLocationUpdates = savedInstanceState.getBoolean(KEY_REQUESTING_LOCATION_UPDATES);
             }
-            // Update the value of mCurrentLocation from the Bundle and update the UI to show the
-            // correct latitude and longitude.
+            if (savedInstanceState.keySet().contains(KEY_REQUESTING_LOCATION_PERMISSIONS)) {
+                mRequestingLocationPermissions = savedInstanceState.getBoolean(KEY_REQUESTING_LOCATION_PERMISSIONS);
+            }
+            // Update the value of mCurrentLocation from the Bundle and update the UI to show the correct latitude and longitude.
             if (savedInstanceState.keySet().contains(KEY_LOCATION)) {
-                // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
-                // is not null.
+                // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocationis not null.
                 mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             }
         }
@@ -272,7 +274,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                 }
                                 break;
                             case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                new AlertDialog.Builder(mActivity)
+                                showDialog(new AlertDialog.Builder(mActivity)
                                         .setTitle(R.string.location_permission_settings_title)
                                         .setMessage(R.string.location_permission_settings_description)
                                         .setPositiveButton(R.string.location_permission_settings_positive_button, new DialogInterface.OnClickListener() {
@@ -289,8 +291,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                             }
                                         })
                                         .setCancelable(false)
-                                        .create()
-                                        .show();
+                                        .create());
                         }
                         if (mCurrentLocation != null) {
                             onLocationChanged(mCurrentLocation);
@@ -344,7 +345,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                         @Override
                         public void accept(Boolean shouldShowRequestPermissionRationale) throws Exception {
                             if (shouldShowRequestPermissionRationale) {
-                                new AlertDialog.Builder(mActivity)
+                                showDialog(new AlertDialog.Builder(mActivity)
                                         .setTitle(R.string.location_permission_title)
                                         .setMessage(R.string.location_permission_description)
                                         .setPositiveButton(R.string.location_permission_positive_button, new DialogInterface.OnClickListener() {
@@ -353,15 +354,31 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                                 requestLocationPermissions();
                                             }
                                         })
+                                        .setNegativeButton(R.string.location_permission_negative_button, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finishActivity();
+                                            }
+                                        })
                                         .setCancelable(false)
-                                        .create()
-                                        .show();
+                                        .create());
                             } else {
                                 requestLocationPermissions();
                             }
                         }
                     }));
         }
+    }
+
+    private AlertDialog mCurrentDialog;
+
+    private void showDialog(AlertDialog dialog) {
+        if (mCurrentDialog != null) {
+            mCurrentDialog.dismiss();
+            mCurrentDialog = null;
+        }
+        mCurrentDialog = dialog;
+        mCurrentDialog.show();
     }
 
     private void requestLocationPermissions() {
@@ -374,7 +391,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                         if (permission.granted) {
                             requestLocationUpdates();
                         } else if (permission.shouldShowRequestPermissionRationale) {
-                            new AlertDialog.Builder(mActivity)
+                            showDialog(new AlertDialog.Builder(mActivity)
                                     .setTitle(R.string.location_permission_title)
                                     .setMessage(R.string.location_permission_description)
                                     .setPositiveButton(R.string.location_permission_positive_button, new DialogInterface.OnClickListener() {
@@ -383,11 +400,16 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                             requestLocationPermissions();
                                         }
                                     })
+                                    .setNegativeButton(R.string.location_permission_negative_button, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finishActivity();
+                                        }
+                                    })
                                     .setCancelable(false)
-                                    .create()
-                                    .show();
+                                    .create());
                         } else {
-                            new AlertDialog.Builder(mActivity)
+                            showDialog(new AlertDialog.Builder(mActivity)
                                     .setTitle(R.string.location_permission_force_title)
                                     .setMessage(R.string.location_permission_force_description)
                                     .setPositiveButton(R.string.location_permission_force_positive_button, new DialogInterface.OnClickListener() {
@@ -400,11 +422,10 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finishActivity();
-                                        }
+                                         }
                                     })
                                     .setCancelable(false)
-                                    .create()
-                                    .show();
+                                    .create());
                         }
                     }
 

@@ -7,6 +7,8 @@ import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample.SampleActivityModule;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivityModule;
+import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
+import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivityModule;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivityModule;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
@@ -95,10 +97,19 @@ public abstract class InjectorModule {
     abstract SampleLocationActivity sampleLocationActivity();
 
     /**
-     * Provides the injector for the {@link SampleLocationActivity}, which has access to the dependencies
+     * Provides the injector for the {@link SampleTakePictureActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleTakePictureActivityModule.class})
     abstract SampleTakePictureActivity sampleTakePictureActivity();
+
+    /**
+     * Provides the injector for the {@link SampleLocaleActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleLocaleActivityModule.class})
+    abstract SampleLocaleActivity sampleLocaleActivity();
+
 }

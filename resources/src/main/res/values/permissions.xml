@@ -6,6 +6,7 @@
     <string name="location_permission_title">¿Porqué necesitamos que autorices la geolocalización?</string>
     <string name="location_permission_description">Para poder mostrarte los servicios cercanos a tu posición necesitamos saber donde estas.</string>
     <string name="location_permission_positive_button">¡Entendido!</string>
+    <string name="location_permission_negative_button">Salir</string>
 
     <string name="location_permission_force_title">Fix in Settings</string>
     <string name="location_permission_force_description">You have forcefully denied some of the required permissions for this action. Please open settings, go to permissions and allow them.</string>
