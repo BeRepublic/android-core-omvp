@@ -2,6 +2,8 @@
 package com.omvp.app.ui.samples.sample_list.presenter;
 
 
+import android.view.View;
+
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
 import com.omvp.app.base.reactivex.BaseDisposableMaybeObserver;
@@ -50,8 +52,8 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     }
 
     @Override
-    public void sampleItemSelected(int position) {
-        sampleItemSelected(mSampleDomainList.get(position));
+    public void sampleItemSelected(int position, View sharedView) {
+        sampleItemSelected(mSampleDomainList.get(position), sharedView);
     }
 
     @Override
@@ -176,9 +178,9 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
         }
     }
 
-    private void sampleItemSelected(SampleDomain sampleDomain) {
+    private void sampleItemSelected(SampleDomain sampleDomain, View sharedView) {
         if (mView != null) {
-            mView.onSampleItemSelected(sampleDomain);
+            mView.onSampleItemSelected(sampleDomain, sharedView);
         }
     }
 }

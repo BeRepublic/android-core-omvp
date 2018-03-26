@@ -1,11 +1,13 @@
 package com.omvp.components;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+import android.view.View;
 
 public class SampleItemView extends BaseComponentView {
 
@@ -35,6 +37,10 @@ public class SampleItemView extends BaseComponentView {
         mSampleTextView = findViewById(R.id.text);
         mSampleImageView = findViewById(R.id.image);
         mDeleteButtonView = findViewById(R.id.delete_button);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mSampleImageView.setTransitionName("item");
+        }
     }
 
     @Override
@@ -57,5 +63,9 @@ public class SampleItemView extends BaseComponentView {
 
     public void setDeleteClickListener(OnClickListener clickListener) {
         mDeleteButtonView.setOnClickListener(clickListener);
+    }
+
+    public View getSharedView() {
+        return mSampleImageView;
     }
 }

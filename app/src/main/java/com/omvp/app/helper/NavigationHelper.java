@@ -1,7 +1,11 @@
 package com.omvp.app.helper;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.home.HomeActivity;
@@ -13,6 +17,8 @@ import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
+import com.raxdenstudios.commons.util.SDKUtils;
+import com.raxdenstudios.commons.util.Utils;
 
 public class NavigationHelper {
 
@@ -51,6 +57,20 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
                 .navigateTo(SampleActivity.class)
+                .launch();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void launchSampleWithSharedViewTransition(long sampleItemId, View sharedView) {
+        Bundle extras = getExtras();
+        extras.putLong(Long.class.getSimpleName(), sampleItemId);
+
+        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(
+                mActivity, sharedView, "item");
+
+        new NavigationManager.Builder(mActivity)
+                .putData(extras)
+                .navigateTo(SampleActivity.class, activityOptions.toBundle())
                 .launch();
     }
 

@@ -32,7 +32,7 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     private SampleListAdapter mAdapter;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-        void onSampleItemSelected(SampleDomain sampleDomain);
+        void onSampleItemSelected(SampleDomain sampleDomain, View sharedView);
     }
 
     public static SampleListFragment newInstance(Bundle bundle) {
@@ -85,8 +85,8 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     }
 
     @Override
-    public void onSampleItemSelected(SampleDomain sampleDomain) {
-        mCallback.onSampleItemSelected(sampleDomain);
+    public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
+        mCallback.onSampleItemSelected(sampleDomain, sharedView);
     }
 
     @Override

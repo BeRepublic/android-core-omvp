@@ -9,6 +9,8 @@ import com.omvp.app.util.TrackerManager;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptor;
 import com.raxdenstudios.square.interceptor.commons.autoinflateview.AutoInflateViewInterceptorCallback;
+import com.raxdenstudios.square.interceptor.commons.handlearguments.HandleArgumentsInterceptor;
+import com.raxdenstudios.square.interceptor.commons.handlearguments.HandleArgumentsInterceptorCallback;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ import butterknife.Unbinder;
  */
 public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback extends BaseViewFragmentCallback> extends BaseFragment implements
         AutoInflateViewInterceptorCallback,
+        HandleArgumentsInterceptorCallback,
         BaseView {
 
     @Inject
@@ -41,6 +44,8 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
 
     @Inject
     AutoInflateViewInterceptor mAutoInflateViewInterceptor;
+    @Inject
+    HandleArgumentsInterceptor mHandleArgumentsInterceptor;
 
     @Nullable
     private Unbinder mUnbinder;
@@ -51,6 +56,11 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mPresenter.onSaveView(outState);
+    }
+
+    @Override
+    public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
+
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -155,6 +165,7 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
     @Override
     protected void setupInterceptors(List<Interceptor> interceptorList) {
         interceptorList.add(mAutoInflateViewInterceptor);
+        interceptorList.add(mHandleArgumentsInterceptor);
     }
 
 }

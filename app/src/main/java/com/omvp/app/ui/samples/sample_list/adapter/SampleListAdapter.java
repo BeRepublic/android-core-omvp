@@ -14,7 +14,7 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
     private AdapterCallback mAdapterCallback;
 
     public interface AdapterCallback {
-        void sampleItemSelected(int position);
+        void sampleItemSelected(int position, View sharedView);
 
         void sampleItemDeleteSelected(int position);
     }
@@ -62,7 +62,7 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
 
         @Override
         public void onClick(View v) {
-            mAdapterCallback.sampleItemSelected(getAdapterPosition());
+            mAdapterCallback.sampleItemSelected(getAdapterPosition(), mItemView.getSharedView());
         }
     }
 }

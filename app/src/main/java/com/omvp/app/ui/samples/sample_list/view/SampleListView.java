@@ -1,5 +1,7 @@
 package com.omvp.app.ui.samples.sample_list.view;
 
+import android.view.View;
+
 import com.omvp.app.base.mvp.view.BaseView;
 import com.omvp.app.model.SampleModel;
 import com.omvp.domain.SampleDomain;
@@ -11,7 +13,7 @@ public interface SampleListView extends BaseView {
 
     void showEmptyView();
 
-    void onSampleItemSelected(SampleDomain sampleDomain);
+    void onSampleItemSelected(SampleDomain sampleDomain, View sharedView);
 
     void drawRemoveAnimation(int position);
 
