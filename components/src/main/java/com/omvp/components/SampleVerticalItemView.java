@@ -9,22 +9,21 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class SampleItemView extends BaseComponentView {
+public class SampleVerticalItemView extends BaseComponentView {
 
     private AppCompatTextView mSampleTextView;
     private AppCompatImageView mSampleImageView;
-    private AppCompatImageButton mDeleteButtonView;
-    private AppCompatImageView mDragImageView;
+//    private AppCompatImageButton mDeleteButtonView;
 
-    public SampleItemView(Context context) {
+    public SampleVerticalItemView(Context context) {
         super(context);
     }
 
-    public SampleItemView(Context context, AttributeSet attrs) {
+    public SampleVerticalItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SampleItemView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SampleVerticalItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -37,8 +36,7 @@ public class SampleItemView extends BaseComponentView {
     protected void bindViews() {
         mSampleTextView = findViewById(R.id.text);
         mSampleImageView = findViewById(R.id.image);
-        mDeleteButtonView = findViewById(R.id.delete_button);
-        mDragImageView = findViewById(R.id.drag_image);
+//        mDeleteButtonView = findViewById(R.id.delete_button);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mSampleImageView.setTransitionName("item");
@@ -52,7 +50,7 @@ public class SampleItemView extends BaseComponentView {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.sample_item_layout;
+        return R.layout.sample_vertical_item_layout;
     }
 
     public void setSampleText(String text) {
@@ -64,14 +62,10 @@ public class SampleItemView extends BaseComponentView {
     }
 
     public void setDeleteClickListener(OnClickListener clickListener) {
-        mDeleteButtonView.setOnClickListener(clickListener);
+//        mDeleteButtonView.setOnClickListener(clickListener);
     }
 
     public View getSharedView() {
         return mSampleImageView;
-    }
-
-    public View getDragView() {
-        return mDragImageView;
     }
 }

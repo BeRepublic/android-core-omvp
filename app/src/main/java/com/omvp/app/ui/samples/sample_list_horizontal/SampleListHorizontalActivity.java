@@ -1,12 +1,15 @@
-package com.omvp.app.ui.home;
+package com.omvp.app.ui.samples.sample_list_horizontal;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.samples.sample_list_horizontal.view.SampleListHorizontalFragment;
+import com.omvp.domain.SampleDomain;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -17,11 +20,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
-public class HomeActivity extends BaseFragmentActivity implements
+public class SampleListHorizontalActivity extends BaseFragmentActivity implements
+        SampleListHorizontalFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<HomeFragment>,
-        HomeFragment.FragmentCallback {
+        InjectFragmentInterceptorCallback<SampleListHorizontalFragment> {
 
     @Inject
     ToolbarInterceptor mToolbarInterceptor;
@@ -29,7 +31,7 @@ public class HomeActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private HomeFragment mFragment;
+    private SampleListHorizontalFragment mFragment;
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -43,6 +45,12 @@ public class HomeActivity extends BaseFragmentActivity implements
         mToolbar = toolbar;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mFragment.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
     // =============== InjectFragmentInterceptorCallback ===========================================
 
     @Override
@@ -51,12 +59,12 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public HomeFragment onCreateFragment() {
-        return HomeFragment.newInstance(mExtras);
+    public SampleListHorizontalFragment onCreateFragment() {
+        return SampleListHorizontalFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(HomeFragment fragment) {
+    public void onFragmentLoaded(SampleListHorizontalFragment fragment) {
         mFragment = fragment;
     }
 
@@ -70,37 +78,12 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public void onSampleViewSelected() {
-        mNavigationHelper.launchSample();
+    public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mNavigationHelper.launchSampleWithSharedViewTransition(sampleDomain.getId(), sharedView);
+        } else {
+            mNavigationHelper.launchSample(sampleDomain.getId());
+        }
     }
 
-    @Override
-    public void onSampleListSelected() {
-        mNavigationHelper.launchSampleList();
-    }
-
-    @Override
-    public void onSamplePagerSelected() {
-        mNavigationHelper.launchSamplePager();
-    }
-
-    @Override
-    public void onSampleMultipleSelected() {
-        mNavigationHelper.launchSampleMap();
-    }
-
-    @Override
-    public void onSampleLocationSelected() {
-        mNavigationHelper.launchSampleLocation();
-    }
-
-    @Override
-    public void onSampleTakePictureSelected() {
-        mNavigationHelper.launchSampleTakePicture();
-    }
-
-    @Override
-    public void onSampleHorizontalListClicked() {
-        mNavigationHelper.launchSampleHorizontalList();
-    }
 }

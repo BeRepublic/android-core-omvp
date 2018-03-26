@@ -1,7 +1,8 @@
-package com.omvp.app.ui.samples.sample_list.view;
+package com.omvp.app.ui.samples.sample_list_horizontal.view;
 
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
@@ -14,8 +15,8 @@ import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
 import com.omvp.app.model.SampleModel;
-import com.omvp.app.ui.samples.sample_list.adapter.SampleListAdapter;
-import com.omvp.app.ui.samples.sample_list.presenter.SampleListPresenter;
+import com.omvp.app.ui.samples.sample_list_horizontal.adapter.SampleListAdapter;
+import com.omvp.app.ui.samples.sample_list_horizontal.presenter.SampleListHorizontalPresenter;
 import com.omvp.app.util.RecyclerDragHelper;
 import com.omvp.domain.SampleDomain;
 
@@ -23,8 +24,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class SampleListFragment extends BaseViewFragment<SampleListPresenter, SampleListFragment.FragmentCallback>
-        implements SampleListView {
+public class SampleListHorizontalFragment extends BaseViewFragment<SampleListHorizontalPresenter, SampleListHorizontalFragment.FragmentCallback>
+        implements SampleListHorizontalView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -37,8 +38,8 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         void onSampleItemSelected(SampleDomain sampleDomain, View sharedView);
     }
 
-    public static SampleListFragment newInstance(Bundle bundle) {
-        SampleListFragment fragment = new SampleListFragment();
+    public static SampleListHorizontalFragment newInstance(Bundle bundle) {
+        SampleListHorizontalFragment fragment = new SampleListHorizontalFragment();
         bundle = bundle == null ? new Bundle() : bundle;
         fragment.setArguments(bundle);
         return fragment;
@@ -73,7 +74,7 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     }
 
     @Override
-    public void drawSampleList(List<SampleModel> sampleModelList) {
+    public void drawSampleList(List<Object> sampleModelList) {
         mAdapter.setItems(sampleModelList);
 
         mEmptyView.setVisibility(View.GONE);
@@ -104,17 +105,28 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     }
 
     private void setupViews() {
-        mAdapter = new SampleListAdapter(
-                getActivity(),
-                (SampleListAdapter.AdapterCallback) mPresenter
-        );
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        mAdapter = new SampleListAdapter(getActivity(),
+                (SampleListAdapter.AdapterCallback) mPresenter);
 
-        RecyclerDragHelper dragHelper = new RecyclerDragHelper(mAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(dragHelper);
-        mAdapter.setTouchHelper(touchHelper);
-        touchHelper.attachToRecyclerView(mRecyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(
+                mContext,
+                LinearLayoutManager.VERTICAL,
+                false
+        );
+
+        /*
+            Call LinearLayoutManager.setInitialPrefetchItemCount(N), where N is the number of views visible per inner item.
+            For example, if your inner, horizontal lists show a minimum of three and a half item views at a time,
+            you can improve performance by calling LinearLayoutManager.setInitialPrefetchItemCount(4).
+            Doing so allows RecyclerView to create all relevant views early, while the outer RecyclerView is scrolling,
+            which significantly reduces the amount of stuttering during scrolls.
+         */
+        manager.setInitialPrefetchItemCount(3);
+
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext,
+                DividerItemDecoration.VERTICAL));
     }
 }

@@ -1,17 +1,23 @@
 package com.omvp.app.ui.samples.sample_list.adapter;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.omvp.app.model.SampleModel;
+import com.omvp.app.util.RecyclerDragHelper;
 import com.omvp.components.SampleItemView;
 import com.raxdenstudios.recycler.RecyclerAdapter;
 
-public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAdapter.SampleListViewHolder> {
+public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAdapter.SampleListViewHolder> implements RecyclerDragHelper.ActionCompletionContract {
 
     private AdapterCallback mAdapterCallback;
+
+    private ItemTouchHelper mItemTouchHelper;
 
     public interface AdapterCallback {
         void sampleItemSelected(int position, View sharedView);
@@ -34,8 +40,32 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
     }
 
     @Override
-    public void onBindViewItemHolder(SampleListViewHolder holder, SampleModel data, int position) {
+    public void onBindViewItemHolder(final SampleListViewHolder holder, SampleModel data, int position) {
         holder.bindView(data);
+
+        holder.mItemView.getDragView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mItemTouchHelper.startDrag(holder);
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onViewMoved(int oldPosition, int newPosition) {
+        moveItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void onViewSwiped(int position) {
+        removeItem(position);
+    }
+
+    public void setTouchHelper(ItemTouchHelper touchHelper) {
+        this.mItemTouchHelper = touchHelper;
     }
 
     class SampleListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

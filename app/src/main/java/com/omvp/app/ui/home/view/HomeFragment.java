@@ -14,11 +14,18 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
         void onSampleViewSelected();
+
         void onSampleListSelected();
+
         void onSamplePagerSelected();
+
         void onSampleMultipleSelected();
-        void onSampleLocationSelected ();
+
+        void onSampleLocationSelected();
+
         void onSampleTakePictureSelected();
+
+        void onSampleHorizontalListClicked();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -44,18 +51,23 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
     }
 
     @OnClick(R.id.button_multiple)
-    public void onSampleMultipleClicked(View view){
+    public void onSampleMultipleClicked(View view) {
         mCallback.onSampleMultipleSelected();
     }
 
-    @OnClick (R.id.button_location)
-    public void onSampleLocationClicked(View view){
+    @OnClick(R.id.button_location)
+    public void onSampleLocationClicked(View view) {
         mCallback.onSampleLocationSelected();
     }
 
-    @OnClick (R.id.button_take_picture)
-    public void onSampleTakePictureClicked(View view){
+    @OnClick(R.id.button_take_picture)
+    public void onSampleTakePictureClicked(View view) {
         mCallback.onSampleTakePictureSelected();
+    }
+
+    @OnClick(R.id.button_horizontal_list)
+    public void onSampleHorizontalListClicked(View view) {
+        mCallback.onSampleHorizontalListClicked();
     }
 
 }

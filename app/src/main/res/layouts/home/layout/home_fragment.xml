@@ -27,11 +27,25 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
         android:text="Show sample list"
-        app:layout_constraintBottom_toTopOf="@+id/button_pager"
+        app:layout_constraintBottom_toTopOf="@+id/button_horizontal_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_view"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/button_horizontal_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:text="Show sample Horizontal list"
+        app:layout_constraintBottom_toTopOf="@+id/button_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_list"
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <Button
@@ -45,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_list"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_horizontal_list"/>
 
     <Button
         android:id="@+id/button_multiple"
