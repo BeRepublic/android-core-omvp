@@ -1,6 +1,7 @@
 package com.omvp.app.ui.samples.sample_list.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -107,5 +108,6 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         );
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
     }
 }
