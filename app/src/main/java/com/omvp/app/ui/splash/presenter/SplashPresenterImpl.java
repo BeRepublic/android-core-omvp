@@ -1,19 +1,23 @@
 
 package com.omvp.app.ui.splash.presenter;
 
+import android.content.res.Configuration;
 import android.os.Handler;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
 import com.omvp.app.ui.splash.view.SplashView;
 import com.omvp.commons.Constants;
+import com.omvp.domain.interactor.GetLocaleUseCase;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
@@ -31,6 +35,9 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
             }
         }
     };
+
+    @Inject
+    GetLocaleUseCase mGetLocaleUseCase;
 
     @Inject
     public SplashPresenterImpl(SplashView splashView) {
@@ -55,7 +62,9 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     // Support methods =============================================================================
 
     private void prepareApplicationToLaunch() {
-        mDisposableManager.add(makeTime()
+        mDisposableManager.add(Completable.complete()
+                .andThen(makeTime().subscribeOn(Schedulers.io()))
+                .andThen(initLocale().subscribeOn(Schedulers.io()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
@@ -81,6 +90,21 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
 
     private Completable makeTime() {
         return Completable.timer(Constants.SPLASH_DELAY, TimeUnit.MILLISECONDS);
+    }
+
+    private Completable initLocale() {
+        return mGetLocaleUseCase.execute()
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess(new Consumer<Locale>() {
+                    @Override
+                    public void accept(Locale locale) throws Exception {
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        mResources.updateConfiguration(config, mResources.getDisplayMetrics());
+                    }
+                })
+                .toCompletable();
     }
 
     private void initProgressBar() {

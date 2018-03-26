@@ -34,5 +34,4 @@ public abstract class LocaleModule {
         return new Locale("es", "ES");
     }
 
-
 }
