@@ -17,7 +17,7 @@ public class SampleRepositoryImpl implements SampleRepository {
 
     @Inject
     SampleRepositoryImpl() {
-       StaticRepository.init();
+        StaticRepository.init();
     }
 
     @Override

@@ -1,8 +1,13 @@
 package com.omvp.app.ui.samples.sample_list.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
@@ -27,7 +32,7 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     private SampleListAdapter mAdapter;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-        void onSampleItemSelected(SampleDomain sampleDomain);
+        void onSampleItemSelected(SampleDomain sampleDomain, View sharedView);
     }
 
     public static SampleListFragment newInstance(Bundle bundle) {
@@ -35,6 +40,27 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         bundle = bundle == null ? new Bundle() : bundle;
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_sample_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            mPresenter.onAddSampleItemSelected();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -59,8 +85,20 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     }
 
     @Override
-    public void onSampleItemSelected(SampleDomain sampleDomain) {
-        mCallback.onSampleItemSelected(sampleDomain);
+    public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
+        mCallback.onSampleItemSelected(sampleDomain, sharedView);
+    }
+
+    @Override
+    public void drawRemoveAnimation(int position) {
+        mAdapter.removeItem(position);
+    }
+
+    @Override
+    public void drawAddAnimation(SampleModel model) {
+        mAdapter.addItem(model);
+
+        Toast.makeText(mContext, "Added " + model.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
     private void setupViews() {
@@ -70,5 +108,6 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         );
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
     }
 }

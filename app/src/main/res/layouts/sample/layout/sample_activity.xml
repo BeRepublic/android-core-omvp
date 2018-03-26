@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/coordinator_layout_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <include layout="@layout/content_view"/>
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <include layout="@layout/sample_toolbar_view"/>
+
+    <include layout="@layout/content_view"/>
 
     <include layout="@layout/progress_view"/>
 
