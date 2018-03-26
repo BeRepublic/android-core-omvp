@@ -32,14 +32,14 @@ import dagger.android.AndroidInjector;
  * |        |   |                                                         |         |              |
  * |        | *SplashActivitySubComponent ------------------ SplashActivityModule   |              |
  * |        |                          |                                            |              |
- * |      *HomeActivitySubComponent ---|----------------------------------- SampleActivityModule   |
+ * |      *HomeActivitySubComponent ---|----------------------------------- SampleLocaleActivityModule   |
  * |                     |             |                                                           |
  * |                     |             |                                                           |
  * |                     |             |                                BaseFragmentModule         |
  * |                     |             |                                     |    |                |
  * |                     |  *SplashFragmentSubComponent --- SplashFragmentModule  |                |
  * |                     |                                                        |                |
- * |          *HomeFragmentSubcomponent --------------------------------- SampleFragmentModule     |
+ * |          *HomeFragmentSubcomponent --------------------------------- SampleLocaleFragmentModule     |
  * |                                                                                               |
  * =================================================================================================
  *

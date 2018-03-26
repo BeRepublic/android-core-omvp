@@ -11,14 +11,13 @@ import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
+import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
-import com.raxdenstudios.commons.util.SDKUtils;
-import com.raxdenstudios.commons.util.Utils;
 
 public class NavigationHelper {
 
@@ -102,11 +101,17 @@ public class NavigationHelper {
                 .launch();
     }
 
-
     public void launchSampleTakePicture() {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleTakePictureActivity.class)
+                .launch();
+    }
+
+    public void launchSampleLocale() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleLocaleActivity.class)
                 .launch();
     }
 

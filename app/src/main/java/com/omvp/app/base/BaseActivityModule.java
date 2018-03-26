@@ -2,6 +2,7 @@ package com.omvp.app.base;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -19,6 +20,9 @@ import com.omvp.app.util.DisposableManager;
 import com.omvp.app.util.TrackerManager;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import javax.inject.Named;
+
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
@@ -31,6 +35,13 @@ import dagger.Provides;
         UseCaseModule.class
 })
 public abstract class BaseActivityModule {
+
+    public static final String ACTIVITY_CONTEXT = "BaseActivityModule.activityContext";
+
+    @Binds
+    @Named(ACTIVITY_CONTEXT)
+    @PerActivity
+    abstract Context activityContext(Activity activity);
 
     @Provides
     @PerActivity

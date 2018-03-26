@@ -19,6 +19,7 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onSampleMultipleSelected();
         void onSampleLocationSelected ();
         void onSampleTakePictureSelected();
+        void onSampleLocaleSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -58,4 +59,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         mCallback.onSampleTakePictureSelected();
     }
 
+    @OnClick(R.id.button_locale)
+    public void onSampleLocaleClicked(View view) {
+        mCallback.onSampleLocaleSelected();
+    }
 }

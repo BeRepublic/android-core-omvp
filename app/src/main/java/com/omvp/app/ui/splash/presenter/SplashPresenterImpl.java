@@ -1,12 +1,12 @@
 
 package com.omvp.app.ui.splash.presenter;
 
-import android.content.res.Configuration;
 import android.os.Handler;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
 import com.omvp.app.ui.splash.view.SplashView;
+import com.omvp.app.util.LocaleHelper;
 import com.omvp.commons.Constants;
 import com.omvp.domain.interactor.GetLocaleUseCase;
 
@@ -98,10 +98,7 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
                 .doOnSuccess(new Consumer<Locale>() {
                     @Override
                     public void accept(Locale locale) throws Exception {
-                        Locale.setDefault(locale);
-                        Configuration config = new Configuration();
-                        config.locale = locale;
-                        mResources.updateConfiguration(config, mResources.getDisplayMetrics());
+                        LocaleHelper.updateConfiguration(mResources, locale);
                     }
                 })
                 .toCompletable();

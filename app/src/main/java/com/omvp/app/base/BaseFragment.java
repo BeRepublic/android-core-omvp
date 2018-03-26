@@ -22,6 +22,10 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasFragmentInjector;
 
+import static com.omvp.app.base.BaseActivityModule.ACTIVITY_CONTEXT;
+import static com.omvp.app.base.BaseFragmentModule.CHILD_FRAGMENT_MANAGER;
+import static com.omvp.app.base.BaseFragmentModule.DISPOSABLE_FRAGMENT_MANAGER;
+
 /**
  * Abstract (Dialog)Fragment for all (Dialog)Fragments and child (Dialog)Fragments to extend.
  * This contains some boilerplate dependency injection code and activity {@link Context}.
@@ -58,6 +62,7 @@ public abstract class BaseFragment extends SquareDialogFragment implements
      * <p>
      */
     @Inject
+    @Named(ACTIVITY_CONTEXT)
     protected Context mContext;
     @Inject
     protected Resources mResources;
@@ -69,13 +74,13 @@ public abstract class BaseFragment extends SquareDialogFragment implements
      */
     // Note that this should not be used within a child fragment.
     @Inject
-    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    @Named(CHILD_FRAGMENT_MANAGER)
     protected FragmentManager mChildFragmentManager;
     @Inject
-    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    @Named(CHILD_FRAGMENT_MANAGER)
     protected DialogHelper mDialogHelper;
     @Inject
-    @Named(BaseFragmentModule.DISPOSABLE_FRAGMENT_MANAGER)
+    @Named(DISPOSABLE_FRAGMENT_MANAGER)
     protected DisposableManager mDisposableManager;
 
     @Inject

@@ -11,7 +11,6 @@ import com.omvp.app.model.SampleModel;
 import com.omvp.app.model.mapper.SampleModelDataMapper;
 import com.omvp.app.ui.samples.sample_list.adapter.SampleListAdapter;
 import com.omvp.app.ui.samples.sample_list.view.SampleListView;
-import com.omvp.data.StaticRepository;
 import com.omvp.domain.SampleDomain;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.RemoveSampleUseCase;
@@ -130,28 +129,28 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     }
 
     private void addItem() {
-        final SampleDomain sampleDomain = StaticRepository.initSampleDomain(mSampleDomainList.size() + 1);
-        mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
-                    @Override
-                    protected void onStart() {
-                        showProgress();
-                    }
-
-                    @Override
-                    protected void onError(int code, String title, String description) {
-                        hideProgress();
-                        showError(code, title, description);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        mSampleDomainList.add(sampleDomain);
-                        drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
-                    }
-                }));
+//        final SampleDomain sampleDomain = StaticRepository.initSampleDomain(mSampleDomainList.size() + 1);
+//        mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
+//                    @Override
+//                    protected void onStart() {
+//                        showProgress();
+//                    }
+//
+//                    @Override
+//                    protected void onError(int code, String title, String description) {
+//                        hideProgress();
+//                        showError(code, title, description);
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        mSampleDomainList.add(sampleDomain);
+//                        drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
+//                    }
+//                }));
     }
 
     private void drawAddAnimation(SampleModel model) {
