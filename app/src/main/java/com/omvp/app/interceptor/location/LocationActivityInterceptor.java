@@ -7,10 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -29,6 +30,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.omvp.app.R;
+import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.square.interceptor.ActivitySimpleInterceptor;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -83,6 +85,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
      * Start Updates and Stop Updates buttons.
      */
     private boolean mRequestingLocationUpdates;
+    private boolean mRequestingLocationPermissions;
     private List<LocationListener> mLocationListenerList;
     private RxPermissions mRxPermissions;
 
@@ -104,10 +107,10 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         Timber.i("User agreed to make required location settings changes.");
-                        // Nothing to do. startLocationupdates() gets called in onResume again.
+                        mRequestingLocationUpdates = false;
                         break;
                     case Activity.RESULT_CANCELED:
-                        Timber.i("User chose not to make required location settings changes.");
+                        Timber.i("User choose not to make required location settings changes.");
                         mRequestingLocationUpdates = false;
                         break;
                 }
@@ -120,6 +123,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
         super.onCreate(savedInstanceState);
 
         mRequestingLocationUpdates = false;
+        mRequestingLocationPermissions = false;
 
         restoreDataFromBundle(savedInstanceState);
 
@@ -161,26 +165,6 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
     }
 
     // =============================================================================================
-
-    @Override
-    public void startLocationUpdates() {
-        synchronized (o) {
-            if (!mRequestingLocationUpdates) {
-                mRequestingLocationUpdates = true;
-                performLocationUpdates();
-            }
-        }
-    }
-
-    @Override
-    public void stopLocationUpdates() {
-        synchronized (o) {
-            if (mRequestingLocationUpdates) {
-                mRequestingLocationUpdates = false;
-                removeLocationUpdates();
-            }
-        }
-    }
 
     @Override
     public void addLocationListener(LocationListener locationListener) {
@@ -258,15 +242,14 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
      * runtime permission has been granted.
      */
     @SuppressWarnings({"MissingPermission"})
-    private void performLocationUpdates() {
+    private void requestLocationUpdates() {
+        mRequestingLocationUpdates = true;
         // Begin by checking if the device has the necessary location settings.
         mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
                 .addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                         Timber.d("All location settings are satisfied.");
-
-                        //noinspection MissingPermission
                         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
                         if (mCurrentLocation != null) {
                             onLocationChanged(mCurrentLocation);
@@ -281,8 +264,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                             case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                                 Timber.i("Location settings are not satisfied. Attempting to upgrade location settings ");
                                 try {
-                                    // Show the dialog by calling startResolutionForResult(), and check the
-                                    // result in onActivityResult().
+                                    // Show the dialog by calling startResolutionForResult(), and check the result in onActivityResult().
                                     ResolvableApiException rae = (ResolvableApiException) e;
                                     rae.startResolutionForResult(mActivity, REQUEST_CHECK_SETTINGS);
                                 } catch (IntentSender.SendIntentException sie) {
@@ -290,10 +272,25 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                 }
                                 break;
                             case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                String errorMessage = "Location settings are inadequate, and cannot be fixed here. Fix in Settings.";
-                                Timber.e(errorMessage);
-                                Toast.makeText(mActivity, errorMessage, Toast.LENGTH_LONG).show();
-                                mRequestingLocationUpdates = false;
+                                new AlertDialog.Builder(mActivity)
+                                        .setTitle(R.string.location_permission_settings_title)
+                                        .setMessage(R.string.location_permission_settings_description)
+                                        .setPositiveButton(R.string.location_permission_settings_positive_button, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                mRequestingLocationUpdates = false;
+                                                launchSettings();
+                                            }
+                                        })
+                                        .setNegativeButton(R.string.location_permission_settings_negative_button, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finishActivity();
+                                            }
+                                        })
+                                        .setCancelable(false)
+                                        .create()
+                                        .show();
                         }
                         if (mCurrentLocation != null) {
                             onLocationChanged(mCurrentLocation);
@@ -305,10 +302,18 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
     private void restoreLocationUpdates() {
         synchronized (o) {
             Timber.d("restoreLocationUpdates");
-            if (mRequestingLocationUpdates && checkPermissions()) {
-                performLocationUpdates();
+            if (!mRequestingLocationUpdates && checkPermissions()) {
+                requestLocationUpdates();
             } else if (!checkPermissions()) {
                 requestPermissions();
+            }
+        }
+    }
+
+    private void stopLocationUpdates() {
+        synchronized (o) {
+            if (mRequestingLocationUpdates && checkPermissions()) {
+                removeLocationUpdates();
             }
         }
     }
@@ -332,27 +337,31 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
     }
 
     private void requestPermissions() {
-        mCompositeDisposable.add(mRxPermissions.shouldShowRequestPermissionRationale(mActivity, Manifest.permission.ACCESS_FINE_LOCATION)
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean shouldShowRequestPermissionRationale) throws Exception {
-                        if (shouldShowRequestPermissionRationale) {
-                            new AlertDialog.Builder(mActivity)
-                                    .setTitle(R.string.location_permission_title)
-                                    .setMessage(R.string.location_permission_description)
-                                    .setPositiveButton(R.string.location_permission_positive_button, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            requestLocationPermissions();
-                                        }
-                                    })
-                                    .create()
-                                    .show();
-                        } else {
-                            requestLocationPermissions();
+        if (!mRequestingLocationPermissions) {
+            mRequestingLocationPermissions = true;
+            mCompositeDisposable.add(mRxPermissions.shouldShowRequestPermissionRationale(mActivity, Manifest.permission.ACCESS_FINE_LOCATION)
+                    .subscribe(new Consumer<Boolean>() {
+                        @Override
+                        public void accept(Boolean shouldShowRequestPermissionRationale) throws Exception {
+                            if (shouldShowRequestPermissionRationale) {
+                                new AlertDialog.Builder(mActivity)
+                                        .setTitle(R.string.location_permission_title)
+                                        .setMessage(R.string.location_permission_description)
+                                        .setPositiveButton(R.string.location_permission_positive_button, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                requestLocationPermissions();
+                                            }
+                                        })
+                                        .setCancelable(false)
+                                        .create()
+                                        .show();
+                            } else {
+                                requestLocationPermissions();
+                            }
                         }
-                    }
-                }));
+                    }));
+        }
     }
 
     private void requestLocationPermissions() {
@@ -363,7 +372,7 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                     @Override
                     public void onNext(Permission permission) {
                         if (permission.granted) {
-                            restoreLocationUpdates();
+                            requestLocationUpdates();
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             new AlertDialog.Builder(mActivity)
                                     .setTitle(R.string.location_permission_title)
@@ -371,9 +380,29 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                                     .setPositiveButton(R.string.location_permission_positive_button, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            requestPermissions();
+                                            requestLocationPermissions();
                                         }
                                     })
+                                    .setCancelable(false)
+                                    .create()
+                                    .show();
+                        } else {
+                            new AlertDialog.Builder(mActivity)
+                                    .setTitle(R.string.location_permission_force_title)
+                                    .setMessage(R.string.location_permission_force_description)
+                                    .setPositiveButton(R.string.location_permission_force_positive_button, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            launchSettings();
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.location_permission_force_negative_button, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finishActivity();
+                                        }
+                                    })
+                                    .setCancelable(false)
                                     .create()
                                     .show();
                         }
@@ -385,9 +414,20 @@ public class LocationActivityInterceptor extends ActivitySimpleInterceptor imple
                     }
 
                     @Override
-                    public void onComplete() {}
-
+                    public void onComplete() {
+                        mRequestingLocationPermissions = false;
+                    }
                 }));
+    }
+
+    private void launchSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", Utils.getPackageName(mActivity), null));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mActivity.startActivity(intent);
+    }
+
+    private void finishActivity() {
+        mActivity.finish();
     }
 
 }
