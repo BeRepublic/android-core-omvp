@@ -77,8 +77,8 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
 
     @Override
     public void localeSelected(int position) {
-        final Locale locale = mLocaleList.get(position);
-        mDisposableManager.add(mSaveLocaleUseCase.execute(locale)
+        mLocale = mLocaleList.get(position);
+        mDisposableManager.add(mSaveLocaleUseCase.execute(mLocale)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
@@ -89,8 +89,8 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
 
                     @Override
                     public void onComplete() {
-                        LocaleHelper.updateConfiguration(mResources, locale);
-                        drawLocale(locale);
+                        LocaleHelper.updateConfiguration(mResources, mLocale);
+                        drawLocale(mLocale);
                     }
                 }));
     }
