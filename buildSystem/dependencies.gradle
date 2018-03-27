@@ -223,6 +223,7 @@ ext {
             data      : [
                     implementation     : [
                             raxden.implementation,
+                            firebase.implementation,
                             jakewharton.implementation,
                             dagger.implementation,
                             retrofit.implementation,

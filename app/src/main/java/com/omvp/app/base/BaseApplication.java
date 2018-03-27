@@ -1,6 +1,7 @@
 package com.omvp.app.base;
 
 import android.app.Activity;
+import android.app.Service;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
@@ -12,14 +13,17 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
 
 /**
  * The Android {@link MultiDexApplication}.
  */
-public class BaseApplication extends MultiDexApplication implements HasActivityInjector {
+public class BaseApplication extends MultiDexApplication implements HasActivityInjector, HasServiceInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;
+    @Inject
+    DispatchingAndroidInjector<Service> serviceInjector;
 
     // =============== LifeCycle ===================================================================
 
@@ -31,11 +35,16 @@ public class BaseApplication extends MultiDexApplication implements HasActivityI
         initDaggerApplicationComponent();
     }
 
-    // =============== HasActivityInjector =========================================================
+    // =============== Injectors ===================================================================
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return activityInjector;
+    }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return serviceInjector;
     }
 
     // =============== Support methods =============================================================

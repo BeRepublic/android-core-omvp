@@ -43,6 +43,7 @@ allprojects {
         androidVersionCode = VERSION_CODE as int
         androidVersionName = VERSION_NAME as String
         androidAppName = 'omvp'
+        androidSchemaName = 'omvp'
 
         // ============== Crashlytics configuration ================================================
 

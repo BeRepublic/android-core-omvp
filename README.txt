@@ -58,5 +58,13 @@
 ======= STEPS TO DELIVERY PROJECT ==================================================================
 
     1. Remove every sample class or file from project.
+        + AndroidManifest.xml
+        + com.omvp.app.ui.samples
+        + res/layouts/sample*
+        + SampleEntity
+        + SampleDomain
+        + SampleModel
+        + SampleEntityDataMapper
+        + SampleModelDataMapper
     2. Remove any permission (androidManifest.xml) that is not necessary for the project.
     3. Remove any dependencies that is not necessary for the project.
