@@ -13,6 +13,7 @@ import com.omvp.app.injector.module.LocationModule;
 import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
 import com.omvp.app.injector.module.RepositoryModule;
+import com.omvp.app.injector.module.UseCaseModule;
 import com.raxdenstudios.commons.util.Utils;
 import com.raxdenstudios.preferences.AdvancedPreferences;
 
@@ -33,6 +34,7 @@ import dagger.Provides;
                 AnalyticsModule.class,
                 CacheModule.class,
                 RepositoryModule.class,
+                UseCaseModule.class,
                 LocationModule.class,
                 GoogleModule.class,
                 NetworkModule.class

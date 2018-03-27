@@ -19,6 +19,7 @@ android {
         applicationId rootProject.ext.androidApplicationId
         versionCode rootProject.ext.androidVersionCode
         versionName rootProject.ext.androidVersionName
+
         testInstrumentationRunner rootProject.ext.testInstrumentationRunner
         testApplicationId rootProject.ext.testApplicationId
 
@@ -34,6 +35,9 @@ android {
                 }
             }
         }
+
+        // variables to use in AndroidManifest.xml
+        manifestPlaceholders = [schemaName: rootProject.ext.androidSchemaName]
 
         // property used to generate name apk [name-productFlavor-buildType.apk]
         setProperty("archivesBaseName", rootProject.ext.androidAppName)

@@ -30,6 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- FileProvider: Here you define where the images will be saved -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -37,8 +38,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
+        <!-- =========== Activities =============================================================-->
 
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -49,17 +52,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-            <!--Handles any app://push/ URI's -->
-            <intent-filter>
-                <data android:scheme="app" />
-                <data android:host="push" />
-                <data android:pathPattern=".*" />
-
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -67,6 +59,48 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Home"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".dispatcher.BrowserDispatcherActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <data android:scheme="${schemaName}" />
+                <data android:host="open" />
+                <data android:pathPattern=".*" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- =========== Services ===============================================================-->
+
+        <service
+            android:name=".service.AppFirebaseInstanceIDService"
+            android:exported="false">
+            <!-- A service that extends FirebaseInstanceIdService to handle the creation, rotation,
+            and updating of registration tokens.-->
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.AppFirebaseMessagingService"
+            android:exported="false">
+            <!-- A service that extends FirebaseMessagingService. This is required if you want to do
+             any message handling beyond receiving notifications on apps in the background. -->
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- ========= SAMPLES ================================================================= -->
 
         <activity
             android:name=".ui.samples.sample.SampleActivity"
@@ -110,6 +144,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan" />
+
+        <!-- =================================================================================== -->
 
     </application>
 
