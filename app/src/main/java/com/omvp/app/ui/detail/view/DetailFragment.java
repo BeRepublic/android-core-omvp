@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample.view;
+package com.omvp.app.ui.detail.view;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
@@ -6,12 +6,12 @@ import android.support.v7.widget.AppCompatTextView;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.samples.sample.presenter.SamplePresenterImpl;
+import com.omvp.app.ui.detail.presenter.DetailPresenterImpl;
 
 import butterknife.BindView;
 
-public class SampleFragment extends BaseViewFragment<SamplePresenterImpl, SampleFragment.FragmentCallback>
-        implements SampleView {
+public class DetailFragment extends BaseViewFragment<DetailPresenterImpl, DetailFragment.FragmentCallback>
+        implements DetailView {
 
     @BindView(R.id.text)
     AppCompatTextView mTextView;
@@ -19,14 +19,22 @@ public class SampleFragment extends BaseViewFragment<SamplePresenterImpl, Sample
     AppCompatTextView mTitleView;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-
+        void drawImage(int imageRes);
     }
 
-    public static SampleFragment newInstance(Bundle bundle) {
-        SampleFragment fragment = new SampleFragment();
+    public static DetailFragment newInstance(Bundle bundle) {
+        DetailFragment fragment = new DetailFragment();
         bundle = bundle == null ? new Bundle() : bundle;
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
+        if (arguments.containsKey(Long.class.getSimpleName())) {
+            long sampleId = arguments.getLong(Long.class.getSimpleName());
+            mPresenter.setSampleId(sampleId);
+        }
     }
 
     @Override
@@ -36,6 +44,10 @@ public class SampleFragment extends BaseViewFragment<SamplePresenterImpl, Sample
         setupViews();
     }
 
+    @Override
+    public void drawImage(int imageRes) {
+        mCallback.drawImage(imageRes);
+    }
 
     @Override
     public void drawText(String text) {

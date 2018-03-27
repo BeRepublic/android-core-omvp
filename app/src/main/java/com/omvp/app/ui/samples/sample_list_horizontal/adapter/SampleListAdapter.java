@@ -28,6 +28,8 @@ public class SampleListAdapter extends RecyclerAdapter<Object, RecyclerView.View
     public interface AdapterCallback {
         void sampleItemSelected(int position, View sharedView);
 
+        void sampleHorizontalItemSelected(int position, int horizontalListPosition, View sharedView);
+
         void sampleItemDeleteSelected(int position);
     }
 
@@ -127,7 +129,7 @@ public class SampleListAdapter extends RecyclerAdapter<Object, RecyclerView.View
             mAdapter.setAdapterCallback(new SampleListHorizontalAdapter.AdapterCallback() {
                 @Override
                 public void sampleItemSelected(int position, View sharedView) {
-                    mAdapterCallback.sampleItemSelected(position, sharedView);
+                    mAdapterCallback.sampleHorizontalItemSelected(getAdapterPosition(), position, sharedView);
                 }
             });
         }

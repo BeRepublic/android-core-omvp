@@ -13,7 +13,7 @@ import com.omvp.app.util.RecyclerDragHelper;
 import com.omvp.components.SampleItemView;
 import com.raxdenstudios.recycler.RecyclerAdapter;
 
-public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAdapter.SampleListViewHolder> implements RecyclerDragHelper.ActionCompletionContract {
+public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAdapter.SampleListViewHolder> {
 
     private AdapterCallback mAdapterCallback;
 
@@ -52,16 +52,6 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
                 return false;
             }
         });
-    }
-
-    @Override
-    public void onViewMoved(int oldPosition, int newPosition) {
-        moveItem(oldPosition, newPosition);
-    }
-
-    @Override
-    public void onViewSwiped(int position) {
-        removeItem(position);
     }
 
     public void setTouchHelper(ItemTouchHelper touchHelper) {

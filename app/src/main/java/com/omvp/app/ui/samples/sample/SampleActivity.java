@@ -1,17 +1,13 @@
 package com.omvp.app.ui.samples.sample;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
 import com.omvp.app.ui.samples.sample.view.SampleFragment;
-import com.omvp.components.AppBarStateChangeListener;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -21,8 +17,6 @@ import com.raxdenstudios.square.interceptor.commons.toolbar.ToolbarInterceptorCa
 import java.util.List;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
 
 public class SampleActivity extends BaseFragmentActivity implements
         SampleFragment.FragmentCallback,
@@ -36,8 +30,6 @@ public class SampleActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private AppBarLayout mAppBarLayout;
-    private AppCompatImageView mImageView;
     private SampleFragment mFragment;
 
     @Override
@@ -86,20 +78,6 @@ public class SampleActivity extends BaseFragmentActivity implements
     }
 
     private void setUpViews() {
-        mAppBarLayout = findViewById(R.id.app_bar_layout);
-        mImageView = findViewById(R.id.image);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mImageView.setTransitionName("item");
-            postponeEnterTransition();
-        }
-    }
-
-    @Override
-    public void drawImage(int imageRes) {
-        mImageView.setImageResource(imageRes);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startPostponedEnterTransition();
-        }
     }
 }

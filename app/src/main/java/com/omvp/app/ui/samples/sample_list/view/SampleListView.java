@@ -18,4 +18,8 @@ public interface SampleListView extends BaseView {
     void drawRemoveAnimation(int position);
 
     void drawAddAnimation(SampleModel model);
+
+    void drawViewMoved(int oldPosition, int newPosition);
+
+    void drawViewSwiped(int position);
 }

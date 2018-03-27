@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
+import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
@@ -51,17 +52,17 @@ public class NavigationHelper {
                 .launch();
     }
 
-    public void launchSample(long sampleItemId) {
+    public void launchDetail(long sampleItemId) {
         Bundle extras = getExtras();
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(SampleActivity.class)
+                .navigateTo(DetailActivity.class)
                 .launch();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void launchSampleWithSharedViewTransition(long sampleItemId, View sharedView) {
+    public void launchDetailWithSharedViewTransition(long sampleItemId, View sharedView) {
         Bundle extras = getExtras();
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
 
@@ -70,7 +71,7 @@ public class NavigationHelper {
 
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(SampleActivity.class, activityOptions.toBundle())
+                .navigateTo(DetailActivity.class, activityOptions.toBundle())
                 .launch();
     }
 

@@ -80,9 +80,9 @@ public class SampleListHorizontalActivity extends BaseFragmentActivity implement
     @Override
     public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mNavigationHelper.launchSampleWithSharedViewTransition(sampleDomain.getId(), sharedView);
+            mNavigationHelper.launchDetailWithSharedViewTransition(sampleDomain.getId(), sharedView);
         } else {
-            mNavigationHelper.launchSample(sampleDomain.getId());
+            mNavigationHelper.launchDetail(sampleDomain.getId());
         }
     }
 

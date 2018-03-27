@@ -103,16 +103,24 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         Toast.makeText(mContext, "Added " + model.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void drawViewMoved(int oldPosition, int newPosition) {
+        mAdapter.moveItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void drawViewSwiped(int position) {
+        mAdapter.removeItem(position);
+    }
+
     private void setupViews() {
-        mAdapter = new SampleListAdapter(
-                getActivity(),
-                (SampleListAdapter.AdapterCallback) mPresenter
-        );
+        mAdapter = new SampleListAdapter(getActivity(),
+                (SampleListAdapter.AdapterCallback) mPresenter);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
 
-        RecyclerDragHelper dragHelper = new RecyclerDragHelper(mAdapter);
+        RecyclerDragHelper dragHelper = new RecyclerDragHelper((RecyclerDragHelper.ActionCompletionContract) mPresenter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(dragHelper);
         mAdapter.setTouchHelper(touchHelper);
         touchHelper.attachToRecyclerView(mRecyclerView);

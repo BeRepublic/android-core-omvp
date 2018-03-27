@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import static android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_DRAG;
+
 /**
  * Created by stefano on 26/03/2018.
  */
@@ -16,7 +18,6 @@ public class RecyclerDragHelper extends ItemTouchHelper.Callback {
     public RecyclerDragHelper(ActionCompletionContract contract) {
         this.contract = contract;
     }
-
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
@@ -48,9 +49,18 @@ public class RecyclerDragHelper extends ItemTouchHelper.Callback {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             float alpha = 1 - (Math.abs(dX) / recyclerView.getWidth());
             viewHolder.itemView.setAlpha(alpha);
+
+        } else if (actionState == ACTION_STATE_DRAG && isCurrentlyActive){
+            viewHolder.itemView.setBackgroundColor(Color.parseColor("#efefef"));
         }
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+    }
+
+    @Override
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        super.clearView(recyclerView, viewHolder);
+        viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
     }
 
     @Override

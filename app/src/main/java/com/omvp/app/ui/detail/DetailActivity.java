@@ -1,15 +1,16 @@
-package com.omvp.app.ui.samples.sample_list;
+package com.omvp.app.ui.detail;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.samples.sample_list.view.SampleListFragment;
-import com.omvp.domain.SampleDomain;
+import com.omvp.app.ui.detail.view.DetailFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -20,10 +21,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SampleListActivity extends BaseFragmentActivity implements
-        SampleListFragment.FragmentCallback,
+public class DetailActivity extends BaseFragmentActivity implements
+        DetailFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<SampleListFragment> {
+        InjectFragmentInterceptorCallback<DetailFragment> {
+
 
     @Inject
     ToolbarInterceptor mToolbarInterceptor;
@@ -31,7 +33,16 @@ public class SampleListActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private SampleListFragment mFragment;
+    private AppBarLayout mAppBarLayout;
+    private AppCompatImageView mImageView;
+    private DetailFragment mFragment;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setUpViews();
+    }
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -45,12 +56,6 @@ public class SampleListActivity extends BaseFragmentActivity implements
         mToolbar = toolbar;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        mFragment.onOptionsItemSelected(item);
-        return super.onOptionsItemSelected(item);
-    }
-
     // =============== InjectFragmentInterceptorCallback ===========================================
 
     @Override
@@ -59,12 +64,12 @@ public class SampleListActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public SampleListFragment onCreateFragment() {
-        return SampleListFragment.newInstance(mExtras);
+    public DetailFragment onCreateFragment() {
+        return DetailFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(SampleListFragment fragment) {
+    public void onFragmentLoaded(DetailFragment fragment) {
         mFragment = fragment;
     }
 
@@ -77,13 +82,21 @@ public class SampleListActivity extends BaseFragmentActivity implements
         interceptorList.add(mInjectFragmentInterceptor);
     }
 
-    @Override
-    public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
+    private void setUpViews() {
+        mAppBarLayout = findViewById(R.id.app_bar_layout);
+        mImageView = findViewById(R.id.image);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mNavigationHelper.launchDetailWithSharedViewTransition(sampleDomain.getId(), sharedView);
-        } else {
-            mNavigationHelper.launchDetail(sampleDomain.getId());
+            mImageView.setTransitionName("item");
+            postponeEnterTransition();
         }
     }
 
+    @Override
+    public void drawImage(int imageRes) {
+        mImageView.setImageResource(imageRes);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startPostponedEnterTransition();
+        }
+    }
 }

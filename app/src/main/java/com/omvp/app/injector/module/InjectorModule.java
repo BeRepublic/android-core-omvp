@@ -1,6 +1,8 @@
 package com.omvp.app.injector.module;
 
 import com.omvp.app.injector.scope.PerActivity;
+import com.omvp.app.ui.detail.DetailActivity;
+import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
 import com.omvp.app.ui.samples.sample.SampleActivity;
@@ -112,4 +114,11 @@ public abstract class InjectorModule {
     @ContributesAndroidInjector(modules = {SampleLocaleActivityModule.class})
     abstract SampleLocaleActivity sampleLocaleActivity();
 
+    /**
+     * Provides the injector for the {@link DetailActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {DetailActivityModule.class})
+    abstract DetailActivity detailActivity();
 }

@@ -2,6 +2,7 @@
 package com.omvp.app.ui.samples.sample_list_horizontal.presenter;
 
 
+import android.net.Uri;
 import android.view.View;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
@@ -16,6 +17,8 @@ import com.omvp.domain.SampleDomain;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.RemoveSampleUseCase;
 import com.omvp.domain.interactor.SaveSampleUseCase;
+
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,7 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
     @Inject
     SampleModelDataMapper mSampleModelDataMapper;
 
-    private List<SampleDomain> mSampleDomainList;
+    private List<Object> mSampleDomainList = new ArrayList<>();
 
     @Inject
     public SampleListHorizontalPresenterImpl(SampleListHorizontalView sampleListHorizontalView) {
@@ -54,7 +57,13 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
 
     @Override
     public void sampleItemSelected(int position, View sharedView) {
-        sampleItemSelected(mSampleDomainList.get(position), sharedView);
+        sampleItemSelected((SampleDomain) mSampleDomainList.get(position), sharedView);
+    }
+
+    @Override
+    public void sampleHorizontalItemSelected(int position, int horizontalListPosition, View sharedView) {
+        List<SampleDomain> horizontalList = (List<SampleDomain>) mSampleDomainList.get(position);
+        sampleItemSelected(horizontalList.get(horizontalListPosition), sharedView);
     }
 
     @Override
@@ -71,8 +80,10 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
         mDisposableManager.add(mGetSampleListUseCase.execute()
                 .map(new Function<List<SampleDomain>, List<SampleModel>>() {
                     @Override
-                    public List<SampleModel> apply(List<SampleDomain> sampleDomains) throws Exception {
-                        mSampleDomainList = sampleDomains;
+                    public List<SampleModel> apply(List<SampleDomain> sampleDomains) {
+                        mSampleDomainList.addAll(sampleDomains);
+                        mSampleDomainList.add(3, sampleDomains);
+                        mSampleDomainList.add(7, sampleDomains);
                         return mSampleModelDataMapper.transform(sampleDomains);
                     }
                 })
@@ -105,7 +116,7 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
     }
 
     private void removeItem(final int position) {
-        final SampleDomain sampleDomain = mSampleDomainList.get(position);
+        final SampleDomain sampleDomain = (SampleDomain) mSampleDomainList.get(position);
         mDisposableManager.add(mRemoveSampleUseCase.execute(sampleDomain.getId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -131,7 +142,14 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
     }
 
     private void addItem() {
-        final SampleDomain sampleDomain = StaticRepository.initSampleDomain(mSampleDomainList.size() + 1);
+
+        final SampleDomain sampleDomain = new SampleDomain();
+        sampleDomain.setId((long) (mSampleDomainList.size() + 1));
+        sampleDomain.setTitle("item " + mSampleDomainList.size() + 1);
+        sampleDomain.setLink(Uri.parse("https://www.google.com"));
+        sampleDomain.setPubdate(LocalDateTime.now());
+        sampleDomain.setImageResId(com.omvp.data.R.mipmap.ic_launcher_round);
+
         mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -173,6 +191,7 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
             List<Object> objectList = new ArrayList<>();
             objectList.addAll(sampleModelList);
             objectList.add(3, sampleModelList);
+            objectList.add(7, sampleModelList);
 
             mView.drawSampleList(objectList);
         }
