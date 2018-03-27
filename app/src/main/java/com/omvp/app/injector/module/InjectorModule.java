@@ -1,6 +1,11 @@
 package com.omvp.app.injector.module;
 
+import com.omvp.app.dispatcher.BrowserDispatcherActivity;
+import com.omvp.app.dispatcher.BrowserDispatcherActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
+import com.omvp.app.injector.scope.PerService;
+import com.omvp.app.service.AppFirebaseInstanceIDService;
+import com.omvp.app.service.AppFirebaseInstanceIDServiceModule;
 import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
@@ -33,6 +38,8 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class InjectorModule {
 
+    // ============= Activities ====================================================================
+
     /**
      * Provides the injector for the {@link SplashActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
@@ -48,6 +55,26 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {HomeActivityModule.class})
     abstract HomeActivity homeActivity();
+
+    /**
+     * Provides the injector for the {@link BrowserDispatcherActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {BrowserDispatcherActivityModule.class})
+    abstract BrowserDispatcherActivity browserDispatcherActivity();
+
+    // ============= Services ======================================================================
+
+    /**
+     * Provides the injector for the {@link AppFirebaseInstanceIDService}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerService
+    @ContributesAndroidInjector(modules = {AppFirebaseInstanceIDServiceModule.class})
+    abstract AppFirebaseInstanceIDService appInstanceIDService();
+
+    // ============= SAMPLES =======================================================================
 
     /**
      * Provides the injector for the {@link SampleActivity}, which has access to the dependencies

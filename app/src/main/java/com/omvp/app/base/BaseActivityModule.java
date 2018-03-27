@@ -14,7 +14,6 @@ import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.helper.NavigationHelper;
 import com.omvp.app.helper.SnackBarHelper;
 import com.omvp.app.injector.module.InterceptorActivityModule;
-import com.omvp.app.injector.module.UseCaseModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
 import com.omvp.app.util.TrackerManager;
@@ -31,8 +30,7 @@ import dagger.Provides;
  * provide a concrete implementation of {@link Activity}.
  */
 @Module(includes = {
-        InterceptorActivityModule.class,
-        UseCaseModule.class
+        InterceptorActivityModule.class
 })
 public abstract class BaseActivityModule {
 
