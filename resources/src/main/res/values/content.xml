@@ -18,4 +18,16 @@
 
     </style>
 
+    <style name="Content.Pager">
+
+    </style>
+
+    <style name="Content.Pager.First">
+        <item name="android:background">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="Content.Pager.Second">
+        <item name="android:background">@android:color/holo_green_light</item>
+    </style>
+
 </resources>

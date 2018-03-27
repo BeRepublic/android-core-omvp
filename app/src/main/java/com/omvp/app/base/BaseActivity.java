@@ -22,6 +22,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -79,6 +80,7 @@ public abstract class BaseActivity extends SquareActivity implements
     @Override
     public void onContentViewCreated(View view, Bundle savedInstanceState) {
         mContentView = view;
+        initializeButterKnife();
     }
 
     // =============== HasFragmentInjector =========================================================
@@ -112,4 +114,7 @@ public abstract class BaseActivity extends SquareActivity implements
         finish();
     }
 
+    private void initializeButterKnife() {
+        ButterKnife.bind(this);
+    }
 }
