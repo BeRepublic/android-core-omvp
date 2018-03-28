@@ -6,6 +6,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.omvp.app.base.BaseApplication;
 import com.omvp.app.util.CrashReportingTree;
 import com.omvp.commons.Constants;
+import com.urbanairship.UAirship;
 
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
@@ -24,6 +25,7 @@ public class AppApplication extends BaseApplication {
         initTimber();
         initCalligraphy();
         initTreeTen();
+        initUrbanAirship();
     }
 
     private void initFabric() {
@@ -54,6 +56,15 @@ public class AppApplication extends BaseApplication {
 
     private void initTreeTen() {
         AndroidThreeTen.init(this);
+    }
+
+    private void initUrbanAirship() {
+        UAirship.takeOff(this, new UAirship.OnReadyCallback() {
+            @Override
+            public void onAirshipReady(UAirship airship) {
+                airship.getPushManager().setUserNotificationsEnabled(true);
+            }
+        });
     }
 
 }

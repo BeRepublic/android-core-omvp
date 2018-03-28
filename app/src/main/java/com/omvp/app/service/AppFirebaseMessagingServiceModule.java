@@ -9,9 +9,6 @@ import com.omvp.app.injector.scope.PerService;
 import dagger.Binds;
 import dagger.Module;
 
-/**
- * Provides splash activity dependencies
- */
 @Module(includes = {
         BaseServiceModule.class
 })

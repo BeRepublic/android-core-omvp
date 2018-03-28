@@ -8,10 +8,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * A scoping annotation to permit objects whose lifetime should
- * conform to the life of the service to be memorized in the
+ * conform to the life of the broadcastReceiver to be memorized in the
  * correct component.
  */
 @Scope
 @Retention(RUNTIME)
-public @interface PerService {
+public @interface PerBroadcastReceiver {
 }

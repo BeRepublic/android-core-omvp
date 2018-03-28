@@ -3,9 +3,14 @@ package com.omvp.app.injector.module;
 import com.omvp.app.dispatcher.BrowserDispatcherActivity;
 import com.omvp.app.dispatcher.BrowserDispatcherActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
+import com.omvp.app.injector.scope.PerBroadcastReceiver;
 import com.omvp.app.injector.scope.PerService;
 import com.omvp.app.service.AppFirebaseInstanceIDService;
 import com.omvp.app.service.AppFirebaseInstanceIDServiceModule;
+import com.omvp.app.service.AppFirebaseMessagingService;
+import com.omvp.app.service.AppFirebaseMessagingServiceModule;
+import com.omvp.app.receiver.AppUrbanAirshipReceiverService;
+import com.omvp.app.receiver.AppUrbanAirshipReceiverServiceModule;
 import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
@@ -77,6 +82,24 @@ public abstract class InjectorModule {
     @PerService
     @ContributesAndroidInjector(modules = {AppFirebaseInstanceIDServiceModule.class})
     abstract AppFirebaseInstanceIDService appInstanceIDService();
+
+    /**
+     * Provides the injector for the {@link AppFirebaseInstanceIDService}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerService
+    @ContributesAndroidInjector(modules = {AppFirebaseMessagingServiceModule.class})
+    abstract AppFirebaseMessagingService appFirebaseMessagingService();
+
+    // ============= BroadcastReceivers ============================================================
+
+    /**
+     * Provides the injector for the {@link AppFirebaseInstanceIDService}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerBroadcastReceiver
+    @ContributesAndroidInjector(modules = {AppUrbanAirshipReceiverServiceModule.class})
+    abstract AppUrbanAirshipReceiverService appUrbanAirshipReceiverService();
 
     // ============= SAMPLES =======================================================================
 

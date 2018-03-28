@@ -29,6 +29,7 @@ ext {
     modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
     rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
+    urbanAirshipVersion = '9.0.4'           // http://docs.urbanairship.com/platform/android.html
 
     // Testing
     jUnitVersion = '4.12'
@@ -162,6 +163,12 @@ ext {
             ]
     ]
 
+    urbanairship = [
+            implementation: [
+                    "com.urbanairship.android:urbanairship-sdk:${urbanAirshipVersion}"
+            ]
+    ]
+
     deps = [
             app       : [
                     implementation         : [
@@ -177,7 +184,8 @@ ext {
                             glide.implementation,
                             rxPermissions.implementation,
                             modelmapper.implementation,
-                            calligraphy.implementation
+                            calligraphy.implementation,
+                            urbanairship.implementation
                     ],
                     annotationProcessor    : [
                             dagger.annotationProcessor,
@@ -228,7 +236,8 @@ ext {
                             dagger.implementation,
                             retrofit.implementation,
                             modelmapper.implementation,
-                            reactive.implementation
+                            reactive.implementation,
+                            urbanairship.implementation                            
                     ],
                     api                : [],
                     annotationProcessor: [
