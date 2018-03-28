@@ -1,13 +1,13 @@
 ======= HOW IS THAT ================================================================================
 
-    This project is created like a template to start another projets. It`s based in MVP pattern and
-    Onion arquitecture, besides use Dagger2 to injection dependencies, RX2 to reactive programing
-    and Retrofit2 to http layer. Another libraries used in proyect:
+    This project is created like a template to start another project. It`s based on MVP pattern and
+    Onion architecture, besides use Dagger2 to injection dependencies, RX2 to reactive programming
+    and Retrofit2 as http layer. Other libraries used in the project:
 
     - timber - Library to print logs
     - butterknife - Library to inject views.
     - glide - Library to load images.
-    - lombok - Plugin that generate getters and setters for POJO classes.
+    - lombok - Plugin that generates getters and setters for POJO classes.
     - parceler - Library to parcel any object between activities.
     - crashlytics - Library to register any crash in app.
     - calligraphyVersion - Library to use custom fonts.
@@ -17,10 +17,10 @@
 ======= STEPS TO CONFIGURE PROJECT =================================================================
 
     1. Rename androidApplicationId and testApplicationId in build.gradle.
-        com.omvp.app -> com.companyname.proyectname
+        com.omvp.app -> com.companyname.projectname
 
     2. Register application in Firebase and download|replace google-services.json contained in
-    app module. Remember that proyect has n(flavours) diferences configurations, dev and prod.
+    app module. Remember that project has n(flavours) different configurations, dev and prod.
     Therefore you must register n(flavours) applications instead of one.
         {androidApplicationId}
         {androidApplicationId}.dev
@@ -38,7 +38,7 @@
     6. To use Crashlytics, configure app/fabric.properties. To personalize configuration like
     distribution or release notes, modify preferences in build.gradle.
 
-    7. Define what languages will be use the application in
+    7. Define what languages will use the application in
     com.omvp.app.injector.module.LocaleModule
 
     8. Defines path to store pictures in device in: (Replace package com.omvp.app by yours)

@@ -1,5 +1,6 @@
 package com.omvp.app.injector.module;
 
+import com.omvp.domain.interactor.GetHomeListUseCase;
 import com.omvp.domain.interactor.GetLocaleListUseCase;
 import com.omvp.domain.interactor.GetLocaleUseCase;
 import com.omvp.domain.interactor.GetSampleListUseCase;
@@ -8,6 +9,7 @@ import com.omvp.domain.interactor.RegisterDeviceUseCase;
 import com.omvp.domain.interactor.RemoveSampleUseCase;
 import com.omvp.domain.interactor.SaveLocaleUseCase;
 import com.omvp.domain.interactor.SaveSampleUseCase;
+import com.omvp.domain.interactor.impl.GetHomeListUseCaseImpl;
 import com.omvp.domain.interactor.impl.GetLocaleListUseCaseImpl;
 import com.omvp.domain.interactor.impl.GetLocaleUseCaseImpl;
 import com.omvp.domain.interactor.impl.GetSampleListUseCaseImpl;
@@ -59,4 +61,10 @@ public abstract class UseCaseModule {
     @Singleton
     abstract SaveSampleUseCase saveSampleUseCase(SaveSampleUseCaseImpl usecase);
 
+
+    // =============== HOME ======================================================================
+
+    @Binds
+    @Singleton
+    abstract GetHomeListUseCase getHomeListUseCase(GetHomeListUseCaseImpl usecase);
 }
