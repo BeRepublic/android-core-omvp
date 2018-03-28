@@ -33,22 +33,18 @@ public class DeviceRepositoryImpl implements DeviceRepository {
 
     @Override
     public Completable register() {
-        return getFirebaseToken().flatMapCompletable(new Function<String, CompletableSource>() {
-            @Override
-            public CompletableSource apply(String token) throws Exception {
-                return register(token);
-            }
-        });
-    }
-
-    @Override
-    public Completable register(String token) {
+        // TODO: implement if server support
         return Completable.complete();
     }
 
     @Override
     public Single<Boolean> checkApplicationVersion() {
         return Single.just(true);
+    }
+
+    @Override
+    public Single<String> getUrbanAirshipChannelId() {
+        return null;
     }
 
     @Override
