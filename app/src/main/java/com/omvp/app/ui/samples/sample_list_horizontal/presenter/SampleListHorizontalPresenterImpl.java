@@ -12,7 +12,6 @@ import com.omvp.app.model.SampleModel;
 import com.omvp.app.model.mapper.SampleModelDataMapper;
 import com.omvp.app.ui.samples.sample_list_horizontal.adapter.SampleListAdapter;
 import com.omvp.app.ui.samples.sample_list_horizontal.view.SampleListHorizontalView;
-import com.omvp.data.StaticRepository;
 import com.omvp.domain.SampleDomain;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.RemoveSampleUseCase;
