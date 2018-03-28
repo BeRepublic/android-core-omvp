@@ -39,7 +39,7 @@ public class SampleRepositoryImpl implements SampleRepository {
 
     @Override
     public Completable remove(long id) {
-        StaticRepository.sampleDomainList.remove(id);
+//        StaticRepository.sampleItemList.remove(id);
         return Completable.complete();
     }
 

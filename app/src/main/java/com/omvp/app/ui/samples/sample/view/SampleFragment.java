@@ -19,7 +19,7 @@ public class SampleFragment extends BaseViewFragment<SamplePresenterImpl, Sample
     AppCompatTextView mTitleView;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-        void drawImage(int imageRes);
+
     }
 
     public static SampleFragment newInstance(Bundle bundle) {
@@ -30,24 +30,12 @@ public class SampleFragment extends BaseViewFragment<SamplePresenterImpl, Sample
     }
 
     @Override
-    public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
-        if (arguments.containsKey(Long.class.getSimpleName())) {
-            long sampleId = arguments.getLong(Long.class.getSimpleName());
-            mPresenter.setSampleId(sampleId);
-        }
-    }
-
-    @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 
         setupViews();
     }
 
-    @Override
-    public void drawImage(int imageRes) {
-        mCallback.drawImage(imageRes);
-    }
 
     @Override
     public void drawText(String text) {

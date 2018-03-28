@@ -8,14 +8,17 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
+import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
+import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
+import com.omvp.app.ui.samples.sample_vibration.VibrationActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
@@ -50,17 +53,17 @@ public class NavigationHelper {
                 .launch();
     }
 
-    public void launchSample(long sampleItemId) {
+    public void launchDetail(long sampleItemId) {
         Bundle extras = getExtras();
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(SampleActivity.class)
+                .navigateTo(DetailActivity.class)
                 .launch();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void launchSampleWithSharedViewTransition(long sampleItemId, View sharedView) {
+    public void launchDetailWithSharedViewTransition(long sampleItemId, View sharedView) {
         Bundle extras = getExtras();
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
 
@@ -69,7 +72,7 @@ public class NavigationHelper {
 
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(SampleActivity.class, activityOptions.toBundle())
+                .navigateTo(DetailActivity.class, activityOptions.toBundle())
                 .launch();
     }
 
@@ -77,6 +80,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleListActivity.class)
+                .launch();
+    }
+
+    public void launchSampleHorizontalList() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleListHorizontalActivity.class)
                 .launch();
     }
 
@@ -112,6 +122,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleLocaleActivity.class)
+                .launch();
+    }
+
+    public void launchVibrationSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(VibrationActivity.class)
                 .launch();
     }
 

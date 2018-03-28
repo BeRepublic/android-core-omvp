@@ -10,7 +10,6 @@ import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
 import com.omvp.app.ui.samples.sample_list.view.SampleListFragment;
 import com.omvp.domain.SampleDomain;
-import com.raxdenstudios.commons.util.SDKUtils;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -81,9 +80,9 @@ public class SampleListActivity extends BaseFragmentActivity implements
     @Override
     public void onSampleItemSelected(SampleDomain sampleDomain, View sharedView) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mNavigationHelper.launchSampleWithSharedViewTransition(sampleDomain.getId(), sharedView);
+            mNavigationHelper.launchDetailWithSharedViewTransition(sampleDomain.getId(), sharedView);
         } else {
-            mNavigationHelper.launchSample(sampleDomain.getId());
+            mNavigationHelper.launchDetail(sampleDomain.getId());
         }
     }
 

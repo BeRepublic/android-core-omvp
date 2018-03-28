@@ -11,6 +11,8 @@ import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
 import com.omvp.app.receiver.AppUrbanAirshipReceiverService;
 import com.omvp.app.receiver.AppUrbanAirshipReceiverServiceModule;
+import com.omvp.app.ui.detail.DetailActivity;
+import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
 import com.omvp.app.ui.samples.sample.SampleActivity;
@@ -19,6 +21,8 @@ import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivityModule;
 import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivityModule;
+import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
+import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivityModule;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivityModule;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
@@ -27,6 +31,8 @@ import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivityModule;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivityModule;
+import com.omvp.app.ui.samples.sample_vibration.VibrationActivity;
+import com.omvp.app.ui.samples.sample_vibration.VibrationActivityModule;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.omvp.app.ui.splash.SplashActivityModule;
 
@@ -112,6 +118,15 @@ public abstract class InjectorModule {
     abstract SampleListActivity sampleListActivity();
 
     /**
+     * Provides the injector for the {@link SampleListHorizontalActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleListHorizontalActivityModule.class})
+    abstract SampleListHorizontalActivity sampleListHorizontalActivity();
+
+
+    /**
      * Provides the injector for the {@link SamplePagerActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
@@ -151,6 +166,19 @@ public abstract class InjectorModule {
     @ContributesAndroidInjector(modules = {SampleLocaleActivityModule.class})
     abstract SampleLocaleActivity sampleLocaleActivity();
 
-    // =============================================================================================
+    /**
+     * Provides the injector for the {@link DetailActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {DetailActivityModule.class})
+    abstract DetailActivity detailActivity();
 
+    /**
+     * Provides the injector for the {@link VibrationActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {VibrationActivityModule.class})
+    abstract VibrationActivity vibrationActivity();
 }

@@ -3,6 +3,7 @@ package com.omvp.app.ui.samples.sample_list.view;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
 import com.omvp.app.model.SampleModel;
 import com.omvp.app.ui.samples.sample_list.adapter.SampleListAdapter;
 import com.omvp.app.ui.samples.sample_list.presenter.SampleListPresenter;
+import com.omvp.app.util.RecyclerDragHelper;
 import com.omvp.domain.SampleDomain;
 
 import java.util.List;
@@ -101,13 +103,26 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         Toast.makeText(mContext, "Added " + model.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void drawViewMoved(int oldPosition, int newPosition) {
+        mAdapter.moveItem(oldPosition, newPosition);
+    }
+
+    @Override
+    public void drawViewSwiped(int position) {
+        mAdapter.removeItem(position);
+    }
+
     private void setupViews() {
-        mAdapter = new SampleListAdapter(
-                getActivity(),
-                (SampleListAdapter.AdapterCallback) mPresenter
-        );
+        mAdapter = new SampleListAdapter(getActivity(),
+                (SampleListAdapter.AdapterCallback) mPresenter);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+
+        RecyclerDragHelper dragHelper = new RecyclerDragHelper((RecyclerDragHelper.ActionCompletionContract) mPresenter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(dragHelper);
+        mAdapter.setTouchHelper(touchHelper);
+        touchHelper.attachToRecyclerView(mRecyclerView);
     }
 }

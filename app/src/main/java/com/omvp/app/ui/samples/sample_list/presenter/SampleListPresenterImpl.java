@@ -2,6 +2,7 @@
 package com.omvp.app.ui.samples.sample_list.presenter;
 
 
+import android.net.Uri;
 import android.view.View;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
@@ -11,11 +12,15 @@ import com.omvp.app.model.SampleModel;
 import com.omvp.app.model.mapper.SampleModelDataMapper;
 import com.omvp.app.ui.samples.sample_list.adapter.SampleListAdapter;
 import com.omvp.app.ui.samples.sample_list.view.SampleListView;
+import com.omvp.app.util.RecyclerDragHelper;
 import com.omvp.domain.SampleDomain;
 import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.RemoveSampleUseCase;
 import com.omvp.domain.interactor.SaveSampleUseCase;
 
+import org.threeten.bp.LocalDateTime;
+
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,7 +30,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class SampleListPresenterImpl extends BasePresenter<SampleListView>
-        implements SampleListPresenter, SampleListAdapter.AdapterCallback {
+        implements SampleListPresenter, SampleListAdapter.AdapterCallback, RecyclerDragHelper.ActionCompletionContract {
 
     @Inject
     GetSampleListUseCase mGetSampleListUseCase;
@@ -63,6 +68,19 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     @Override
     public void onAddSampleItemSelected() {
         addItem();
+    }
+
+
+    @Override
+    public void onViewMoved(int oldPosition, int newPosition) {
+        Collections.swap(mSampleDomainList, oldPosition, newPosition);
+        drawViewMoved(oldPosition, newPosition);
+    }
+
+    @Override
+    public void onViewSwiped(int position) {
+        mSampleDomainList.remove(position);
+        drawViewSwiped(position);
     }
 
     private void loadSampleList() {
@@ -129,28 +147,34 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     }
 
     private void addItem() {
-//        final SampleDomain sampleDomain = StaticRepository.initSampleDomain(mSampleDomainList.size() + 1);
-//        mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
-//                    @Override
-//                    protected void onStart() {
-//                        showProgress();
-//                    }
-//
-//                    @Override
-//                    protected void onError(int code, String title, String description) {
-//                        hideProgress();
-//                        showError(code, title, description);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        mSampleDomainList.add(sampleDomain);
-//                        drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
-//                    }
-//                }));
+        final SampleDomain sampleDomain = new SampleDomain();
+        sampleDomain.setId((long) (mSampleDomainList.size() + 1));
+        sampleDomain.setTitle("item " + (mSampleDomainList.size() + 1));
+        sampleDomain.setLink(Uri.parse("https://www.google.com"));
+        sampleDomain.setPubdate(LocalDateTime.now());
+        sampleDomain.setImageResId(com.omvp.data.R.mipmap.ic_launcher_round);
+
+        mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
+                    @Override
+                    protected void onStart() {
+                        showProgress();
+                    }
+
+                    @Override
+                    protected void onError(int code, String title, String description) {
+                        hideProgress();
+                        showError(code, title, description);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        mSampleDomainList.add(sampleDomain);
+                        drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
+                    }
+                }));
     }
 
     private void drawAddAnimation(SampleModel model) {
@@ -180,6 +204,18 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     private void sampleItemSelected(SampleDomain sampleDomain, View sharedView) {
         if (mView != null) {
             mView.onSampleItemSelected(sampleDomain, sharedView);
+        }
+    }
+
+    private void drawViewMoved(int oldPosition, int newPosition) {
+        if (mView != null) {
+            mView.drawViewMoved(oldPosition, newPosition);
+        }
+    }
+
+    private void drawViewSwiped(int position) {
+        if (mView != null) {
+            mView.drawViewSwiped(position);
         }
     }
 }

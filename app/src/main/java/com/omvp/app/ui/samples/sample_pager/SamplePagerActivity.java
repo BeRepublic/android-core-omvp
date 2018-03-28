@@ -1,6 +1,7 @@
 package com.omvp.app.ui.samples.sample_pager;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.omvp.app.base.mvp.BaseFragmentActivity;
 import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFirstFragment;
 import com.omvp.app.ui.samples.sample_pager.view.SamplePagerFragment;
 import com.omvp.app.ui.samples.sample_pager.view.SamplePagerSecondFragment;
+import com.omvp.components.PagerIndicator;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptor;
 import com.raxdenstudios.square.interceptor.commons.fragmentstatepager.FragmentStatePagerInterceptorCallback;
@@ -22,6 +24,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+
 public class SamplePagerActivity extends BaseFragmentActivity implements
         SamplePagerFirstFragment.SamplePagerFirstFragmentCallback,
         SamplePagerSecondFragment.SamplePagerSecondFragmentCallback,
@@ -33,10 +37,18 @@ public class SamplePagerActivity extends BaseFragmentActivity implements
     @Inject
     FragmentStatePagerInterceptor mFragmentStatePagerInterceptor;
 
+    @BindView(R.id.pager_indicator)
+    PagerIndicator mPagerIndicator;
+
     private Toolbar mToolbar;
     private ViewPager mViewPager;
     private SamplePagerFirstFragment mFirstFragment;
     private SamplePagerSecondFragment mSecondFragment;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -60,11 +72,12 @@ public class SamplePagerActivity extends BaseFragmentActivity implements
     @Override
     public void onViewPagerCreated(ViewPager viewPager) {
         mViewPager = viewPager;
+        mPagerIndicator.setViewPager(viewPager);
     }
 
     @Override
     public SamplePagerFragment onCreateFragment(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return SamplePagerFirstFragment.newInstance(getIntent().getExtras());
             case 1:
@@ -75,7 +88,7 @@ public class SamplePagerActivity extends BaseFragmentActivity implements
 
     @Override
     public void onFragmentLoaded(SamplePagerFragment fragment, int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 mFirstFragment = (SamplePagerFirstFragment) fragment;
                 break;

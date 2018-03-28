@@ -14,6 +14,7 @@ public class SampleItemView extends BaseComponentView {
     private AppCompatTextView mSampleTextView;
     private AppCompatImageView mSampleImageView;
     private AppCompatImageButton mDeleteButtonView;
+    private AppCompatImageView mDragImageView;
 
     public SampleItemView(Context context) {
         super(context);
@@ -37,6 +38,7 @@ public class SampleItemView extends BaseComponentView {
         mSampleTextView = findViewById(R.id.text);
         mSampleImageView = findViewById(R.id.image);
         mDeleteButtonView = findViewById(R.id.delete_button);
+        mDragImageView = findViewById(R.id.drag_image);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mSampleImageView.setTransitionName("item");
@@ -67,5 +69,9 @@ public class SampleItemView extends BaseComponentView {
 
     public View getSharedView() {
         return mSampleImageView;
+    }
+
+    public View getDragView() {
+        return mDragImageView;
     }
 }

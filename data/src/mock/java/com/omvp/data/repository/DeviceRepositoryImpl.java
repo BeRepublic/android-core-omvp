@@ -3,7 +3,7 @@ package com.omvp.data.repository;
 import android.content.Context;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.omvp.data.network.gateway.AppGateway;
+import com.omvp.data.StaticRepository;
 import com.omvp.domain.repository.DeviceRepository;
 import com.raxdenstudios.commons.util.Utils;
 
@@ -23,8 +23,11 @@ import io.reactivex.functions.Function;
 
 public class DeviceRepositoryImpl implements DeviceRepository {
 
+    private final Context context;
+
     @Inject
     DeviceRepositoryImpl(Context context) {
+        this.context = context;
         StaticRepository.init();
     }
 

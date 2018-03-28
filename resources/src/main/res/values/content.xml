@@ -6,6 +6,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/content_bg</item>
+        <item name="android:padding">16dp</item>
     </style>
 
     <!-- ========================================================================= -->
@@ -15,6 +16,22 @@
     </style>
 
     <style name="Content.Sample">
+
+    </style>
+
+    <style name="Content.Pager">
+
+    </style>
+
+    <style name="Content.Pager.First">
+        <item name="android:background">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="Content.Pager.Second">
+        <item name="android:background">@android:color/holo_green_light</item>
+    </style>
+
+    <style name="Content.Vibration">
 
     </style>
 

@@ -104,4 +104,13 @@ public class HomeActivity extends BaseFragmentActivity implements
         mNavigationHelper.launchSampleLocale();
     }
 
+    @Override
+    public void onSampleHorizontalListClicked() {
+        mNavigationHelper.launchSampleHorizontalList();
+    }
+
+    @Override
+    public void onVibrationSelected() {
+        mNavigationHelper.launchVibrationSample();
+    }
 }
