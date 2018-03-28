@@ -22,4 +22,5 @@ public class Constants {
     public static final String LOCATION = "LOCATION";
     public static final String PICTURE = "PICTURE";
     public static final String LOCALE = "LOCALE";
+    public static final String VIBRATION = "VIBRATION";
 }

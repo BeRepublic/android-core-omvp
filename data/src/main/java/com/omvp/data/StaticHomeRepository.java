@@ -12,11 +12,12 @@ import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
+import static com.omvp.commons.Constants.VIBRATION;
 import static com.omvp.commons.Constants.VIEW;
 
 public class StaticHomeRepository {
 
-    private static final int NUM_ITEMS = 8;
+    private static final int NUM_ITEMS = 9;
 
     public static Map<Integer, SampleItem> sampleItemList = new LinkedHashMap<>(NUM_ITEMS);
 
@@ -30,6 +31,7 @@ public class StaticHomeRepository {
             sampleItemList.put(5, initSampleItem(LOCATION, "A sample view to show device location"));
             sampleItemList.put(6, initSampleItem(PICTURE, "A sample view to take or pick up photos"));
             sampleItemList.put(7, initSampleItem(LOCALE, "A sample view to change device language"));
+            sampleItemList.put(8, initSampleItem(VIBRATION, "A sample view to use device vibration"));
         }
     }
 

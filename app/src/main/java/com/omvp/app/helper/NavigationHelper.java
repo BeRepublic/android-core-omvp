@@ -18,6 +18,7 @@ import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
+import com.omvp.app.ui.samples.sample_vibration.VibrationActivity;
 import com.omvp.app.ui.splash.SplashActivity;
 import com.raxdenstudios.commons.manager.NavigationManager;
 
@@ -121,6 +122,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleLocaleActivity.class)
+                .launch();
+    }
+
+    public void launchVibrationSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(VibrationActivity.class)
                 .launch();
     }
 

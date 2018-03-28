@@ -25,6 +25,7 @@ import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
+import static com.omvp.commons.Constants.VIBRATION;
 import static com.omvp.commons.Constants.VIEW;
 
 public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.FragmentCallback>
@@ -51,6 +52,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onSampleLocaleSelected();
 
         void onSampleHorizontalListClicked();
+
+        void onVibrationSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -93,6 +96,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case LOCALE:
                 mCallback.onSampleLocaleSelected();
+                break;
+            case VIBRATION:
+                mCallback.onVibrationSelected();
                 break;
         }
     }

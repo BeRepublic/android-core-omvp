@@ -1,12 +1,17 @@
-package com.omvp.app.ui.home;
+package com.omvp.app.ui.samples.sample_vibration;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.samples.sample_vibration.view.VibrationFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -17,11 +22,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
-public class HomeActivity extends BaseFragmentActivity implements
+public class VibrationActivity extends BaseFragmentActivity implements
+        VibrationFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<HomeFragment>,
-        HomeFragment.FragmentCallback {
+        InjectFragmentInterceptorCallback<VibrationFragment> {
+
 
     @Inject
     ToolbarInterceptor mToolbarInterceptor;
@@ -29,7 +34,14 @@ public class HomeActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private HomeFragment mFragment;
+    private VibrationFragment mFragment;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setUpViews();
+    }
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -51,12 +63,12 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public HomeFragment onCreateFragment() {
-        return HomeFragment.newInstance(mExtras);
+    public VibrationFragment onCreateFragment() {
+        return VibrationFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(HomeFragment fragment) {
+    public void onFragmentLoaded(VibrationFragment fragment) {
         mFragment = fragment;
     }
 
@@ -69,48 +81,20 @@ public class HomeActivity extends BaseFragmentActivity implements
         interceptorList.add(mInjectFragmentInterceptor);
     }
 
-    @Override
-    public void onSampleViewSelected() {
-        mNavigationHelper.launchSample();
+    private void setUpViews() {
+
     }
 
     @Override
-    public void onSampleListSelected() {
-        mNavigationHelper.launchSampleList();
-    }
-
-    @Override
-    public void onSamplePagerSelected() {
-        mNavigationHelper.launchSamplePager();
-    }
-
-    @Override
-    public void onSampleMultipleSelected() {
-        mNavigationHelper.launchSampleMap();
-    }
-
-    @Override
-    public void onSampleLocationSelected() {
-        mNavigationHelper.launchSampleLocation();
-    }
-
-    @Override
-    public void onSampleTakePictureSelected() {
-        mNavigationHelper.launchSampleTakePicture();
-    }
-
-    @Override
-    public void onSampleLocaleSelected() {
-        mNavigationHelper.launchSampleLocale();
-    }
-
-    @Override
-    public void onSampleHorizontalListClicked() {
-        mNavigationHelper.launchSampleHorizontalList();
-    }
-
-    @Override
-    public void onVibrationSelected() {
-        mNavigationHelper.launchVibrationSample();
+    public void onVibrateSelected(long duration) {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                //deprecated in API 26
+                vibrator.vibrate(duration);
+            }
+        }
     }
 }
