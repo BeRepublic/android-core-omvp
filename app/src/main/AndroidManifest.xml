@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.omvp.app">
 
-    <!-- uses permissions  -->
+    <!-- uses permissions ====================================================================== -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- used in geolocation -->
@@ -15,11 +16,15 @@
     <!-- used to make photos -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- uses features -->
+    <!-- uses features ========================================================================= -->
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
+    <!-- meta data ============================================================================= -->
+
+    <!-- application =========================================================================== -->
 
     <application
         android:name=".AppApplication"
@@ -96,9 +101,25 @@
             <!-- A service that extends FirebaseMessagingService. This is required if you want to do
              any message handling beyond receiving notifications on apps in the background. -->
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <!-- =========== Broadcast ==============================================================-->
+
+        <receiver
+            android:name=".service.AppUrbanAirshipReceiverService"
+            android:exported="false">
+            <!-- A broadcastReceiver that extends AirshipReceiver to handle push notifications -->
+            <intent-filter>
+                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
+                <action android:name="com.urbanairship.push.OPENED" />
+                <action android:name="com.urbanairship.push.RECEIVED" />
+                <action android:name="com.urbanairship.push.DISMISSED" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
 
         <!-- ========= SAMPLES ================================================================= -->
 

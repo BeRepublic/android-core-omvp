@@ -1,4 +1,4 @@
-======= HOW IS THAT ================================================================================
+======= WHAT IS THIS ===============================================================================
 
     This project is created like a template to start another projets. It`s based in MVP pattern and
     Onion arquitecture, besides use Dagger2 to injection dependencies, RX2 to reactive programing
@@ -35,19 +35,35 @@
     file is available through BuildConfig.KEY_TO_USE in DEBUG configuration. Use this file to
     custom properties like user and password credentials used only in development mode.
 
-    6. To use Crashlytics, configure app/fabric.properties. To personalize configuration like
-    distribution or release notes, modify preferences in build.gradle.
-
-    7. Define what languages will be use the application in
+    6. Define what languages will be use the application in
     com.omvp.app.injector.module.LocaleModule
 
-    8. Defines path to store pictures in device in: (Replace package com.omvp.app by yours)
+    7. Defines path to store pictures in device in: (Replace package com.omvp.app by yours)
         + dev/res/xml/provider_paths.xml
         + prod/res/xml/provider_paths.xml
 
-    9. Put analytics code in:
-        + dev/res/xml/app_tracker.xml
-        + prod/res/xml/app_tracker.xml
+    ==== TO USE CRASHLYTICS ========================================================================
+
+        1. Configure app/fabric.properties. To personalize configuration like distribution or
+        release notes, modify preferences in build.gradle.
+
+    ==== TO USE ANALYTICS ==========================================================================
+
+        1. Put analytics code in: (More info in TrackManager.java)
+            + dev/res/xml/app_tracker.xml
+            + prod/res/xml/app_tracker.xml
+
+    ==== TO USE URBANAIRSHIP ==========================================================================
+
+        1. Register application in urbanairship, remember to create one application by flavour.
+            {androidApplicationId}
+            {androidApplicationId}.dev
+            {androidApplicationId}.mock
+
+        2. Configure urbanairship.properties in:
+            + mock/assets/airshipconfig.properties
+            + dev/assets/airshipconfig.properties
+            + prod/assets/airshipconfig.properties
 
 ======= TIPS =======================================================================================
 
