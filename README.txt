@@ -61,10 +61,7 @@
         + AndroidManifest.xml
         + com.omvp.app.ui.samples
         + res/layouts/sample*
-        + SampleEntity
-        + SampleDomain
-        + SampleModel
-        + SampleEntityDataMapper
-        + SampleModelDataMapper
+        + app/build.gradle -> Remove any reference to res/layouts/sample*
+        + Sample*.java
     2. Remove any permission (androidManifest.xml) that is not necessary for the project.
     3. Remove any dependencies that is not necessary for the project.

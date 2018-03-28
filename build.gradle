@@ -39,11 +39,11 @@ allprojects {
 
         // ============== App configuration ========================================================
 
-        androidApplicationId = 'com.omvp.app'
-        androidVersionCode = VERSION_CODE as int
-        androidVersionName = VERSION_NAME as String
-        androidAppName = 'omvp'
-        androidSchemaName = 'omvp'
+        androidApplicationId = 'com.omvp.app'           // Application identifier.
+        androidVersionCode = VERSION_CODE as int        // Version code, used to version control.
+        androidVersionName = VERSION_NAME as String     // Version name, displayed in googleplay.
+        androidAppName = 'omvp'                         // Aplication name.
+        androidSchemaName = 'omvp'                      // Schema used to intercept browser url´s
 
         // ============== Crashlytics configuration ================================================
 
