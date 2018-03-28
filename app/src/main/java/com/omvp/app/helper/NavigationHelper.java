@@ -11,6 +11,7 @@ import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.sample.SampleActivity;
+import com.omvp.app.ui.samples.sample_inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
@@ -129,6 +130,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(VibrationActivity.class)
+                .launch();
+    }
+
+    public void launchInputViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleInputActivity.class)
                 .launch();
     }
 

@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
+import static com.omvp.commons.Constants.INPUT;
 import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
@@ -54,6 +55,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onSampleHorizontalListClicked();
 
         void onVibrationSelected();
+
+        void onInputViewSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -99,6 +102,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case VIBRATION:
                 mCallback.onVibrationSelected();
+                break;
+            case INPUT:
+                mCallback.onInputViewSelected();
                 break;
         }
     }

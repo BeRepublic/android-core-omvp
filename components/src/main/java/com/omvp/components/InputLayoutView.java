@@ -338,7 +338,7 @@ public class InputLayoutView extends BaseComponentView {
     }
 
     public void setEditTextClickListener(final OnClickListener listener) {
-        if (listener == null){
+        if (listener == null) {
             mTextInputEditText.setOnClickListener(null);
             return;
         }
@@ -351,7 +351,7 @@ public class InputLayoutView extends BaseComponentView {
         });
     }
 
-    public boolean requestEditTextFocus(){
+    public boolean requestEditTextFocus() {
         return mTextInputEditText.requestFocus();
     }
 
