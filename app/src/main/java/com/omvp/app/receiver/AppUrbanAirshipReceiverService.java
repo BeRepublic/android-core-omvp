@@ -1,4 +1,4 @@
-package com.omvp.app.service;
+package com.omvp.app.receiver;
 
 import android.content.Context;
 import android.content.Intent;

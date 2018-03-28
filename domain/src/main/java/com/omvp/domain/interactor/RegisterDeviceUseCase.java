@@ -4,6 +4,6 @@ import io.reactivex.Completable;
 
 public interface RegisterDeviceUseCase {
 
-    Completable execute(final String token);
+    Completable execute();
 
 }

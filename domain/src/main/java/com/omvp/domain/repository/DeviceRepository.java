@@ -12,20 +12,21 @@ public interface DeviceRepository extends Repository {
     Completable register();
 
     /**
-     * Register device in server to receive push notifications.
-     * @param token
-     * @return
-     */
-    Completable register(final String token);
-
-    /**
      * Check if application version is last published.
      * @return
      */
     Single<Boolean> checkApplicationVersion();
 
     /**
-     * Retrieve firebase token. This identifier is used to identify device in push notificacions.
+     * Retrieve channelId from urbanAirship. This identifier is used to identify device in push
+     * notificacions via urbanairship.
+     * @return
+     */
+    Single<String> getUrbanAirshipChannelId();
+
+    /**
+     * Retrieve firebase token. This identifier is used to identify device in push notificacions
+     * via firebase.
      * @return
      */
     Single<String> getFirebaseToken();

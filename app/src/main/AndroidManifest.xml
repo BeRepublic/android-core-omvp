@@ -108,7 +108,7 @@
         <!-- =========== Broadcast ==============================================================-->
 
         <receiver
-            android:name=".service.AppUrbanAirshipReceiverService"
+            android:name=".receiver.AppUrbanAirshipReceiverService"
             android:exported="false">
             <!-- A broadcastReceiver that extends AirshipReceiver to handle push notifications -->
             <intent-filter>

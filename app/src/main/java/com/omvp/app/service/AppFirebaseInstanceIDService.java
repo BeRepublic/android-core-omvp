@@ -3,13 +3,11 @@ package com.omvp.app.service;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.omvp.app.util.DisposableManager;
-import com.omvp.domain.interactor.RegisterDeviceUseCase;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
-import io.reactivex.observers.DisposableCompletableObserver;
 import timber.log.Timber;
 
 import static com.omvp.app.base.BaseServiceModule.DISPOSABLE_SERVICE_MANAGER;
@@ -23,8 +21,6 @@ public class AppFirebaseInstanceIDService extends FirebaseInstanceIdService {
     @Inject
     @Named(DISPOSABLE_SERVICE_MANAGER)
     DisposableManager mDisposableManager;
-    @Inject
-    RegisterDeviceUseCase mRegisterDeviceUseCase;
 
     @Override
     public void onCreate() {
@@ -64,18 +60,7 @@ public class AppFirebaseInstanceIDService extends FirebaseInstanceIdService {
      * @param token The add token.
      */
     private void sendRegistrationToServer(final String token) {
-        mDisposableManager.add(mRegisterDeviceUseCase.execute(token)
-                .subscribeWith(new DisposableCompletableObserver() {
-                    @Override
-                    public void onComplete() {
-                        Timber.d("Registration token %s in server successfully.", token);
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Timber.e(e);
-                    }
-                }));
     }
 
 }

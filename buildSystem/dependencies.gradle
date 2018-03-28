@@ -29,7 +29,7 @@ ext {
     modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
     rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
-    urbanAirshipVersion = '9.0.+'           // http://docs.urbanairship.com/platform/android.html
+    urbanAirshipVersion = '9.0.4'           // http://docs.urbanairship.com/platform/android.html
 
     // Testing
     jUnitVersion = '4.12'
@@ -236,7 +236,8 @@ ext {
                             dagger.implementation,
                             retrofit.implementation,
                             modelmapper.implementation,
-                            reactive.implementation
+                            reactive.implementation,
+                            urbanairship.implementation                            
                     ],
                     api                : [],
                     annotationProcessor: [

@@ -15,8 +15,8 @@ public class RegisterDeviceUseCaseImpl extends BaseUseCaseImpl<DeviceRepository>
     }
 
     @Override
-    public Completable execute(final String token) {
-        return getRepository().register(token);
+    public Completable execute() {
+        return getRepository().register();
     }
 
 }
