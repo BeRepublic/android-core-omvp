@@ -53,7 +53,7 @@
             + dev/res/xml/app_tracker.xml
             + prod/res/xml/app_tracker.xml
 
-    ==== TO USE URBANAIRSHIP ==========================================================================
+    ==== TO USE URBANAIRSHIP =======================================================================
 
         1. Register application in urbanairship, remember to create one application by flavour.
             {androidApplicationId}

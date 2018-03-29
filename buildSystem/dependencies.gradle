@@ -8,9 +8,10 @@ ext {
     multidexVersion = '1.0.1'
 
     androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
-    androidPreferencesVersion = '3.0.3'     // https://github.com/raxden/android-preferences
+    androidPreferencesVersion = '3.0.4'     // https://github.com/raxden/android-preferences
     androidRecyclerVersion = '3.0.7'        // https://github.com/raxden/android-recycler
     androidSquareVersion = '3.0.83'         // https://github.com/raxden/square
+    androidCronsVersion = '3.0.11'          // https://github.com/raxden/android-crons
 
     // Libraries
     reactiveAndroidVersion = '2.0.1'        // https://github.com/ReactiveX/RxAndroid
@@ -56,6 +57,7 @@ ext {
                     "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
                     "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
                     "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
+                    "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
                     "com.github.raxden.square:square:${androidSquareVersion}@aar",
                     "com.github.raxden.square:square-commons:${androidSquareVersion}@aar"
             ]

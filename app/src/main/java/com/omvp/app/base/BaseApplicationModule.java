@@ -6,16 +6,16 @@ import android.content.Context;
 
 import com.omvp.app.injector.module.AnalyticsModule;
 import com.omvp.app.injector.module.CacheModule;
+import com.omvp.app.injector.module.CronModule;
 import com.omvp.app.injector.module.GoogleModule;
 import com.omvp.app.injector.module.GsonModule;
 import com.omvp.app.injector.module.LocaleModule;
 import com.omvp.app.injector.module.LocationModule;
 import com.omvp.app.injector.module.MapperModule;
 import com.omvp.app.injector.module.NetworkModule;
+import com.omvp.app.injector.module.PreferencesModule;
 import com.omvp.app.injector.module.RepositoryModule;
 import com.omvp.app.injector.module.UseCaseModule;
-import com.raxdenstudios.commons.util.Utils;
-import com.raxdenstudios.preferences.AdvancedPreferences;
 
 import javax.inject.Singleton;
 
@@ -32,6 +32,8 @@ import dagger.Provides;
                 GsonModule.class,
                 MapperModule.class,
                 AnalyticsModule.class,
+                PreferencesModule.class,
+                CronModule.class,
                 CacheModule.class,
                 RepositoryModule.class,
                 UseCaseModule.class,
@@ -64,12 +66,6 @@ public abstract class BaseApplicationModule {
     @Singleton
     static ContentResolver contentResolver(Application application) {
         return application.getContentResolver();
-    }
-
-    @Provides
-    @Singleton
-    static AdvancedPreferences advancedPreferences(Application application) {
-        return new AdvancedPreferences(application, Utils.getPackageName(application), Context.MODE_PRIVATE);
     }
 
 }
