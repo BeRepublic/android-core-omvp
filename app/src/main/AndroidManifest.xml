@@ -186,6 +186,12 @@
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity
+            android:name=".ui.samples.sample_inputs.SampleInputActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Sample"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
+
         <!-- =================================================================================== -->
 
     </application>

@@ -3,21 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_green_light">
 
-    <com.seat.mobile.components.TextAdvancedInputLayout
+    <com.omvp.components.TextAdvancedInputLayout
         android:id="@+id/input_layout"
         style="@style/Input.TextInputLayout"
-        android:layout_marginBottom="-14dp">
+        android:layout_marginBottom="-10dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/input_text"
             style="@style/Input.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:background="@android:color/holo_red_light"
             android:minHeight="40dp" />
 
-    </com.seat.mobile.components.TextAdvancedInputLayout>
+    </com.omvp.components.TextAdvancedInputLayout>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/hint_fixed_to_left"

@@ -1,5 +1,7 @@
 package com.omvp.commons;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Angel on 18/07/2017.
  */
@@ -23,4 +25,8 @@ public class Constants {
     public static final String PICTURE = "PICTURE";
     public static final String LOCALE = "LOCALE";
     public static final String VIBRATION = "VIBRATION";
+    public static final String INPUT = "INPUT";
+
+    // Patterns
+    public static final Pattern PASSWORD_PATTERN = Pattern.compile("^[0-9A-Za-z!@#$%]{6,}$");
 }

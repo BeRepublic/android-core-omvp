@@ -39,7 +39,7 @@ public class TextAdvancedInputLayout extends TextInputLayout {
             errorViewField.setAccessible(true);
             TextView errorView = (TextView) errorViewField.get(this);
             if (errorView != null) {
-                errorView.setGravity(Gravity.RIGHT);
+                errorView.setGravity(Gravity.END);
                 LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
                 params.gravity = Gravity.END;
                 errorView.setLayoutParams(params);

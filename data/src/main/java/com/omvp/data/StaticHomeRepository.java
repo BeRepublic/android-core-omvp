@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
+import static com.omvp.commons.Constants.INPUT;
 import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
@@ -32,6 +33,7 @@ public class StaticHomeRepository {
             sampleItemList.put(6, initSampleItem(PICTURE, "A sample view to take or pick up photos"));
             sampleItemList.put(7, initSampleItem(LOCALE, "A sample view to change device language"));
             sampleItemList.put(8, initSampleItem(VIBRATION, "A sample view to use device vibration"));
+            sampleItemList.put(9, initSampleItem(INPUT, "A view with input layouts"));
         }
     }
 

@@ -69,6 +69,7 @@ android {
                             'src/main/res/layouts/sample_location',
                             'src/main/res/layouts/sample_take_picture',
                             'src/main/res/layouts/sample_vibration',
+                            'src/main/res/layouts/sample_input',
                             'src/main/res/layouts/splash',
                             'src/main/res/layouts',
                             'src/main/res'
