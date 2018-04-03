@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/holo_green_light">
+    android:layout_height="wrap_content">
 
     <com.omvp.components.TextAdvancedInputLayout
         android:id="@+id/input_layout"
@@ -16,7 +15,6 @@
             style="@style/Input.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:background="@android:color/holo_red_light"
             android:minHeight="40dp" />
 
     </com.omvp.components.TextAdvancedInputLayout>

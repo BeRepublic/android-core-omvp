@@ -20,7 +20,7 @@ import dagger.android.HasServiceInjector;
 /**
  * The Android {@link MultiDexApplication}.
  */
-public class BaseApplication extends MultiDexApplication implements HasActivityInjector, HasServiceInjector, HasBroadcastReceiverInjector {
+public abstract class BaseApplication extends MultiDexApplication implements HasActivityInjector, HasServiceInjector, HasBroadcastReceiverInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;

@@ -20,13 +20,13 @@ public abstract class CronModule {
 
     @Provides
     @Singleton
-    CronService cronService(SharedPreferences settings) {
+    static CronService cronService(SharedPreferences settings) {
         return new CronPreferencesServiceImpl(settings);
     }
 
     @Provides
     @Singleton
-    CronHandler cronHandler(Context context, CronService cronService) {
+    static CronHandler cronHandler(Context context, CronService cronService) {
         return new CronHandler(context, cronService);
     }
 
