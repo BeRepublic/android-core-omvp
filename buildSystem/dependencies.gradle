@@ -31,6 +31,7 @@ ext {
     constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
     rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
     urbanAirshipVersion = '9.0.4'           // http://docs.urbanairship.com/platform/android.html
+    facebookVersion = '4.31.0'              // https://developers.facebook.com/docs/android/
 
     // Testing
     jUnitVersion = '4.12'
@@ -171,6 +172,12 @@ ext {
             ]
     ]
 
+    facebook = [
+            implementation: [
+                    "com.facebook.android:facebook-android-sdk:${facebookVersion}"
+            ]
+    ]
+
     deps = [
             app       : [
                     implementation         : [
@@ -187,7 +194,8 @@ ext {
                             rxPermissions.implementation,
                             modelmapper.implementation,
                             calligraphy.implementation,
-                            urbanairship.implementation
+                            urbanairship.implementation,
+                            facebook.implementation
                     ],
                     annotationProcessor    : [
                             dagger.annotationProcessor,

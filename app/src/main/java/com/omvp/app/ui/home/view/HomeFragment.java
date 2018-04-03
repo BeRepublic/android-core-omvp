@@ -26,6 +26,7 @@ import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
+import static com.omvp.commons.Constants.SOCIAL;
 import static com.omvp.commons.Constants.VIBRATION;
 import static com.omvp.commons.Constants.VIEW;
 
@@ -57,6 +58,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onVibrationSelected();
 
         void onInputViewSelected();
+
+        void onSocialViewSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -105,6 +108,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case INPUT:
                 mCallback.onInputViewSelected();
+                break;
+            case SOCIAL:
+                mCallback.onSocialViewSelected();
                 break;
         }
     }

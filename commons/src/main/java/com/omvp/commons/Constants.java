@@ -26,6 +26,7 @@ public class Constants {
     public static final String LOCALE = "LOCALE";
     public static final String VIBRATION = "VIBRATION";
     public static final String INPUT = "INPUT";
+    public static final String SOCIAL = "SOCIAL";
 
     // Patterns
     public static final Pattern PASSWORD_PATTERN = Pattern.compile("^[0-9A-Za-z!@#$%]{6,}$");

@@ -1,12 +1,16 @@
 package com.omvp.app.base;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.omvp.app.helper.DialogHelper;
 import com.omvp.app.injector.module.InterceptorFragmentModule;
+import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
 import com.omvp.app.util.DisposableManager;
+import com.omvp.app.util.SocialAuthManager;
 
 import javax.inject.Named;
 
@@ -44,4 +48,9 @@ public abstract class BaseFragmentModule {
         return new DialogHelper(fragment, fragmentManager);
     }
 
+    @Provides
+    @PerFragment
+    static SocialAuthManager activitySocialAuthManager(Activity activity, GoogleApiClient googleApiClient) {
+        return new SocialAuthManager(activity, googleApiClient);
+    }
 }

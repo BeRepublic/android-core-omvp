@@ -80,13 +80,13 @@ public class SampleInputsPresenterImpl extends BasePresenter<SampleInputView> im
         } else {
             showFixedInputSuccess();
         }
-        if (!Utils.hasValue(password)) {
+        if (!Utils.hasValue(fixedLeft)) {
             showFixedLeftInputError("string.enter_fixed_left");
             formValid = false;
         } else {
             showFixedLeftInputSuccess();
         }
-        if (!Utils.hasValue(password)) {
+        if (!Utils.hasValue(fixedCenter)) {
             showFixedCenterInputError("string.enter_fixed_center");
             formValid = false;
         } else {

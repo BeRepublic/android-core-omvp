@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.omvp.app.BuildConfig;
 import com.omvp.app.helper.AnimationHelper;
@@ -16,6 +17,7 @@ import com.omvp.app.helper.SnackBarHelper;
 import com.omvp.app.injector.module.InterceptorActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.util.DisposableManager;
+import com.omvp.app.util.SocialAuthManager;
 import com.omvp.app.util.TrackerManager;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 

@@ -18,6 +18,7 @@ import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivi
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.sample_social.SampleSocialActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.sample_vibration.VibrationActivity;
 import com.omvp.app.ui.splash.SplashActivity;
@@ -137,6 +138,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleInputActivity.class)
+                .launch();
+    }
+
+    public void launchSocialViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleSocialActivity.class)
                 .launch();
     }
 

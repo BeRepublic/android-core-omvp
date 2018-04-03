@@ -1,7 +1,6 @@
 package com.omvp.app.ui.samples.sample_inputs.view;
 
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;

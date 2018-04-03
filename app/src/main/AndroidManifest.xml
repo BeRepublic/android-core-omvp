@@ -3,7 +3,7 @@
 
     <!-- uses permissions ====================================================================== -->
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- used in geolocation -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -18,9 +18,9 @@
 
     <!-- used to use vibration -->
     <uses-permission android:name="android.permission.VIBRATE"/>
-    
+
     <!-- uses features ========================================================================= -->
-   
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true"/>
@@ -104,7 +104,7 @@
             <!-- A service that extends FirebaseMessagingService. This is required if you want to do
              any message handling beyond receiving notifications on apps in the background. -->
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
@@ -115,12 +115,12 @@
             android:exported="false">
             <!-- A broadcastReceiver that extends AirshipReceiver to handle push notifications -->
             <intent-filter>
-                <action android:name="com.urbanairship.push.CHANNEL_UPDATED" />
-                <action android:name="com.urbanairship.push.OPENED" />
-                <action android:name="com.urbanairship.push.RECEIVED" />
-                <action android:name="com.urbanairship.push.DISMISSED" />
+                <action android:name="com.urbanairship.push.CHANNEL_UPDATED"/>
+                <action android:name="com.urbanairship.push.OPENED"/>
+                <action android:name="com.urbanairship.push.RECEIVED"/>
+                <action android:name="com.urbanairship.push.DISMISSED"/>
 
-                <category android:name="${applicationId}" />
+                <category android:name="${applicationId}"/>
             </intent-filter>
         </receiver>
 
@@ -191,6 +191,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
+
+        <activity
+            android:name=".ui.samples.sample_social.SampleSocialActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Sample"
+            android:windowSoftInputMode="adjustPan"/>
 
         <!-- =================================================================================== -->
 
