@@ -7,9 +7,15 @@ import com.omvp.app.base.mvp.presenter.Presenter;
  */
 
 public interface SampleInputsPresenter extends Presenter {
-    void validateInputs(String name, String password);
+    void validateInputs(String name, String password, String fixed, String fixedLeft, String fixedCenter);
 
     void nameChanged(final String name);
 
     void passwordChanged(String s);
+
+    void fixedChanged(String s);
+
+    void fixedLeftChanged(String s);
+
+    void fixedCenterChanged(String s);
 }

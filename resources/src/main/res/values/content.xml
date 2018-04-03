@@ -35,4 +35,8 @@
 
     </style>
 
+    <style name="Content.Input">
+        <item name="android:padding">0dp</item>
+    </style>
+
 </resources>

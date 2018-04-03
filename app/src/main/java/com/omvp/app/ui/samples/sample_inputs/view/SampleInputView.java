@@ -20,4 +20,22 @@ public interface SampleInputView extends BaseView {
     void hidePasswordInputError();
 
     void showValidationToast();
+
+    void showFixedInputError(String error);
+
+    void showFixedInputSuccess();
+
+    void hideFixedInputError();
+
+    void showFixedLeftInputError(String error);
+
+    void showFixedLeftInputSuccess();
+
+    void hideFixedLeftInputError();
+
+    void showFixedCenterInputError(String error);
+
+    void showFixedCenterInputSuccess();
+
+    void hideFixedCenterInputError();
 }

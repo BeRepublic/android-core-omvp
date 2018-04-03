@@ -16,6 +16,8 @@ import timber.log.Timber;
 
 public class TextAdvancedInputLayout extends TextInputLayout {
 
+    private int mErrorGravity = Gravity.END;
+
     public TextAdvancedInputLayout(Context context) {
         super(context);
     }
@@ -39,9 +41,9 @@ public class TextAdvancedInputLayout extends TextInputLayout {
             errorViewField.setAccessible(true);
             TextView errorView = (TextView) errorViewField.get(this);
             if (errorView != null) {
-                errorView.setGravity(Gravity.END);
+                errorView.setGravity(mErrorGravity);
                 LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-                params.gravity = Gravity.END;
+                params.gravity = mErrorGravity;
                 errorView.setLayoutParams(params);
             }
         }
@@ -50,4 +52,7 @@ public class TextAdvancedInputLayout extends TextInputLayout {
         }
     }
 
+    public void setErrorGravity(int errorGravity) {
+        mErrorGravity = errorGravity;
+    }
 }

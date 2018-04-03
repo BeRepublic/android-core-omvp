@@ -23,8 +23,8 @@ public class SampleInputsPresenterImpl extends BasePresenter<SampleInputView> im
     }
 
     @Override
-    public void validateInputs(String name, String password) {
-        if (validateForm(name, password)){
+    public void validateInputs(String name, String password, String fixed, String fixedLeft, String fixedCenter) {
+        if (validateForm(name, password, fixed, fixedLeft, fixedCenter)) {
             showValidationToast();
         }
     }
@@ -39,7 +39,22 @@ public class SampleInputsPresenterImpl extends BasePresenter<SampleInputView> im
         hidePasswordInputError();
     }
 
-    private boolean validateForm(String name, String password){
+    @Override
+    public void fixedChanged(String s) {
+        hideFixedInputError();
+    }
+
+    @Override
+    public void fixedLeftChanged(String s) {
+        hideFixedLeftInputError();
+    }
+
+    @Override
+    public void fixedCenterChanged(String s) {
+        hideFixedCenterInputError();
+    }
+
+    private boolean validateForm(String name, String password, String fixed, String fixedLeft, String fixedCenter) {
         boolean formValid = true;
         if (!Utils.hasValue(name)) {
             showNameInputError("string.enter_your_name");
@@ -59,7 +74,24 @@ public class SampleInputsPresenterImpl extends BasePresenter<SampleInputView> im
         } else {
             showPasswordInputSuccess();
         }
-
+        if (!Utils.hasValue(fixed)) {
+            showFixedInputError("string.enter_fixed");
+            formValid = false;
+        } else {
+            showFixedInputSuccess();
+        }
+        if (!Utils.hasValue(password)) {
+            showFixedLeftInputError("string.enter_fixed_left");
+            formValid = false;
+        } else {
+            showFixedLeftInputSuccess();
+        }
+        if (!Utils.hasValue(password)) {
+            showFixedCenterInputError("string.enter_fixed_center");
+            formValid = false;
+        } else {
+            showFixedCenterInputSuccess();
+        }
         return formValid;
     }
 
@@ -99,9 +131,62 @@ public class SampleInputsPresenterImpl extends BasePresenter<SampleInputView> im
         }
     }
 
+    private void showFixedInputError(String error) {
+        if (mView != null) {
+            mView.showFixedInputError(error);
+        }
+    }
 
-    private void showValidationToast(){
-        if (mView != null){
+    private void showFixedInputSuccess() {
+        if (mView != null) {
+            mView.showFixedInputSuccess();
+        }
+    }
+
+    private void hideFixedInputError() {
+        if (mView != null) {
+            mView.hideFixedInputError();
+        }
+    }
+
+    private void showFixedLeftInputError(String error) {
+        if (mView != null) {
+            mView.showFixedLeftInputError(error);
+        }
+    }
+
+    private void showFixedLeftInputSuccess() {
+        if (mView != null) {
+            mView.showFixedLeftInputSuccess();
+        }
+    }
+
+    private void hideFixedLeftInputError() {
+        if (mView != null) {
+            mView.hideFixedLeftInputError();
+        }
+    }
+
+    private void showFixedCenterInputError(String error) {
+        if (mView != null) {
+            mView.showFixedCenterInputError(error);
+        }
+    }
+
+    private void showFixedCenterInputSuccess() {
+        if (mView != null) {
+            mView.showFixedCenterInputSuccess();
+        }
+    }
+
+    private void hideFixedCenterInputError() {
+        if (mView != null) {
+            mView.hideFixedCenterInputError();
+        }
+    }
+
+    private void showValidationToast() {
+        if (mView != null) {
             mView.showValidationToast();
         }
     }

@@ -2,14 +2,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/Content.Input">
 
     <ScrollView
-        style="@style/Content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/ScrollView.Input"
         android:layout_above="@+id/validation_button">
 
         <android.support.constraint.ConstraintLayout
@@ -18,9 +14,8 @@
 
             <com.omvp.components.InputLayoutView
                 android:id="@+id/input_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
@@ -35,18 +30,69 @@
 
             <com.omvp.components.InputLayoutView
                 android:id="@+id/input_password"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="Password"
-                app:passwordToggleEnabled="true"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
+                app:layout_constraintBottom_toTopOf="@+id/input_fixed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_name"/>
+                app:layout_constraintTop_toBottomOf="@id/input_name"
+                app:passwordToggleEnabled="true"/>
+
+            <com.omvp.components.InputLayoutView
+                android:id="@+id/input_fixed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Fixed"
+                android:imeOptions="actionNext"
+                android:inputType="textCapSentences"
+                app:hintType="fixed"
+                app:layout_constraintBottom_toTopOf="@+id/input_fixed_left"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_password"/>
+
+            <com.omvp.components.InputLayoutView
+                android:id="@+id/input_fixed_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="Fixed Left"
+                android:imeOptions="actionNext"
+                android:inputType="textCapSentences"
+                app:hintType="fixedToLeft"
+                app:hintWidth="@dimen/hint_witdh"
+                app:layout_constraintBottom_toTopOf="@+id/input_fixed_center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_fixed"/>
+
+            <com.omvp.components.InputLayoutView
+                android:id="@+id/input_fixed_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:hint="Fixed center"
+                android:imeOptions="actionNext"
+                android:inputType="textCapSentences"
+                app:errorGravity="center"
+                app:hintType="fixed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_fixed_left"/>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

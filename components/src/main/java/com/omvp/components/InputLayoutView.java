@@ -55,6 +55,7 @@ public class InputLayoutView extends BaseComponentView {
 
     private int mInputType;
     private int mInputGravity;
+    private int mErrorGravity;
     private int mImeOptions;
     private boolean mEnabled;
     private boolean mFocusable;
@@ -104,6 +105,7 @@ public class InputLayoutView extends BaseComponentView {
         setText(mText);
         setInputType(mInputType);
         setInputGravity(mInputGravity);
+        setErrorGravity(mErrorGravity);
         setImeOptions(mImeOptions);
         setNextFocusForward(mNextFocusForward);
         setNextFocusUp(mNextFocusUp);
@@ -164,6 +166,7 @@ public class InputLayoutView extends BaseComponentView {
         }
 
         mMaxLines = typedArray.getInteger(R.styleable.InputLayoutView_android_maxLines, 1);
+        mErrorGravity = typedArray.getInteger(R.styleable.InputLayoutView_errorGravity, Gravity.END);
 
         typedArray.recycle();
     }
@@ -243,6 +246,10 @@ public class InputLayoutView extends BaseComponentView {
             mInputGravity = inputGravity;
             invalidate();
         }
+    }
+
+    public void setErrorGravity(int errorGravity){
+        mTextInputLayout.setErrorGravity(errorGravity);
     }
 
     public void setErrorEnabled(boolean enabled) {

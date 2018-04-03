@@ -23,6 +23,12 @@ public class SampleInputFragment extends BaseViewFragment<SampleInputsPresenterI
     InputLayoutView mNameInputLayout;
     @BindView(R.id.input_password)
     InputLayoutView mPasswordInputLayout;
+    @BindView(R.id.input_fixed)
+    InputLayoutView mFixedInputLayout;
+    @BindView(R.id.input_fixed_left)
+    InputLayoutView mFixedLeftInputLayout;
+    @BindView(R.id.input_fixed_center)
+    InputLayoutView mFixedCenterInputLayout;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
 
@@ -44,7 +50,13 @@ public class SampleInputFragment extends BaseViewFragment<SampleInputsPresenterI
 
     @OnClick(R.id.validation_button)
     public void onValidationClicked(View view) {
-        mPresenter.validateInputs(mNameInputLayout.getText(), mPasswordInputLayout.getText());
+        mPresenter.validateInputs(
+                mNameInputLayout.getText(),
+                mPasswordInputLayout.getText(),
+                mFixedInputLayout.getText(),
+                mFixedLeftInputLayout.getText(),
+                mFixedCenterInputLayout.getText()
+        );
     }
 
     @Override
@@ -60,6 +72,51 @@ public class SampleInputFragment extends BaseViewFragment<SampleInputsPresenterI
     @Override
     public void showValidationToast() {
         Toast.makeText(mContext, "Validation succeeded", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showFixedInputError(String error) {
+        mFixedInputLayout.setError(error);
+    }
+
+    @Override
+    public void showFixedInputSuccess() {
+        mFixedInputLayout.setSuccess();
+    }
+
+    @Override
+    public void hideFixedInputError() {
+        mFixedInputLayout.clearError();
+    }
+
+    @Override
+    public void showFixedLeftInputError(String error) {
+        mFixedLeftInputLayout.setError(error);
+    }
+
+    @Override
+    public void showFixedLeftInputSuccess() {
+        mFixedLeftInputLayout.setSuccess();
+    }
+
+    @Override
+    public void hideFixedLeftInputError() {
+        mFixedLeftInputLayout.clearError();
+    }
+
+    @Override
+    public void showFixedCenterInputError(String error) {
+        mFixedCenterInputLayout.setError(error);
+    }
+
+    @Override
+    public void showFixedCenterInputSuccess() {
+        mFixedCenterInputLayout.setSuccess();
+    }
+
+    @Override
+    public void hideFixedCenterInputError() {
+        mFixedCenterInputLayout.clearError();
     }
 
     @Override
@@ -85,6 +142,9 @@ public class SampleInputFragment extends BaseViewFragment<SampleInputsPresenterI
     private void setupViews() {
         mNameInputLayout.addTextChangedListener(onNameTextChanged);
         mPasswordInputLayout.addTextChangedListener(onPasswordTextChanged);
+        mFixedInputLayout.addTextChangedListener(onFixedTextChanged);
+        mFixedLeftInputLayout.addTextChangedListener(onFixedLeftTextChanged);
+        mFixedCenterInputLayout.addTextChangedListener(onFixedCenterTextChanged);
     }
 
     private TextWatcher onNameTextChanged = new TextWatcher() {
@@ -118,6 +178,57 @@ public class SampleInputFragment extends BaseViewFragment<SampleInputsPresenterI
         @Override
         public void afterTextChanged(Editable s) {
             mPresenter.passwordChanged(s.toString());
+        }
+    };
+
+    private TextWatcher onFixedTextChanged = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // do nothing
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // do nothing
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            mPresenter.fixedChanged(s.toString());
+        }
+    };
+
+    private TextWatcher onFixedLeftTextChanged = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // do nothing
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // do nothing
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            mPresenter.fixedLeftChanged(s.toString());
+        }
+    };
+
+    private TextWatcher onFixedCenterTextChanged = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // do nothing
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // do nothing
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            mPresenter.fixedCenterChanged(s.toString());
         }
     };
 }
