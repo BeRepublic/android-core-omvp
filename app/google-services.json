@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "406476637448-nno5783bg9vpkj3frc6bkmb68teii24p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omvp.app",
+            "certificate_hash": "801aa8361c60935935a786f980021ef5014d3ef9"
+          }
+        },
+        {
           "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -46,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "406476637448-7ggejkk1sk7rvvbuimvsg5jgoh7qd8ma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omvp.app.dev",
+            "certificate_hash": "801aa8361c60935935a786f980021ef5014d3ef9"
+          }
+        },
+        {
           "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -60,8 +81,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -77,6 +103,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "406476637448-stm3f6o8ho27uad5pkiug6njs5egju2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.omvp.app.mock",
+            "certificate_hash": "801aa8361c60935935a786f980021ef5014d3ef9"
+          }
+        },
+        {
           "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -91,8 +125,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406476637448-pnbb58boo5q0lb5sjp3l31n5q6369vnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

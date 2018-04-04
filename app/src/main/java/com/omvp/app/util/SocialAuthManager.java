@@ -16,16 +16,14 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.omvp.app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -39,7 +37,7 @@ public class SocialAuthManager {
     private Resources mResources;
 
     private SocialAuthCallback mCallback;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager mCallbackManager;
     private SocialAuth mSocialAuth;
 
@@ -56,11 +54,10 @@ public class SocialAuthManager {
         void onSignInFailed(SocialAuth socialAuth, String message);
     }
 
-    @Inject
-    public SocialAuthManager(Activity activity, GoogleApiClient googleApiClient) {
+    public SocialAuthManager(Activity activity, GoogleSignInClient googleSignInClient) {
         mActivity = activity;
         mResources = activity.getResources();
-        mGoogleApiClient = googleApiClient;
+        mGoogleSignInClient = googleSignInClient;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -84,10 +81,12 @@ public class SocialAuthManager {
     }
 
     public void destroy() {
+        logout();
         switch (mSocialAuth) {
             case GOOGLE:
                 break;
             case FACEBOOK:
+                destroyFacebook();
                 break;
             default:
                 break;
@@ -95,13 +94,28 @@ public class SocialAuthManager {
     }
 
     public void signInWithGoogle() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         mActivity.startActivityForResult(signInIntent, REQUEST_CODE_GOOGLE_LOGIN);
     }
 
     public void signInWithFacebook() {
         LoginManager.getInstance()
                 .logInWithReadPermissions(mActivity, Arrays.asList("public_profile", "email"));
+    }
+
+    public void logout() {
+        switch (mSocialAuth) {
+            case FACEBOOK:
+                LoginManager.getInstance().logOut();
+                break;
+            case GOOGLE:
+                mGoogleSignInClient.signOut();
+                break;
+            case ALL:
+                LoginManager.getInstance().logOut();
+                mGoogleSignInClient.signOut();
+                break;
+        }
     }
 
     // private methods

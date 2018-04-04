@@ -42,6 +42,7 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
     @Inject
     protected TrackerManager mTrackerManager;
 
+
     @Inject
     AutoInflateViewInterceptor mAutoInflateViewInterceptor;
     @Inject

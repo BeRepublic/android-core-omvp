@@ -7,5 +7,9 @@ import com.omvp.app.base.mvp.presenter.Presenter;
  */
 
 public interface SampleSocialPresenter extends Presenter {
+    void continueWithFacebook();
 
+    void continueWithGoogle();
+
+    void logout();
 }

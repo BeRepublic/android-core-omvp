@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.omvp.app.BuildConfig;
 import com.omvp.app.helper.AnimationHelper;
@@ -99,4 +99,9 @@ public abstract class BaseActivityModule {
         return new AnimationHelper(activity);
     }
 
+    @Provides
+    @PerActivity
+    static SocialAuthManager activitySocialAuthManager(Activity activity, GoogleSignInClient googleSignInClient) {
+        return new SocialAuthManager(activity, googleSignInClient);
+    }
 }

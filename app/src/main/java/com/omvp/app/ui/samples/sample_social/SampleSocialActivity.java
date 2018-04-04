@@ -1,5 +1,6 @@
 package com.omvp.app.ui.samples.sample_social;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,12 @@ public class SampleSocialActivity extends BaseFragmentActivity implements
         super.onCreate(savedInstanceState);
 
         setUpViews();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mFragment.onActivityResult(requestCode, resultCode, data);
     }
 
     // =============== ToolbarInterceptorCallback ==================================================
