@@ -137,43 +137,43 @@
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_list.SampleListActivity"
+            android:name=".ui.samples.list.SampleListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_pager.SamplePagerActivity"
+            android:name=".ui.samples.pager.SamplePagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_multiple.SampleMultipleActivity"
+            android:name=".ui.samples.multiple.SampleMultipleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_location.SampleLocationActivity"
+            android:name=".ui.samples.location.SampleLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_take_picture.SampleTakePictureActivity"
+            android:name=".ui.samples.take_picture.SampleTakePictureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_list_horizontal.SampleListHorizontalActivity"
+            android:name=".ui.samples.list_horizontal.SampleListHorizontalActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_locale.SampleLocaleActivity"
+            android:name=".ui.samples.locale.SampleLocaleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
@@ -185,19 +185,19 @@
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_vibration.VibrationActivity"
+            android:name=".ui.samples.vibration.VibrationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.samples.sample_inputs.SampleInputActivity"
+            android:name=".ui.samples.inputs.SampleInputActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
 
         <activity
-            android:name=".ui.samples.sample_social.SampleSocialActivity"
+            android:name=".ui.samples.social.SampleSocialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>

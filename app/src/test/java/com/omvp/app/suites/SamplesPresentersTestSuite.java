@@ -1,12 +1,12 @@
 package com.omvp.app.suites;
 
 
+import com.omvp.app.ui.samples.list.SampleListPresenterTest;
+import com.omvp.app.ui.samples.multiple.SampleBottomPresenterTest;
+import com.omvp.app.ui.samples.multiple.SampleTopPresenterTest;
+import com.omvp.app.ui.samples.pager.SamplePagerPresenterTest;
 import com.omvp.app.ui.samples.sample.SampleLocalePresenterTest;
-import com.omvp.app.ui.samples.sample_list.SampleListPresenterTest;
-import com.omvp.app.ui.samples.sample_multiple.SampleBottomPresenterTest;
-import com.omvp.app.ui.samples.sample_multiple.SampleTopPresenterTest;
-import com.omvp.app.ui.samples.sample_pager.SamplePagerPresenterTest;
-import com.omvp.app.ui.samples.sample_take_picture.SampleTakePicturePresenterTest;
+import com.omvp.app.ui.samples.take_picture.SampleTakePicturePresenterTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
