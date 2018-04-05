@@ -13,6 +13,8 @@ import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.samples.detail.SampleDetailActivity;
+import com.omvp.app.ui.samples.detail.SampleDetailActivityModule;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivityModule;
 import com.omvp.app.ui.samples.list.SampleListActivity;
@@ -27,6 +29,8 @@ import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivityModule;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivityModule;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivityModule;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.simple.SampleActivityModule;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
@@ -169,12 +173,12 @@ public abstract class InjectorModule {
     abstract SampleLocaleActivity sampleLocaleActivity();
 
     /**
-     * Provides the injector for the {@link com.omvp.app.ui.detail.SampleDetailActivity}, which has access to the dependencies
+     * Provides the injector for the {@link SampleDetailActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
     @PerActivity
-    @ContributesAndroidInjector(modules = {com.omvp.app.ui.detail.SampleDetailActivityModule.class})
-    abstract com.omvp.app.ui.detail.SampleDetailActivity detailActivity();
+    @ContributesAndroidInjector(modules = {SampleDetailActivityModule.class})
+    abstract SampleDetailActivity detailActivity();
 
     /**
      * Provides the injector for the {@link VibrationActivity}, which has access to the dependencies
@@ -199,4 +203,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleSocialActivityModule.class})
     abstract SampleSocialActivity sampleSocialActivity();
+
+    /**
+     * Provides the injector for the {@link SampleNoticeActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleNoticeActivityModule.class})
+    abstract SampleNoticeActivity sampleNoticeActivity();
 }

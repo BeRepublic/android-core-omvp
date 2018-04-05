@@ -36,7 +36,7 @@ public abstract class BaseFragmentActivity extends BaseActivity implements BaseV
 
     @Override
     public void showError(int code, String title, String message) {
-
+        mDialogHelper.showError(title, message);
     }
 
     @Override

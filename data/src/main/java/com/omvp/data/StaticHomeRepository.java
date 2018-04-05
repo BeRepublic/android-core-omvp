@@ -11,6 +11,7 @@ import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
+import static com.omvp.commons.Constants.NOTICE_DIALOG;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
 import static com.omvp.commons.Constants.SOCIAL;
@@ -36,6 +37,7 @@ public class StaticHomeRepository {
             sampleItemList.put(8, initSampleItem(VIBRATION, "A sample view to use device vibration"));
             sampleItemList.put(9, initSampleItem(INPUT, "A view with input layouts"));
             sampleItemList.put(10, initSampleItem(SOCIAL, "A view with socials connection"));
+            sampleItemList.put(11, initSampleItem(NOTICE_DIALOG, "A view with Notice Dialog"));
         }
     }
 

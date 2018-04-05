@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.home.HomeActivity;
+import com.omvp.app.ui.samples.detail.SampleDetailActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.list.SampleListActivity;
 import com.omvp.app.ui.samples.list_horizontal.SampleListHorizontalActivity;
@@ -16,6 +17,7 @@ import com.omvp.app.ui.samples.locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivity;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
@@ -59,7 +61,7 @@ public class NavigationHelper {
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(com.omvp.app.ui.detail.SampleDetailActivity.class)
+                .navigateTo(SampleDetailActivity.class)
                 .launch();
     }
 
@@ -73,7 +75,7 @@ public class NavigationHelper {
 
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(com.omvp.app.ui.detail.SampleDetailActivity.class, activityOptions.toBundle())
+                .navigateTo(SampleDetailActivity.class, activityOptions.toBundle())
                 .launch();
     }
 
@@ -144,6 +146,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleSocialActivity.class)
+                .launch();
+    }
+
+    public void launchNoticeDialogViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleNoticeActivity.class)
                 .launch();
     }
 

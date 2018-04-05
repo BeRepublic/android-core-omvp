@@ -1,12 +1,14 @@
-package com.omvp.app.ui.home;
+package com.omvp.app.ui.samples.sample_notice_dialog;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogFragment;
+import com.omvp.app.ui.samples.sample_notice_dialog.view.SampleNoticeFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -17,11 +19,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-
-public class HomeActivity extends BaseFragmentActivity implements
+public class SampleNoticeActivity extends BaseFragmentActivity implements
+        SampleNoticeFragment.FragmentCallback,
+        NoticeDialogFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<HomeFragment>,
-        HomeFragment.FragmentCallback {
+        InjectFragmentInterceptorCallback<SampleNoticeFragment> {
 
     @Inject
     ToolbarInterceptor mToolbarInterceptor;
@@ -29,7 +31,7 @@ public class HomeActivity extends BaseFragmentActivity implements
     InjectFragmentInterceptor mInjectFragmentInterceptor;
 
     private Toolbar mToolbar;
-    private HomeFragment mFragment;
+    private SampleNoticeFragment mFragment;
 
     // =============== ToolbarInterceptorCallback ==================================================
 
@@ -43,6 +45,12 @@ public class HomeActivity extends BaseFragmentActivity implements
         mToolbar = toolbar;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mFragment.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
     // =============== InjectFragmentInterceptorCallback ===========================================
 
     @Override
@@ -51,12 +59,12 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public HomeFragment onCreateFragment() {
-        return HomeFragment.newInstance(mExtras);
+    public SampleNoticeFragment onCreateFragment() {
+        return SampleNoticeFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(HomeFragment fragment) {
+    public void onFragmentLoaded(SampleNoticeFragment fragment) {
         mFragment = fragment;
     }
 
@@ -67,65 +75,5 @@ public class HomeActivity extends BaseFragmentActivity implements
         super.setupInterceptors(interceptorList);
         interceptorList.add(mToolbarInterceptor);
         interceptorList.add(mInjectFragmentInterceptor);
-    }
-
-    @Override
-    public void onSampleViewSelected() {
-        mNavigationHelper.launchSample();
-    }
-
-    @Override
-    public void onSampleListSelected() {
-        mNavigationHelper.launchSampleList();
-    }
-
-    @Override
-    public void onSamplePagerSelected() {
-        mNavigationHelper.launchSamplePager();
-    }
-
-    @Override
-    public void onSampleMultipleSelected() {
-        mNavigationHelper.launchSampleMap();
-    }
-
-    @Override
-    public void onSampleLocationSelected() {
-        mNavigationHelper.launchSampleLocation();
-    }
-
-    @Override
-    public void onSampleTakePictureSelected() {
-        mNavigationHelper.launchSampleTakePicture();
-    }
-
-    @Override
-    public void onSampleLocaleSelected() {
-        mNavigationHelper.launchSampleLocale();
-    }
-
-    @Override
-    public void onSampleHorizontalListClicked() {
-        mNavigationHelper.launchSampleHorizontalList();
-    }
-
-    @Override
-    public void onVibrationSelected() {
-        mNavigationHelper.launchVibrationSample();
-    }
-
-    @Override
-    public void onInputViewSelected() {
-        mNavigationHelper.launchInputViewSample();
-    }
-
-    @Override
-    public void onSocialViewSelected() {
-        mNavigationHelper.launchSocialViewSample();
-    }
-
-    @Override
-    public void onNoticeDialogViewSelected() {
-        mNavigationHelper.launchNoticeDialogViewSample();
     }
 }
