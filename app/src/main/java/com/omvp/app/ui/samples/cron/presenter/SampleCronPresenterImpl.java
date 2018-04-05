@@ -14,10 +14,4 @@ public class SampleCronPresenterImpl extends BasePresenter<SampleCronView> imple
         super(sampleCronView);
     }
 
-    @Override
-    public void onViewLoaded() {
-        super.onViewLoaded();
-
-
-    }
 }

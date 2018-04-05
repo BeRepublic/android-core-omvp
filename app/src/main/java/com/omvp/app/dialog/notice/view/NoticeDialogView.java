@@ -1,5 +1,4 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.view;
-
+package com.omvp.app.dialog.notice.view;
 
 import com.omvp.app.base.mvp.view.BaseView;
 

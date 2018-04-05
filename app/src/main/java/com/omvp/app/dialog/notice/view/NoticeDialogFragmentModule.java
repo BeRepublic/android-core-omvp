@@ -1,10 +1,10 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.view;
+package com.omvp.app.dialog.notice.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
+import com.omvp.app.dialog.notice.presenter.NoticeDialogPresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.notice_dialog.dialog.presenter.NoticeDialogPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -27,10 +27,10 @@ public abstract class NoticeDialogFragmentModule {
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(NoticeDialogFragment fragment);
+    abstract Fragment dialogFragment(NoticeDialogFragment fragment);
 
     @Binds
     @PerFragment
-    abstract NoticeDialogView view(NoticeDialogFragment fragment);
+    abstract NoticeDialogView dialogView(NoticeDialogFragment fragment);
 
 }

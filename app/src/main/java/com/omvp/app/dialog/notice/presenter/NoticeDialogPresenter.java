@@ -1,6 +1,7 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.presenter;
+package com.omvp.app.dialog.notice.presenter;
 
 import com.omvp.app.base.mvp.presenter.Presenter;
 
 public interface NoticeDialogPresenter extends Presenter {
+
 }

@@ -8,8 +8,6 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragment;
-import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragmentModule;
 import com.omvp.app.ui.samples.notice_dialog.view.SampleNoticeFragment;
 import com.omvp.app.ui.samples.notice_dialog.view.SampleNoticeFragmentModule;
 
@@ -49,16 +47,6 @@ public abstract class SampleNoticeActivityModule {
     @PerActivity
     abstract SampleNoticeFragment.FragmentCallback fragmentCallback(SampleNoticeActivity activity);
 
-    /**
-     * The main activity listens to the events in the {@link NoticeDialogFragment}.
-     *
-     * @param activity the activity
-     * @return the main fragment callback
-     */
-    @Binds
-    @PerActivity
-    abstract NoticeDialogFragment.FragmentCallback fragmentNoticeCallback(SampleNoticeActivity activity);
-
     // =============================================================================================
 
     /**
@@ -68,13 +56,5 @@ public abstract class SampleNoticeActivityModule {
     @PerFragment
     @ContributesAndroidInjector(modules = SampleNoticeFragmentModule.class)
     abstract SampleNoticeFragment fragmentInjector();
-
-    /**
-     * Provides the injector for the {@link NoticeDialogFragment}, which has access to the dependencies
-     * provided by this activity and application instance (singleton scoped objects).
-     */
-    @PerFragment
-    @ContributesAndroidInjector(modules = NoticeDialogFragmentModule.class)
-    abstract NoticeDialogFragment noticeDialogFragmentInjector();
 
 }

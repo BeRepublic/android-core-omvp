@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.presenter;
+package com.omvp.app.dialog.notice.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
@@ -14,6 +14,6 @@ public abstract class NoticeDialogPresenterModule {
 
     @Binds
     @PerFragment
-    abstract NoticeDialogPresenter presenter(NoticeDialogPresenterImpl presenter);
+    abstract NoticeDialogPresenter dialogPresenter(NoticeDialogPresenterImpl presenter);
 
 }

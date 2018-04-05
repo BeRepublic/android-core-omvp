@@ -58,6 +58,7 @@ android {
             res.srcDirs =
                     [
                             'src/main/res/layouts/commons',
+                            'src/main/res/layouts/dialog',
                             'src/main/res/layouts/home',
                             'src/main/res/layouts/samples/detail',
                             'src/main/res/layouts/samples/simple',

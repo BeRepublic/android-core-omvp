@@ -7,7 +7,7 @@
 
     <include layout="@layout/content_view"/>
 
-    <include layout="@layout/sample_list_toolbar_view"/>
+    <include layout="@layout/sample_notice_toolbar_view"/>
 
     <include layout="@layout/progress_view"/>
 

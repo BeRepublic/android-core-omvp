@@ -8,7 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 
-import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragment;
+import com.omvp.app.dialog.notice.view.NoticeDialogFragment;
 
 import timber.log.Timber;
 
@@ -28,6 +28,28 @@ public class DialogHelper {
         mResources = fragment.getResources();
         mFragmentManager = fragmentManager;
         mExtras = fragment.getArguments();
+    }
+
+
+    public NoticeDialogFragment showMessage(String title, String message) {
+        return showMessage(title, message, null);
+    }
+
+    public NoticeDialogFragment showMessage(String title, String message, final View.OnClickListener onAcceptClickListener) {
+        final NoticeDialogFragment dialog = NoticeDialogFragment.newInstance(mExtras);
+        dialog.setTitle(title);
+        dialog.setDescription(message);
+        dialog.setAcceptButton(mResources.getString(android.R.string.ok), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onAcceptClickListener != null) {
+                    onAcceptClickListener.onClick(v);
+                }
+                dialog.dismiss();
+            }
+        });
+        showDialog(dialog, "showMessage");
+        return dialog;
     }
 
     public NoticeDialogFragment showError(String title, String message) {

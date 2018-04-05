@@ -1,10 +1,9 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.presenter;
+package com.omvp.app.dialog.notice.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
-import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogView;
+import com.omvp.app.dialog.notice.view.NoticeDialogView;
 
 import javax.inject.Inject;
-
 
 public class NoticeDialogPresenterImpl extends BasePresenter<NoticeDialogView> implements NoticeDialogPresenter {
 

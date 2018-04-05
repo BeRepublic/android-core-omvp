@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.notice_dialog.dialog.view;
+package com.omvp.app.dialog.notice.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,13 +6,14 @@ import android.view.View;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.samples.notice_dialog.dialog.presenter.NoticeDialogPresenterImpl;
+import com.omvp.app.dialog.notice.presenter.NoticeDialogPresenter;
 import com.omvp.components.NoticeDialogComponentView;
 import com.raxdenstudios.commons.util.Utils;
 
 import butterknife.BindView;
 
-public class NoticeDialogFragment extends BaseViewFragment<NoticeDialogPresenterImpl, NoticeDialogFragment.FragmentCallback> implements NoticeDialogView {
+public class NoticeDialogFragment extends BaseViewFragment<NoticeDialogPresenter, NoticeDialogFragment.FragmentCallback>
+        implements NoticeDialogView {
 
     public static final int LAYOUT_ID = R.layout.notice_dialog_fragment;
 
