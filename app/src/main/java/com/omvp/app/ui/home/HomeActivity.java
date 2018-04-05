@@ -125,7 +125,13 @@ public class HomeActivity extends BaseFragmentActivity implements
     }
 
     @Override
+    public void onNoticeDialogViewSelected() {
+        mNavigationHelper.launchNoticeDialogViewSample();
+    }
+
+    @Override
     public void onBottomNavigationViewSelected() {
         mNavigationHelper.launchBottomBarSample();
     }
+}
 }

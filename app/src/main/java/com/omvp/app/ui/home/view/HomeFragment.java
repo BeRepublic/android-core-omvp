@@ -23,6 +23,7 @@ import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
+import static com.omvp.commons.Constants.NOTICE_DIALOG;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
 import static com.omvp.commons.Constants.SOCIAL;
@@ -59,6 +60,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onInputViewSelected();
 
         void onSocialViewSelected();
+
+        void onNoticeDialogViewSelected ();
 
         void onBottomNavigationViewSelected();
     }
@@ -112,6 +115,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case SOCIAL:
                 mCallback.onSocialViewSelected();
+                break;
+            case NOTICE_DIALOG:
+                mCallback.onNoticeDialogViewSelected();
                 break;
             case BOTTOM_NAV:
                 mCallback.onBottomNavigationViewSelected();

@@ -131,7 +131,7 @@
         <!-- ========= SAMPLES ================================================================= -->
 
         <activity
-            android:name=".ui.samples.sample.SampleActivity"
+            android:name=".ui.samples.simple.SampleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
@@ -179,7 +179,7 @@
             android:windowSoftInputMode="adjustPan"/>
 
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name=".ui.detail.SampleDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
@@ -201,6 +201,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.samples.notice_dialog.SampleNoticeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Sample"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
 
         <activity
             android:name=".ui.samples.bottom_navigation.BottomNavigationActivity"

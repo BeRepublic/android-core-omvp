@@ -8,8 +8,9 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
-import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.home.HomeActivity;
+import com.omvp.app.ui.samples.detail.SampleDetailActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.list.SampleListActivity;
@@ -18,7 +19,8 @@ import com.omvp.app.ui.samples.locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
-import com.omvp.app.ui.samples.sample.SampleActivity;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.vibration.VibrationActivity;
@@ -61,7 +63,7 @@ public class NavigationHelper {
         extras.putLong(Long.class.getSimpleName(), sampleItemId);
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(DetailActivity.class)
+                .navigateTo(SampleDetailActivity.class)
                 .launch();
     }
 
@@ -75,7 +77,7 @@ public class NavigationHelper {
 
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
-                .navigateTo(DetailActivity.class, activityOptions.toBundle())
+                .navigateTo(SampleDetailActivity.class, activityOptions.toBundle())
                 .launch();
     }
 
@@ -146,6 +148,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleSocialActivity.class)
+                .launch();
+    }
+
+    public void launchNoticeDialogViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleNoticeActivity.class)
                 .launch();
     }
 

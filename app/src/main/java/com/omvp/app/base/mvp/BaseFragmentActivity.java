@@ -6,13 +6,16 @@ import android.support.annotation.IdRes;
 
 import com.omvp.app.base.BaseActivity;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
+import com.omvp.app.dialog.notice.view.NoticeDialogFragment;
 
 import javax.inject.Inject;
 
 /**
  * Abstract Activity for all Activities to extend.
  */
-public abstract class BaseFragmentActivity extends BaseActivity implements BaseViewFragmentCallback {
+public abstract class BaseFragmentActivity extends BaseActivity implements
+        NoticeDialogFragment.FragmentCallback,
+        BaseViewFragmentCallback {
 
     /**
      * A reference to the FragmentManager is injected and used instead of the getter method. This
@@ -36,12 +39,12 @@ public abstract class BaseFragmentActivity extends BaseActivity implements BaseV
 
     @Override
     public void showError(int code, String title, String message) {
-
+        mDialogHelper.showError(title, message);
     }
 
     @Override
     public void showMessage(int code, String title, String message) {
-
+        mDialogHelper.showMessage(title, message);
     }
 
     // =============== Support methods =============================================================

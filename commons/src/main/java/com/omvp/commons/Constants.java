@@ -27,6 +27,7 @@ public class Constants {
     public static final String VIBRATION = "VIBRATION";
     public static final String INPUT = "INPUT";
     public static final String SOCIAL = "SOCIAL";
+    public static final String NOTICE_DIALOG = "NOTICE_DIALOG";
     public static final String BOTTOM_NAV = "BOTTOM_NAV";
 
     // Patterns

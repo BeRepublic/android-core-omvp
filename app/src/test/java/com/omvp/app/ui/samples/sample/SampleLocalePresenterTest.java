@@ -2,8 +2,8 @@ package com.omvp.app.ui.samples.sample;
 
 
 import com.omvp.app.ui.BaseTest;
-import com.omvp.app.ui.samples.sample.presenter.SamplePresenterImpl;
-import com.omvp.app.ui.samples.sample.view.SampleView;
+import com.omvp.app.ui.samples.simple.presenter.SamplePresenterImpl;
+import com.omvp.app.ui.samples.simple.view.SampleView;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -11,6 +11,6 @@ public class SampleEntity {
     private String id;
     private String title;
     private String link;
-    private long pubdate;
+    private String pubdate;
 
 }

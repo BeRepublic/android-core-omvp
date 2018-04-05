@@ -2,9 +2,9 @@ package com.omvp.data.network.gateway.retrofit;
 
 import android.content.Context;
 
-import com.omvp.data.network.gateway.retrofit.service.AppRetrofitService;
 import com.omvp.data.entity.SampleEntity;
 import com.omvp.data.network.gateway.AppGateway;
+import com.omvp.data.network.gateway.retrofit.service.AppRetrofitService;
 
 import java.util.List;
 

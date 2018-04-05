@@ -11,10 +11,12 @@ import com.omvp.app.service.AppFirebaseInstanceIDService;
 import com.omvp.app.service.AppFirebaseInstanceIDServiceModule;
 import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
-import com.omvp.app.ui.detail.DetailActivity;
-import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.samples.detail.SampleDetailActivity;
+import com.omvp.app.ui.samples.detail.SampleDetailActivityModule;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
 import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
@@ -31,8 +33,10 @@ import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivityModule;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivityModule;
-import com.omvp.app.ui.samples.sample.SampleActivity;
-import com.omvp.app.ui.samples.sample.SampleActivityModule;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivityModule;
+import com.omvp.app.ui.samples.simple.SampleActivity;
+import com.omvp.app.ui.samples.simple.SampleActivityModule;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivityModule;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
@@ -173,12 +177,12 @@ public abstract class InjectorModule {
     abstract SampleLocaleActivity sampleLocaleActivity();
 
     /**
-     * Provides the injector for the {@link DetailActivity}, which has access to the dependencies
+     * Provides the injector for the {@link SampleDetailActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
     @PerActivity
-    @ContributesAndroidInjector(modules = {DetailActivityModule.class})
-    abstract DetailActivity detailActivity();
+    @ContributesAndroidInjector(modules = {SampleDetailActivityModule.class})
+    abstract SampleDetailActivity detailActivity();
 
     /**
      * Provides the injector for the {@link VibrationActivity}, which has access to the dependencies
@@ -205,10 +209,19 @@ public abstract class InjectorModule {
     abstract SampleSocialActivity sampleSocialActivity();
 
     /**
+     * Provides the injector for the {@link SampleNoticeActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleNoticeActivityModule.class})
+    abstract SampleNoticeActivity sampleNoticeActivity();
+
+    /**
      * Provides the injector for the {@link BottomNavigationActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
     @PerActivity
     @ContributesAndroidInjector(modules = {BottomNavigationActivityModule.class})
     abstract BottomNavigationActivity bottomNavigationActivity();
+
 }
