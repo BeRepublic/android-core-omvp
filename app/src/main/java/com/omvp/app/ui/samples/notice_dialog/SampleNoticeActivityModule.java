@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample_notice_dialog;
+package com.omvp.app.ui.samples.notice_dialog;
 
 
 import android.app.Activity;
@@ -8,10 +8,10 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogFragment;
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogFragmentModule;
-import com.omvp.app.ui.samples.sample_notice_dialog.view.SampleNoticeFragment;
-import com.omvp.app.ui.samples.sample_notice_dialog.view.SampleNoticeFragmentModule;
+import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragment;
+import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragmentModule;
+import com.omvp.app.ui.samples.notice_dialog.view.SampleNoticeFragment;
+import com.omvp.app.ui.samples.notice_dialog.view.SampleNoticeFragmentModule;
 
 import dagger.Binds;
 import dagger.Module;

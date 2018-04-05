@@ -1,36 +1,36 @@
-package com.omvp.app.ui.samples.sample_notice_dialog.view;
+package com.omvp.app.ui.samples.notice_dialog.dialog.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample_notice_dialog.presenter.SampleNoticePresenterModule;
+import com.omvp.app.ui.samples.notice_dialog.dialog.presenter.NoticeDialogPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides SampleNoticeFragment fragment dependencies.
+ * Provides SampleMapFragment fragment dependencies.
  */
 @Module(includes = {
         BaseFragmentModule.class,
-        SampleNoticePresenterModule.class
+        NoticeDialogPresenterModule.class
 })
-public abstract class SampleNoticeFragmentModule {
+public abstract class NoticeDialogFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
      * fragment modules, which must provide a concrete implementation of {@link Fragment}.
      *
-     * @param fragment the SampleNoticeFragment
+     * @param fragment the HomeFragment
      * @return the fragment
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(SampleNoticeFragment fragment);
+    abstract Fragment fragment(NoticeDialogFragment fragment);
 
     @Binds
     @PerFragment
-    abstract SampleNoticeView view(SampleNoticeFragment fragment);
+    abstract NoticeDialogView view(NoticeDialogFragment fragment);
 
 }

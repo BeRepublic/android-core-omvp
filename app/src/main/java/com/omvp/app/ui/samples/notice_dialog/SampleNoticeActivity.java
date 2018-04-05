@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample_notice_dialog;
+package com.omvp.app.ui.samples.notice_dialog;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -7,8 +7,8 @@ import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogFragment;
-import com.omvp.app.ui.samples.sample_notice_dialog.view.SampleNoticeFragment;
+import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragment;
+import com.omvp.app.ui.samples.notice_dialog.view.SampleNoticeFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;

@@ -1,7 +1,7 @@
-package com.omvp.app.ui.samples.sample_notice_dialog.dialog.presenter;
+package com.omvp.app.ui.samples.notice_dialog.dialog.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogView;
+import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogView;
 
 import javax.inject.Inject;
 

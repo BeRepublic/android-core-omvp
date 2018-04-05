@@ -8,7 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.view.NoticeDialogFragment;
+import com.omvp.app.ui.samples.notice_dialog.dialog.view.NoticeDialogFragment;
 
 import timber.log.Timber;
 

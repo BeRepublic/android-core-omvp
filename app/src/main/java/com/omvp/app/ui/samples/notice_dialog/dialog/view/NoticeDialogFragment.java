@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample_notice_dialog.dialog.view;
+package com.omvp.app.ui.samples.notice_dialog.dialog.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.samples.sample_notice_dialog.dialog.presenter.NoticeDialogPresenterImpl;
+import com.omvp.app.ui.samples.notice_dialog.dialog.presenter.NoticeDialogPresenterImpl;
 import com.omvp.components.NoticeDialogComponentView;
 import com.raxdenstudios.commons.util.Utils;
 

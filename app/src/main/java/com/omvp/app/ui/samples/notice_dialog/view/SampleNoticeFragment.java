@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample_notice_dialog.view;
+package com.omvp.app.ui.samples.notice_dialog.view;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,7 +7,7 @@ import android.view.MenuInflater;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.ui.samples.sample_notice_dialog.presenter.SampleNoticePresenter;
+import com.omvp.app.ui.samples.notice_dialog.presenter.SampleNoticePresenter;
 
 public class SampleNoticeFragment extends BaseViewFragment<SampleNoticePresenter, SampleNoticeFragment.FragmentCallback>
         implements SampleNoticeView {
