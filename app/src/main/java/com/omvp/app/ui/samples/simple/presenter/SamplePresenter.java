@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample.presenter;
+package com.omvp.app.ui.samples.simple.presenter;
 
 import com.omvp.app.base.mvp.presenter.Presenter;
 
