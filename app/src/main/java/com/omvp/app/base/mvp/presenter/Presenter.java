@@ -50,4 +50,11 @@ public interface Presenter {
      */
     void onDropView();
 
+    /**
+     * TODO comment this methods
+     * @param savedInstanceState
+     * @param arguments
+     */
+    void onHandleArguments(Bundle savedInstanceState, Bundle arguments);
+
 }

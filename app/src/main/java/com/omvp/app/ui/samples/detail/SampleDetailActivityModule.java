@@ -1,4 +1,4 @@
-package com.omvp.app.ui.detail;
+package com.omvp.app.ui.samples.detail;
 
 import android.app.Activity;
 
@@ -7,8 +7,8 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.detail.view.DetailFragment;
-import com.omvp.app.ui.detail.view.DetailFragmentModule;
+import com.omvp.app.ui.samples.detail.view.SampleDetailFragment;
+import com.omvp.app.ui.samples.detail.view.SampleDetailFragmentModule;
 import com.omvp.app.ui.splash.view.SplashFragment;
 
 import dagger.Binds;
@@ -21,7 +21,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module(includes = {
         BaseFragmentActivityModule.class
 })
-public abstract class DetailActivityModule {
+public abstract class SampleDetailActivityModule {
 
     /**
      * As per the contract specified in {@link BaseActivityModule}; "This must be included in all
@@ -35,17 +35,17 @@ public abstract class DetailActivityModule {
      */
     @Binds
     @PerActivity
-    abstract Activity activity(DetailActivity activity);
+    abstract Activity activity(SampleDetailActivity activity);
 
     /**
-     * The main activity listens to the events in the {@link DetailFragment}.
+     * The main activity listens to the events in the {@link SampleDetailFragment}.
      *
      * @param activity the activity
      * @return the main fragment callback
      */
     @Binds
     @PerActivity
-    abstract DetailFragment.FragmentCallback fragmentCallback(DetailActivity activity);
+    abstract SampleDetailFragment.FragmentCallback fragmentCallback(SampleDetailActivity activity);
 
     // =============================================================================================
 
@@ -54,7 +54,7 @@ public abstract class DetailActivityModule {
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = DetailFragmentModule.class)
-    abstract DetailFragment fragmentInjector();
+    @ContributesAndroidInjector(modules = SampleDetailFragmentModule.class)
+    abstract SampleDetailFragment fragmentInjector();
 
 }

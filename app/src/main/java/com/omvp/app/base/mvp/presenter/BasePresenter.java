@@ -3,7 +3,6 @@ package com.omvp.app.base.mvp.presenter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.base.mvp.view.BaseView;
@@ -12,8 +11,6 @@ import com.omvp.app.util.DisposableManager;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import io.reactivex.disposables.Disposable;
 
 
 /**
@@ -42,6 +39,11 @@ public abstract class BasePresenter<TView extends BaseView> implements Presenter
     }
 
     // =============== LifeCycle ===================================================================
+
+    @Override
+    public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
+
+    }
 
     @Override
     public void onViewRestored(Bundle savedState) {

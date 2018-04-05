@@ -1,13 +1,11 @@
+package com.omvp.app.ui.samples.detail.presenter;
 
-package com.omvp.app.ui.detail.presenter;
-
+import android.os.Bundle;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableSingleObserver;
-import com.omvp.app.model.mapper.SampleModelDataMapper;
-import com.omvp.app.ui.detail.view.DetailView;
+import com.omvp.app.ui.samples.detail.view.SampleDetailView;
 import com.omvp.domain.SampleDomain;
-import com.omvp.domain.interactor.GetSampleListUseCase;
 import com.omvp.domain.interactor.GetSampleUseCase;
 
 import javax.inject.Inject;
@@ -15,22 +13,24 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class DetailPresenterImpl extends BasePresenter<DetailView> implements DetailPresenter {
+public class SampleDetailPresenterImpl extends BasePresenter<SampleDetailView> implements SampleDetailPresenter {
 
     @Inject
     GetSampleUseCase mGetSampleUseCase;
-    @Inject
-    GetSampleListUseCase mGetSampleListUseCase;
-    @Inject
-    GetSampleListUseCase mGetSampleListUseCase2;
-    @Inject
-    SampleModelDataMapper mSampleModelDataMapper;
 
     private long mSampleId;
 
     @Inject
-    public DetailPresenterImpl(DetailView detailView) {
-        super(detailView);
+    public SampleDetailPresenterImpl(SampleDetailView sampleDetailView) {
+        super(sampleDetailView);
+    }
+
+    @Override
+    public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
+        super.onHandleArguments(savedInstanceState, arguments);
+        if (arguments.containsKey(Long.class.getSimpleName())) {
+            mSampleId = arguments.getLong(Long.class.getSimpleName());
+        }
     }
 
     @Override
@@ -38,10 +38,6 @@ public class DetailPresenterImpl extends BasePresenter<DetailView> implements De
         super.onViewLoaded();
 
         loadSample();
-    }
-
-    public void setSampleId(long id) {
-        mSampleId = id;
     }
 
     private void loadSample() {
@@ -74,4 +70,5 @@ public class DetailPresenterImpl extends BasePresenter<DetailView> implements De
             mView.drawImage(sampleDomain.getImageResId());
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.omvp.app.ui.detail;
+package com.omvp.app.ui.samples.detail;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.detail.view.DetailFragment;
+import com.omvp.app.ui.samples.detail.view.SampleDetailFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;
@@ -21,10 +21,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DetailActivity extends BaseFragmentActivity implements
-        DetailFragment.FragmentCallback,
+public class SampleDetailActivity extends BaseFragmentActivity implements
+        SampleDetailFragment.FragmentCallback,
         ToolbarInterceptorCallback,
-        InjectFragmentInterceptorCallback<DetailFragment> {
+        InjectFragmentInterceptorCallback<SampleDetailFragment> {
 
 
     @Inject
@@ -35,7 +35,7 @@ public class DetailActivity extends BaseFragmentActivity implements
     private Toolbar mToolbar;
     private AppBarLayout mAppBarLayout;
     private AppCompatImageView mImageView;
-    private DetailFragment mFragment;
+    private SampleDetailFragment mFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,12 +64,12 @@ public class DetailActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public DetailFragment onCreateFragment() {
-        return DetailFragment.newInstance(mExtras);
+    public SampleDetailFragment onCreateFragment() {
+        return SampleDetailFragment.newInstance(mExtras);
     }
 
     @Override
-    public void onFragmentLoaded(DetailFragment fragment) {
+    public void onFragmentLoaded(SampleDetailFragment fragment) {
         mFragment = fragment;
     }
 

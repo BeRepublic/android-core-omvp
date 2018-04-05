@@ -61,7 +61,7 @@ public abstract class BaseViewFragment<TPresenter extends Presenter, TCallback e
 
     @Override
     public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
-
+        mPresenter.onHandleArguments(savedInstanceState, arguments);
     }
 
     @SuppressWarnings("ConstantConditions")

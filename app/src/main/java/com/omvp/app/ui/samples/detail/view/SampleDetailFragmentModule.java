@@ -1,10 +1,10 @@
-package com.omvp.app.ui.detail.view;
+package com.omvp.app.ui.samples.detail.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.detail.presenter.DetailPresenterModule;
+import com.omvp.app.ui.samples.detail.presenter.SampleDetailPresenterModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -14,9 +14,9 @@ import dagger.Module;
  */
 @Module(includes = {
         BaseFragmentModule.class,
-        DetailPresenterModule.class
+        SampleDetailPresenterModule.class
 })
-public abstract class DetailFragmentModule {
+public abstract class SampleDetailFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
@@ -27,10 +27,10 @@ public abstract class DetailFragmentModule {
      */
     @Binds
     @PerFragment
-    abstract Fragment fragment(DetailFragment fragment);
+    abstract Fragment fragment(SampleDetailFragment fragment);
 
     @Binds
     @PerFragment
-    abstract DetailView view(DetailFragment fragment);
+    abstract SampleDetailView view(SampleDetailFragment fragment);
 
 }
