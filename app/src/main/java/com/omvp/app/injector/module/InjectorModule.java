@@ -13,6 +13,8 @@ import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.samples.detail.SampleDetailActivity;
+import com.omvp.app.ui.samples.detail.SampleDetailActivityModule;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivityModule;
 import com.omvp.app.ui.samples.list.SampleListActivity;
@@ -169,12 +171,12 @@ public abstract class InjectorModule {
     abstract SampleLocaleActivity sampleLocaleActivity();
 
     /**
-     * Provides the injector for the {@link com.omvp.app.ui.detail.SampleDetailActivity}, which has access to the dependencies
+     * Provides the injector for the {@link SampleDetailActivity}, which has access to the dependencies
      * provided by this application instance (singleton scoped objects).
      */
     @PerActivity
-    @ContributesAndroidInjector(modules = {com.omvp.app.ui.detail.SampleDetailActivityModule.class})
-    abstract com.omvp.app.ui.detail.SampleDetailActivity detailActivity();
+    @ContributesAndroidInjector(modules = {SampleDetailActivityModule.class})
+    abstract SampleDetailActivity detailActivity();
 
     /**
      * Provides the injector for the {@link VibrationActivity}, which has access to the dependencies
