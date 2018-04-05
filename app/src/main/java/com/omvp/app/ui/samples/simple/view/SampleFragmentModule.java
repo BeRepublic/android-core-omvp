@@ -1,10 +1,10 @@
-package com.omvp.app.ui.samples.sample.view;
+package com.omvp.app.ui.samples.simple.view;
 
 import android.app.Fragment;
 
 import com.omvp.app.base.BaseFragmentModule;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.sample.presenter.SamplePresenterModule;
+import com.omvp.app.ui.samples.simple.presenter.SamplePresenterModule;
 
 import dagger.Binds;
 import dagger.Module;

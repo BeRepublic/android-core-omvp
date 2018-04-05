@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.sample;
+package com.omvp.app.ui.samples.simple;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.BaseFragmentActivity;
-import com.omvp.app.ui.samples.sample.view.SampleFragment;
+import com.omvp.app.ui.samples.simple.view.SampleFragment;
 import com.raxdenstudios.square.interceptor.Interceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptor;
 import com.raxdenstudios.square.interceptor.commons.injectfragment.InjectFragmentInterceptorCallback;

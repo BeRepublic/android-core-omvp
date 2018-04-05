@@ -17,7 +17,7 @@ import com.omvp.app.ui.samples.locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
-import com.omvp.app.ui.samples.sample.SampleActivity;
+import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.vibration.VibrationActivity;
