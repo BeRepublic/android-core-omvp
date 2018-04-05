@@ -7,9 +7,12 @@ import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationFragment;
-import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationFragmentModule;
-import com.omvp.app.ui.splash.view.SplashFragment;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationFirstFragment;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationFirstFragmentModule;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationSecondFragment;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationSecondFragmentModule;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationThirdFragment;
+import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationThirdFragmentModule;
 
 import dagger.Binds;
 import dagger.Module;
@@ -37,24 +40,60 @@ public abstract class BottomNavigationActivityModule {
     @PerActivity
     abstract Activity activity(BottomNavigationActivity activity);
 
+    // =============================================================================================
+
     /**
-     * The main activity listens to the events in the {@link BottomNavigationFragment}.
+     * The main activity listens to the events in the {@link BottomNavigationFirstFragment}.
      *
      * @param activity the activity
      * @return the main fragment callback
      */
     @Binds
     @PerActivity
-    abstract BottomNavigationFragment.FragmentCallback fragmentCallback(BottomNavigationActivity activity);
-
-    // =============================================================================================
+    abstract BottomNavigationFirstFragment.BottomNavigationFirstFragmentCallback firstFragmentCallback(BottomNavigationActivity activity);
 
     /**
-     * Provides the injector for the {@link SplashFragment}, which has access to the dependencies
+     * The main activity listens to the events in the {@link BottomNavigationSecondFragment}.
+     *
+     * @param activity the activity
+     * @return the main fragment callback
+     */
+    @Binds
+    @PerActivity
+    abstract BottomNavigationSecondFragment.BottomNavigationSecondFragmentCallback secondFragmentCallback(BottomNavigationActivity activity);
+
+    /**
+     * The main activity listens to the events in the {@link BottomNavigationThirdFragment}.
+     *
+     * @param activity the activity
+     * @return the main fragment callback
+     */
+    @Binds
+    @PerActivity
+    abstract BottomNavigationThirdFragment.BottomNavigationThirdFragmentCallback thirdFragmentCallback(BottomNavigationActivity activity);
+
+    /**
+     * Provides the injector for the {@link BottomNavigationFirstFragment}, which has access to the dependencies
      * provided by this activity and application instance (singleton scoped objects).
      */
     @PerFragment
-    @ContributesAndroidInjector(modules = BottomNavigationFragmentModule.class)
-    abstract BottomNavigationFragment fragmentInjector();
+    @ContributesAndroidInjector(modules = BottomNavigationFirstFragmentModule.class)
+    abstract BottomNavigationFirstFragment firstFragmentInjector();
+
+    /**
+     * Provides the injector for the {@link BottomNavigationSecondFragment}, which has access to the dependencies
+     * provided by this activity and application instance (singleton scoped objects).
+     */
+    @PerFragment
+    @ContributesAndroidInjector(modules = BottomNavigationSecondFragmentModule.class)
+    abstract BottomNavigationSecondFragment secondFragmentInjector();
+
+    /**
+     * Provides the injector for the {@link BottomNavigationThirdFragment}, which has access to the dependencies
+     * provided by this activity and application instance (singleton scoped objects).
+     */
+    @PerFragment
+    @ContributesAndroidInjector(modules = BottomNavigationThirdFragmentModule.class)
+    abstract BottomNavigationThirdFragment thirdFragmentInjector();
 
 }

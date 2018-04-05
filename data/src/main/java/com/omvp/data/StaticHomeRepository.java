@@ -5,6 +5,7 @@ import com.omvp.domain.SampleItem;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static com.omvp.commons.Constants.BOTTOM_NAV;
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
 import static com.omvp.commons.Constants.INPUT;
 import static com.omvp.commons.Constants.LIST;
@@ -19,7 +20,7 @@ import static com.omvp.commons.Constants.VIEW;
 
 public class StaticHomeRepository {
 
-    private static final int NUM_ITEMS = 10;
+    private static final int NUM_ITEMS = 11;
 
     public static Map<Integer, SampleItem> sampleItemList = new LinkedHashMap<>(NUM_ITEMS);
 
@@ -36,6 +37,7 @@ public class StaticHomeRepository {
             sampleItemList.put(8, initSampleItem(VIBRATION, "A sample view to use device vibration"));
             sampleItemList.put(9, initSampleItem(INPUT, "A view with input layouts"));
             sampleItemList.put(10, initSampleItem(SOCIAL, "A view with socials connection"));
+            sampleItemList.put(11, initSampleItem(BOTTOM_NAV, "A view with a bottom bar navigation"));
         }
     }
 

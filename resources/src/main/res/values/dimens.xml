@@ -20,4 +20,6 @@
     <dimen name="sample_margin">16dp</dimen>
 
     <dimen name="hint_witdh">110dp</dimen>
+
+    <dimen name="elevation">30dp</dimen>
 </resources>

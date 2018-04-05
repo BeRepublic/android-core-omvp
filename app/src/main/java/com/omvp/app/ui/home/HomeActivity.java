@@ -123,4 +123,9 @@ public class HomeActivity extends BaseFragmentActivity implements
     public void onSocialViewSelected() {
         mNavigationHelper.launchSocialViewSample();
     }
+
+    @Override
+    public void onBottomNavigationViewSelected() {
+        mNavigationHelper.launchBottomBarSample();
+    }
 }

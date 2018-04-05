@@ -10,6 +10,7 @@ import android.view.View;
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.home.HomeActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.list.SampleListActivity;
 import com.omvp.app.ui.samples.list_horizontal.SampleListHorizontalActivity;
@@ -145,6 +146,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleSocialActivity.class)
+                .launch();
+    }
+
+    public void launchBottomBarSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(BottomNavigationActivity.class)
                 .launch();
     }
 

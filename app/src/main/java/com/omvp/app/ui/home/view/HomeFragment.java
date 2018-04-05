@@ -3,7 +3,6 @@ package com.omvp.app.ui.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
@@ -16,8 +15,8 @@ import com.omvp.domain.SampleItem;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
+import static com.omvp.commons.Constants.BOTTOM_NAV;
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
 import static com.omvp.commons.Constants.INPUT;
 import static com.omvp.commons.Constants.LIST;
@@ -60,6 +59,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onInputViewSelected();
 
         void onSocialViewSelected();
+
+        void onBottomNavigationViewSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -111,6 +112,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case SOCIAL:
                 mCallback.onSocialViewSelected();
+                break;
+            case BOTTOM_NAV:
+                mCallback.onBottomNavigationViewSelected();
                 break;
         }
     }

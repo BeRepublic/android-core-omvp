@@ -10,27 +10,27 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides SampleMapFragment fragment dependencies.
+ * Provides SamplePagerFragment fragment dependencies.
  */
 @Module(includes = {
         BaseFragmentModule.class,
         BottomNavigationPresenterModule.class
 })
-public abstract class BottomNavigationFragmentModule {
+public abstract class BottomNavigationFirstFragmentModule {
 
     /**
      * As per the contract specified in {@link BaseFragmentModule}; "This must be included in all
      * fragment modules, which must provide a concrete implementation of {@link Fragment}.
      *
-     * @param fragment the SampleMapFragment
+     * @param fragment the SamplePagerFragment
      * @return the fragment
      */
-    @Binds
-    @PerFragment
-    abstract Fragment fragment(BottomNavigationFragment fragment);
 
     @Binds
     @PerFragment
-    abstract BottomNavigationView view(BottomNavigationFragment fragment);
+    abstract Fragment firstFragment(BottomNavigationFirstFragment fragment);
 
+    @Binds
+    @PerFragment
+    abstract BottomNavigationView firstView(BottomNavigationFirstFragment fragment);
 }

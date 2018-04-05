@@ -202,6 +202,12 @@
             android:theme="@style/AppTheme.Sample"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity
+            android:name=".ui.samples.bottom_navigation.BottomNavigationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Sample"
+            android:windowSoftInputMode="adjustPan"/>
+
         <!-- =================================================================================== -->
 
         <activity
@@ -221,6 +227,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

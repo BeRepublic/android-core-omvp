@@ -7,13 +7,20 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides SampleTopPresenterModule dependencies.
+ * Provides SamplePagerPresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
 public abstract class BottomNavigationPresenterModule {
 
     @Binds
     @PerFragment
-    abstract BottomNavigationPresenter presenter(BottomNavigationPresenterImpl presenter);
+    abstract BottomNavigationFirstPresenter firstPresenter(BottomNavigationFirstPresenterImpl presenter);
 
+    @Binds
+    @PerFragment
+    abstract BottomNavigationSecondPresenter secondPresenter(BottomNavigationSecondPresenterImpl presenter);
+
+    @Binds
+    @PerFragment
+    abstract BottomNavigationThirdPresenter thirdPresenter(BottomNavigationThirdPresenterImpl presenter);
 }

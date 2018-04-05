@@ -15,6 +15,8 @@ import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivityModule;
 import com.omvp.app.ui.samples.list.SampleListActivity;
@@ -201,4 +203,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleSocialActivityModule.class})
     abstract SampleSocialActivity sampleSocialActivity();
+
+    /**
+     * Provides the injector for the {@link BottomNavigationActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {BottomNavigationActivityModule.class})
+    abstract BottomNavigationActivity bottomNavigationActivity();
 }

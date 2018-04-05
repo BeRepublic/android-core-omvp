@@ -5,19 +5,12 @@ package com.omvp.app.ui.samples.bottom_navigation.presenter;
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.ui.samples.bottom_navigation.view.BottomNavigationView;
 
-import javax.inject.Inject;
+public abstract class BottomNavigationPresenterImpl<TView extends BottomNavigationView>
+        extends BasePresenter<TView>
+        implements BottomNavigationPresenter {
 
-public class BottomNavigationPresenterImpl extends BasePresenter<BottomNavigationView> implements BottomNavigationPresenter {
-
-    @Inject
-    public BottomNavigationPresenterImpl(BottomNavigationView bottomNavigationView) {
-        super(bottomNavigationView);
+    public BottomNavigationPresenterImpl(TView view) {
+        super(view);
     }
 
-    @Override
-    public void onViewLoaded() {
-        super.onViewLoaded();
-
-
-    }
 }
