@@ -20,6 +20,7 @@ import com.omvp.domain.interactor.SaveSampleUseCase;
 
 import org.threeten.bp.LocalDateTime;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -148,6 +149,9 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
 
     private void addItem() {
         final SampleDomain sampleDomain = new SampleDomain();
+        if (mSampleDomainList == null) {
+            mSampleDomainList = new ArrayList<>();
+        }
         sampleDomain.setId((long) (mSampleDomainList.size() + 1));
         sampleDomain.setTitle("item " + (mSampleDomainList.size() + 1));
         sampleDomain.setLink(Uri.parse("https://www.google.com"));

@@ -17,6 +17,7 @@ import com.omvp.app.ui.samples.locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
@@ -145,6 +146,13 @@ public class NavigationHelper {
         new NavigationManager.Builder(mActivity)
                 .putData(getExtras())
                 .navigateTo(SampleSocialActivity.class)
+                .launch();
+    }
+
+    public void launchNoticeDialogViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleNoticeActivity.class)
                 .launch();
     }
 

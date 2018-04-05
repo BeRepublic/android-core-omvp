@@ -27,6 +27,7 @@ public class Constants {
     public static final String VIBRATION = "VIBRATION";
     public static final String INPUT = "INPUT";
     public static final String SOCIAL = "SOCIAL";
+    public static final String NOTICE_DIALOG = "NOTICE_DIALOG";
 
     // Patterns
     public static final Pattern PASSWORD_PATTERN = Pattern.compile("^[0-9A-Za-z!@#$%]{6,}$");

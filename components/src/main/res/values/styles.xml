@@ -32,4 +32,35 @@
         <item name="counterMaxLength">5</item>
     </style>
 
+
+
+    <style name="BaseContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/padding_size_12</item>
+        <item name="android:paddingLeft">@dimen/padding_size_25</item>
+        <item name="android:paddingRight">@dimen/padding_size_25</item>
+        <item name="android:paddingBottom">@dimen/padding_size_25</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">#FFFFFFFF</item>
+    </style>
+
+    <!-- ========================================================================= -->
+
+    <style name="Content" parent="BaseContent">
+
+    </style>
+
+    <style name="Content.Dialog">
+        <item name="android:paddingTop">@dimen/padding_size_25</item>
+        <item name="android:paddingLeft">@dimen/padding_size_25</item>
+        <item name="android:paddingRight">@dimen/padding_size_25</item>
+        <item name="android:paddingBottom">@dimen/padding_size_0</item>
+        <item name="android:background">@drawable/dialog_rounded_bg</item>
+    </style>
+
+    <style name="Content.Dialog.Notice">
+
+    </style>
+
 </resources>

@@ -29,6 +29,8 @@ import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivityModule;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivityModule;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivityModule;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.simple.SampleActivityModule;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
@@ -201,4 +203,12 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleSocialActivityModule.class})
     abstract SampleSocialActivity sampleSocialActivity();
+
+    /**
+     * Provides the injector for the {@link SampleNoticeActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleNoticeActivityModule.class})
+    abstract SampleNoticeActivity sampleNoticeActivity();
 }
