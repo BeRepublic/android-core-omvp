@@ -31,7 +31,7 @@ public class SocialAuthManager {
 
     public static final int REQUEST_CODE_GOOGLE_LOGIN = 1023;
 
-    public enum SocialAuth {ALL, GOOGLE, FACEBOOK}
+    public enum SocialAuth {ALL, GOOGLE, FACEBOOK, TWITTER}
 
     private Activity mActivity;
     private Resources mResources;
@@ -75,6 +75,11 @@ public class SocialAuthManager {
         }
     }
 
+    public void init(SocialAuth socialAuth, SocialAuthCallback callback) {
+        init(socialAuth);
+        mCallback = callback;
+    }
+
     public void init(SocialAuthCallback callback) {
         init(SocialAuth.ALL);
         mCallback = callback;
@@ -87,6 +92,9 @@ public class SocialAuthManager {
                 break;
             case FACEBOOK:
                 destroyFacebook();
+                break;
+            case TWITTER:
+                // TODO: 05/04/2018
                 break;
             default:
                 break;
@@ -111,6 +119,9 @@ public class SocialAuthManager {
             case GOOGLE:
                 mGoogleSignInClient.signOut();
                 break;
+            case TWITTER:
+                // TODO: 05/04/2018
+                break;
             case ALL:
                 LoginManager.getInstance().logOut();
                 mGoogleSignInClient.signOut();
@@ -127,6 +138,9 @@ public class SocialAuthManager {
                 break;
             case FACEBOOK:
                 initFacebook();
+                break;
+            case TWITTER:
+                // TODO: 05/04/2018
                 break;
             default:
                 initFacebook();
