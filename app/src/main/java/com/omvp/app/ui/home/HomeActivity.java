@@ -133,5 +133,5 @@ public class HomeActivity extends BaseFragmentActivity implements
     public void onBottomNavigationViewSelected() {
         mNavigationHelper.launchBottomBarSample();
     }
-}
+
 }

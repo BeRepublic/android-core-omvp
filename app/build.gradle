@@ -74,8 +74,7 @@ android {
                             'src/main/res/layouts/samples/input',
                             'src/main/res/layouts/samples/social',
                             'src/main/res/layouts/samples/notice_dialog',
-                            'src/main/res/layouts/sample_bottom_navigation',
-                            'src/main/res/layouts/detail',
+                            'src/main/res/layouts/samples/bottom_navigation',
                             'src/main/res/layouts/splash',
                             'src/main/res/layouts',
                             'src/main/res'
