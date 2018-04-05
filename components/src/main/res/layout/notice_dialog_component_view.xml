@@ -12,12 +12,14 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
+            style="@style/CodeFont.Large"
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Título del dialo fragment" />
 
         <android.support.v7.widget.AppCompatTextView
+            style="@style/CodeFont.Medium.Gray"
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,11 +34,11 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/deny"
-                android:textStyle="bold"
+                style="@style/CodeFont.Medium.Black.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="start"
                 android:paddingBottom="@dimen/padding_size_12"
                 android:paddingTop="@dimen/padding_size_12"
                 android:visibility="invisible"
@@ -45,11 +47,11 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/accept"
-                android:textStyle="bold"
+                style="@style/CodeFont.Medium.Black.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="end"
                 android:paddingBottom="@dimen/padding_size_12"
                 android:paddingTop="@dimen/padding_size_12"
                 android:visibility="invisible"

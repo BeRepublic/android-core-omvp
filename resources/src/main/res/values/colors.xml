@@ -3,8 +3,12 @@
 
     <color name="status_bar_color">#660000</color>
     <color name="navigation_bar_color">#000000</color>
+    <color name="color_primary">#000000</color>
+    <color name="color_primary_dark">#000000</color>
+    <color name="color_accent">#000000</color>
     <color name="color_control_normal">#000000</color>
     <color name="color_control_activated">#000000</color>
+    <color name="color_control_highlight">#000000</color>
     <color name="color_switch_thumb_normal">#000000</color>
     <color name="color_foreground">#000000</color>
     <color name="toolbar_color">#c60000</color>
