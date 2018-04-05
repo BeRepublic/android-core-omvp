@@ -17,6 +17,7 @@ import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.sample_vibration.VibrationActivity;
@@ -140,9 +141,17 @@ public class NavigationHelper {
                 .launch();
     }
 
+    public void launchNoticeDialogViewSample() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleNoticeActivity.class)
+                .launch();
+    }
+
     private Bundle getExtras() {
         return mActivity.getIntent() != null && mActivity.getIntent().getExtras() != null ? mActivity.getIntent().getExtras() : new Bundle();
     }
+
 
 
 }

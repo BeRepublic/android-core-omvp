@@ -5,12 +5,12 @@ import com.omvp.app.dispatcher.BrowserDispatcherActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.injector.scope.PerBroadcastReceiver;
 import com.omvp.app.injector.scope.PerService;
+import com.omvp.app.receiver.AppUrbanAirshipReceiverService;
+import com.omvp.app.receiver.AppUrbanAirshipReceiverServiceModule;
 import com.omvp.app.service.AppFirebaseInstanceIDService;
 import com.omvp.app.service.AppFirebaseInstanceIDServiceModule;
 import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
-import com.omvp.app.receiver.AppUrbanAirshipReceiverService;
-import com.omvp.app.receiver.AppUrbanAirshipReceiverServiceModule;
 import com.omvp.app.ui.detail.DetailActivity;
 import com.omvp.app.ui.detail.DetailActivityModule;
 import com.omvp.app.ui.home.HomeActivity;
@@ -21,14 +21,16 @@ import com.omvp.app.ui.samples.sample_inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.sample_inputs.SampleInputActivityModule;
 import com.omvp.app.ui.samples.sample_list.SampleListActivity;
 import com.omvp.app.ui.samples.sample_list.SampleListActivityModule;
-import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
-import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivityModule;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivity;
 import com.omvp.app.ui.samples.sample_list_horizontal.SampleListHorizontalActivityModule;
+import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivity;
+import com.omvp.app.ui.samples.sample_locale.SampleLocaleActivityModule;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivity;
 import com.omvp.app.ui.samples.sample_location.SampleLocationActivityModule;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.sample_multiple.SampleMultipleActivityModule;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.sample_notice_dialog.SampleNoticeActivityModule;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.sample_pager.SamplePagerActivityModule;
 import com.omvp.app.ui.samples.sample_take_picture.SampleTakePictureActivity;
@@ -191,4 +193,14 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {SampleInputActivityModule.class})
     abstract SampleInputActivity sampleInputActivity();
+
+    /**
+     * Provides the injector for the {@link SampleNoticeActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleNoticeActivityModule.class})
+    abstract SampleNoticeActivity sampleNoticeActivity();
+
+
 }

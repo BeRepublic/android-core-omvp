@@ -3,7 +3,6 @@ package com.omvp.app.ui.home.view;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
@@ -16,7 +15,6 @@ import com.omvp.domain.SampleItem;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
 import static com.omvp.commons.Constants.INPUT;
@@ -24,6 +22,7 @@ import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
+import static com.omvp.commons.Constants.NOTICE_DIALOG;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
 import static com.omvp.commons.Constants.VIBRATION;
@@ -57,6 +56,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onVibrationSelected();
 
         void onInputViewSelected();
+
+        void onNoticeDialogViewSelected ();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -105,6 +106,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case INPUT:
                 mCallback.onInputViewSelected();
+                break;
+            case NOTICE_DIALOG:
+                mCallback.onNoticeDialogViewSelected();
                 break;
         }
     }
