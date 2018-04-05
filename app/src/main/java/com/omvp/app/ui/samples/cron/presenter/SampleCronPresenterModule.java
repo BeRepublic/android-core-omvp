@@ -1,4 +1,4 @@
-package com.omvp.app.ui.samples.simple.presenter;
+package com.omvp.app.ui.samples.cron.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
@@ -10,10 +10,10 @@ import dagger.Module;
  * Provides SampleTopPresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
-public abstract class SamplePresenterModule {
+public abstract class SampleCronPresenterModule {
 
     @Binds
     @PerFragment
-    abstract SamplePresenter presenter(SamplePresenterImpl presenter);
+    abstract SampleCronPresenter presenter(SampleCronPresenterImpl presenter);
 
 }

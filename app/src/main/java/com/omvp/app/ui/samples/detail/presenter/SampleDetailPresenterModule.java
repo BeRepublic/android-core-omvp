@@ -1,4 +1,4 @@
-package com.omvp.app.ui.detail.presenter;
+package com.omvp.app.ui.samples.detail.presenter;
 
 import com.omvp.app.base.mvp.presenter.BasePresenterModule;
 import com.omvp.app.injector.scope.PerFragment;
@@ -7,13 +7,13 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides DetailPresenterModule dependencies.
+ * Provides SampleDetailPresenterModule dependencies.
  */
 @Module(includes = BasePresenterModule.class)
-public abstract class DetailPresenterModule {
+public abstract class SampleDetailPresenterModule {
 
     @Binds
     @PerFragment
-    abstract DetailPresenter presenter(DetailPresenterImpl presenter);
+    abstract SampleDetailPresenter presenter(SampleDetailPresenterImpl presenter);
 
 }
