@@ -2,6 +2,7 @@ package com.omvp.components;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
@@ -72,20 +73,32 @@ public class BottomBarView extends BaseComponentView implements BottomBarItemVie
         int numItems = mViewPager.getAdapter().getCount();
         for (int i = 0; i < numItems; i++) {
             BottomBarItemView itemView = new BottomBarItemView(getContext());
+/*
+                    .icon(getIcon(i))
+                    .animateCounter(true)
+                    .params(params)
+                    .tag(i)
+                    .checked(i == 0)
+                    .checkedChangeListener(this)
+                    .counterColor(ContextCompat.getColor(getContext(), android.R.color.white))
+                    .build();
+*/
             itemView.setIcon(getIcon(i));
             itemView.setLayoutParams(params);
-            itemView.setCounter(i * 5);
+            itemView.setAnimateCounter(true);
             itemView.setTag(i);
             itemView.setChecked(i == 0);
             itemView.setOnCheckedChangeListener(this);
+            itemView.setCounterColor(ContextCompat.getColor(getContext(), android.R.color.white));
+            itemView.setCounterBackground(R.drawable.bottom_bar_dot_bg);
             mRootView.addView(itemView);
 
             mItemsArray.put(i, itemView);
         }
     }
 
-    private int getIcon(int position){
-        if (iconsArray == null || position >= iconsArray.length){
+    private int getIcon(int position) {
+        if (iconsArray == null || position >= iconsArray.length) {
             return R.drawable.bottom_navigation_item_home;
         }
 
@@ -104,5 +117,9 @@ public class BottomBarView extends BaseComponentView implements BottomBarItemVie
 
             mViewPager.setCurrentItem((Integer) itemView.getTag(), false);
         }
+    }
+
+    public void incrementCounterAt(int position) {
+        mItemsArray.valueAt(position).setCounter(1);
     }
 }

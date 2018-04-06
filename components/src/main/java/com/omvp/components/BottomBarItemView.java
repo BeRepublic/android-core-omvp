@@ -1,10 +1,15 @@
 package com.omvp.components;
 
+import android.animation.Animator;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
@@ -26,6 +31,14 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
     private OnCheckedChangeListener mOnCheckedChangeListener;
     private OnReCheckedListener mOnReCheckedListener;
 
+    private Drawable mCounterBackground;
+    private int mCounterColor;
+    private int mIconRes;
+
+    private boolean mAnimate;
+
+    private int mCount = 0;
+
     public BottomBarItemView(Context context) {
         super(context);
     }
@@ -40,7 +53,23 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
 
     @Override
     protected void loadAttributes(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.getTheme().
+                obtainStyledAttributes(attrs, R.styleable.BottomBarItemView, 0, 0);
 
+        if (mCounterBackground == null) {
+            mCounterBackground = ContextCompat.getDrawable(
+                    getContext(),
+                    typedArray.getResourceId(R.styleable.BottomBarItemView_counter_background, R.drawable.bottom_bar_dot_bg)
+            );
+        }
+
+        if (mCounterColor <= 0) {
+            mCounterColor = typedArray.getResourceId(R.styleable.BottomBarItemView_counter_color, R.color.color_accent);
+        }
+
+        if (mIconRes <= 0) {
+            mIconRes = typedArray.getResourceId(R.styleable.BottomBarItemView_icon, R.drawable.bottom_navigation_item_home);
+        }
     }
 
     @Override
@@ -54,7 +83,9 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
 
     @Override
     protected void loadData() {
-
+        mCounterTextView.setBackgroundDrawable(mCounterBackground);
+        mCounterTextView.setTextColor(mCounterColor);
+        mImageView.setButtonDrawable(mIconRes);
     }
 
     @Override
@@ -62,14 +93,16 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
         return R.layout.bottom_bar_item_view;
     }
 
-    /**   Checkable methods   **/
+    /**
+     * Checkable methods
+     **/
 
     @Override
     public void setChecked(boolean checked) {
         mChecked = checked;
         refreshDrawableState();
         setCheckedRecursive(this, checked);
-        if (mOnCheckedChangeListener != null){
+        if (mOnCheckedChangeListener != null) {
             mOnCheckedChangeListener.onCheckedChanged(this, checked);
         }
     }
@@ -85,13 +118,15 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
             setChecked(!mChecked);
 
         } else {
-            if (mOnReCheckedListener != null){
+            if (mOnReCheckedListener != null) {
                 mOnReCheckedListener.onReChecked(this);
             }
         }
     }
 
-    /**   Drawable States    **/
+    /**
+     * Drawable States
+     **/
 
     @Override
     protected int[] onCreateDrawableState(int extraSpace) {
@@ -102,7 +137,9 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
         return drawableState;
     }
 
-    /**   Handle clicks  **/
+    /**
+     * Handle clicks
+     **/
 
     @Override
     public boolean performClick() {
@@ -115,7 +152,9 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
         return onTouchEvent(ev);
     }
 
-    /**   State persistency  **/
+    /**
+     * State persistence
+     **/
 
     static class SavedState extends BaseSavedState {
         boolean checked;
@@ -173,7 +212,9 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
         requestLayout();
     }
 
-    /**   Setters  **/
+    /**
+     * Setters
+     **/
 
     public void setText(String text) {
         mTextView.setText(text);
@@ -190,8 +231,16 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
     }
 
     public void setCounter(int count) {
-        mCounterTextView.setText(String.valueOf(count));
-        mCounterTextView.setVisibility(count > 0 ? VISIBLE : INVISIBLE);
+        mCount += count;
+        mCounterTextView.setText(String.valueOf(mCount));
+        if (mAnimate) {
+            mCounterTextView.setVisibility(INVISIBLE);
+            if (mCount > 0) {
+                animateCounter();
+            }
+        } else {
+            mCounterTextView.setVisibility(mCount > 0 ? VISIBLE : INVISIBLE);
+        }
     }
 
     public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
@@ -200,6 +249,22 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
 
     public void setOnReCheckedListener(OnReCheckedListener onReCheckedListener) {
         mOnReCheckedListener = onReCheckedListener;
+    }
+
+    public void setCounterBackground(@DrawableRes int background) {
+        mCounterTextView.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), background));
+    }
+
+    public void setCounterBackground(@Nullable Drawable background) {
+        mCounterTextView.setBackgroundDrawable(background);
+    }
+
+    public void setCounterColor(int color) {
+        mCounterTextView.setTextColor(color);
+    }
+
+    public void setAnimateCounter(boolean animate) {
+        mAnimate = animate;
     }
 
     private void setCheckedRecursive(ViewGroup parent, boolean checked) {
@@ -216,12 +281,45 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
         }
     }
 
+    private void animateCounter() {
+        mCounterTextView.setScaleX(1.8f);
+        mCounterTextView.setScaleY(1.8f);
+        mCounterTextView.setTranslationY(-20);
+
+        mCounterTextView.animate()
+                .scaleX(1.f)
+                .scaleY(1.f)
+                .translationYBy(20)
+                .setDuration(300)
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        mCounterTextView.setVisibility(VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+    }
+
     public interface OnCheckedChangeListener {
         /**
          * Called when the checked state of a compound button has changed.
          *
-         * @param itemView The button view whose state has changed.
-         * @param isChecked  The new checked state of buttonView.
+         * @param itemView  The button view whose state has changed.
+         * @param isChecked The new checked state of buttonView.
          */
         void onCheckedChanged(BottomBarItemView itemView, boolean isChecked);
     }
@@ -234,4 +332,70 @@ public class BottomBarItemView extends BaseComponentView implements Checkable {
          */
         void onReChecked(BottomBarItemView itemView);
     }
+
+/*    public static class Builder {
+        Context context;
+        int iconRes;
+        ViewGroup.LayoutParams params;
+        boolean animateCounter;
+        Object tag;
+        boolean checked;
+        OnCheckedChangeListener mCheckedChangeListener;
+        OnReCheckedListener mReCheckedListener;
+        int counterColor;
+        Drawable counterBackground;
+
+        public Builder(Context context) {
+            this.context = context;
+        }
+
+        public Builder icon(@DrawableRes int iconRes) {
+            this.iconRes = iconRes;
+            return this;
+        }
+
+        public Builder params(ViewGroup.LayoutParams params) {
+            this.params = params;
+            return this;
+        }
+
+        public Builder animateCounter(boolean animate) {
+            this.animateCounter = animateCounter;
+            return this;
+        }
+
+        public Builder tag(Object tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        public Builder checked(boolean checked) {
+            this.checked = checked;
+            return this;
+        }
+
+        public Builder checkedChangeListener(OnCheckedChangeListener listener) {
+            this.mCheckedChangeListener = listener;
+            return this;
+        }
+
+        public Builder recheckedListener(OnReCheckedListener listener) {
+            this.mReCheckedListener = listener;
+            return this;
+        }
+
+        public Builder counterColor(int color) {
+            this.counterColor = color;
+            return this;
+        }
+
+        public Builder counterBackgrount(Drawable drawable) {
+            this.counterBackground = drawable;
+            return this;
+        }
+
+        public BottomBarItemView build() {
+            return new BottomBarItemView(this);
+        }
+    }*/
 }
