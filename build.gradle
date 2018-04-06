@@ -50,6 +50,10 @@ allprojects {
         betaDistributionReleaseNotesFilePath = 'release_notes.txt'
         betaDistributionGroupAliasesFilePath = 'group_aliases.txt'
         betaDistributionNotifications = true
+
+        // Facebook
+        facebookId = "218954192185385"
+        facebookSchemeId = "fb218954192185385"
     }
 }
 

@@ -48,6 +48,9 @@ android {
         ext.betaDistributionGroupAliasesFilePath = rootProject.ext.betaDistributionGroupAliasesFilePath
         ext.betaDistributionNotifications = rootProject.ext.betaDistributionNotifications
 
+        resValue "string", "facebook_app_id", rootProject.ext.facebookId
+        resValue "string", "fb_login_protocol_scheme", rootProject.ext.facebookSchemeId
+
         multiDexEnabled true
     }
 

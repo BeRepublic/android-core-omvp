@@ -136,4 +136,9 @@ public class BottomNavigationActivity extends BaseFragmentActivity implements
         interceptorList.add(mToolbarInterceptor);
         interceptorList.add(mFragmentStatePagerInterceptor);
     }
+
+    @Override
+    public void onIncrementSelected(int position) {
+        mBottomBarView.incrementCounterAt(position);
+    }
 }
