@@ -91,7 +91,7 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file('../buildSystem/release.keystore')
+            storeFile file('../buildSystem/release.jks')
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'androiddebugkey'
