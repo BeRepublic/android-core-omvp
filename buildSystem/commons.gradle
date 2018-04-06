@@ -28,6 +28,19 @@ task increaseBuildVersion {
     }
 }
 
+task increaseBuildAndNameVersion {
+    doFirst {
+        println(":increaseBuildVersion - Incrementing build version...")
+        println(":increaseBuildVersion - Upload new build version to repository...")
+        def versionName = increaseBuildAndNameVersion()
+        tasks.addToGit.execute()
+        createCommitToGitWithMessageTask("Build version increased")
+        tasks.commitToGitWithMessage.execute()
+        tasks.pushToGit.execute()
+        println(":increaseBuildVersion - Build version incremented to " + versionName)
+    }
+}
+
 def createCommitToGitWithMessageTask(message) {
     return tasks.create(name: 'commitToGitWithMessage', type: Exec) {
         description 'Commit git.'
@@ -36,6 +49,21 @@ def createCommitToGitWithMessageTask(message) {
 }
 
 String increaseBuildVersion() {
+    def versionName
+    def gradlePropsFile = file('gradle.properties')
+    if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(gradlePropsFile))
+        def buildVersion = Integer.parseInt(versionProps['VERSION_CODE']) + 1
+        versionProps['VERSION_CODE'] = buildVersion.toString()
+        versionProps.store(gradlePropsFile.newWriter(), null)
+    } else {
+        throw new GradleException(":increaseBuildVersion - Could not read gradle.properties!")
+    }
+    return versionName
+}
+
+String increaseBuildAndNameVersion() {
     def versionName
     def gradlePropsFile = file('gradle.properties')
     if (gradlePropsFile.isFile() && gradlePropsFile.canRead()) {
