@@ -94,7 +94,7 @@ android {
             storeFile file('../buildSystem/release.jks')
             storePassword 'android'
             keyAlias 'androiddebugkey'
-            keyPassword 'androiddebugkey'
+            keyPassword 'android'
         }
     }
 
@@ -126,7 +126,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false                          // disable to deactivate proguard
+            minifyEnabled true                          // disable to deactivate proguard
             shrinkResources false
             signingConfig signingConfigs.release
 
@@ -143,6 +143,7 @@ android {
                     './proguard/proguard-gson.pro',
                     './proguard/proguard-modelmapper.pro',
                     './proguard/proguard-parceler.pro',
+                    './proguard/proguard-proguard.pro',
                     './proguard/proguard-square-okhttp3.pro',
                     './proguard/proguard-square-okio.pro',
                     './proguard/proguard-square-retrofit2.pro',
