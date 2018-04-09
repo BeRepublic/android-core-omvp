@@ -108,11 +108,16 @@
 
     ==== FACEBOOK CONNECT ==========================================================================
 
-    TODO
+    1. Configure your Facebook app on https://developers.facebook.com/
+    2. Put your Facebook App "facebookId" and "facebookSchemeId" in: /{projectName}/build.gradle
 
     ========= REMOVE FACEBOOK CONNECT ==============================================================
 
-    TODO
+    1. Remove Facebook App ids from /{projectName}/build.gradle
+    2. Remove Strings references from app/build.gradle
+    3. Remove Facebook Connect block from AndroidManifest.xml
+    4. Remove AppEvent initialization from AppApplication.java
+    5. Remove any dependency related with Facebook in buildSystem/dependencies.gradle.
 
 ======= STEPS TO DELIVERY PROJECT ==================================================================
 
