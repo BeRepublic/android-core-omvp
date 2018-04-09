@@ -14,7 +14,7 @@ import lombok.Data;
 @DontObfuscate
 public class SampleDomain {
 
-    Long id;
+    String id;
     String title;
     Uri link;
     LocalDateTime pubdate;

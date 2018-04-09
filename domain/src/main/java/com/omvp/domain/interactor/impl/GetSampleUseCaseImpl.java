@@ -16,7 +16,7 @@ public class GetSampleUseCaseImpl extends BaseUseCaseImpl<SampleRepository> impl
     }
 
     @Override
-    public Single<SampleDomain> execute(long id) {
+    public Single<SampleDomain> execute(String id) {
         return getRepository().retrieve(id);
     }
 

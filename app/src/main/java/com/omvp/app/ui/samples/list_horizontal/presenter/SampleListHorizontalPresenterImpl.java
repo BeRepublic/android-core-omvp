@@ -5,6 +5,7 @@ package com.omvp.app.ui.samples.list_horizontal.presenter;
 import android.net.Uri;
 import android.view.View;
 
+import com.omvp.app.R;
 import com.omvp.app.base.mvp.presenter.BasePresenter;
 import com.omvp.app.base.reactivex.BaseDisposableCompletableObserver;
 import com.omvp.app.base.reactivex.BaseDisposableMaybeObserver;
@@ -21,11 +22,13 @@ import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
+import io.reactivex.Maybe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
+import io.reactivex.functions.Function3;
 import io.reactivex.schedulers.Schedulers;
 
 public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListHorizontalView>
@@ -76,26 +79,34 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
     }
 
     private void loadSampleList() {
-        mDisposableManager.add(mGetSampleListUseCase.execute()
-                .map(new Function<List<SampleDomain>, List<SampleModel>>() {
+        mDisposableManager.add(Maybe.zip(
+                retrieveMainList(),
+                retrieveFirstHorizontalList(),
+                retrieveSecondHorizontalList(),
+                new Function3<List<SampleDomain>, List<SampleDomain>, List<SampleDomain>, List<Object>>() {
                     @Override
-                    public List<SampleModel> apply(List<SampleDomain> sampleDomains) {
-                        mSampleDomainList.addAll(sampleDomains);
-                        mSampleDomainList.add(3, sampleDomains);
-                        mSampleDomainList.add(7, sampleDomains);
-                        return mSampleModelDataMapper.transform(sampleDomains);
+                    public List<Object> apply(List<SampleDomain> mainList, List<SampleDomain> firstHorizontal, List<SampleDomain> secondHorizontal) throws Exception {
+                        mSampleDomainList.addAll(mainList);
+                        mSampleDomainList.add(3, firstHorizontal);
+                        mSampleDomainList.add(7, secondHorizontal);
+
+                        List<Object> finalObjects = new ArrayList<>();
+                        finalObjects.addAll(mSampleModelDataMapper.transform(mainList));
+                        finalObjects.add(3, mSampleModelDataMapper.transform(firstHorizontal));
+                        finalObjects.add(7, mSampleModelDataMapper.transform(secondHorizontal));
+                        return finalObjects;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribeWith(new BaseDisposableMaybeObserver<List<SampleModel>>(mContext) {
+                .subscribeWith(new BaseDisposableMaybeObserver<List<Object>>(mContext) {
                     @Override
                     protected void onStart() {
                         showProgress();
                     }
 
                     @Override
-                    public void onSuccess(List<SampleModel> sampleModelList) {
+                    public void onSuccess(List<Object> sampleModelList) {
                         hideProgress();
                         drawSampleList(sampleModelList);
                     }
@@ -112,6 +123,18 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
                         showEmptyView();
                     }
                 }));
+    }
+
+    private Maybe<List<SampleDomain>> retrieveMainList() {
+        return mGetSampleListUseCase.execute().subscribeOn(Schedulers.io());
+    }
+
+    private Maybe<List<SampleDomain>> retrieveFirstHorizontalList() {
+        return mGetSampleListUseCase.execute().subscribeOn(Schedulers.io());
+    }
+
+    private Maybe<List<SampleDomain>> retrieveSecondHorizontalList() {
+        return mGetSampleListUseCase.execute().subscribeOn(Schedulers.io());
     }
 
     private void removeItem(final int position) {
@@ -143,11 +166,11 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
     private void addItem() {
 
         final SampleDomain sampleDomain = new SampleDomain();
-        sampleDomain.setId((long) (mSampleDomainList.size() + 1));
+        sampleDomain.setId(UUID.randomUUID().toString());
         sampleDomain.setTitle("item " + mSampleDomainList.size() + 1);
         sampleDomain.setLink(Uri.parse("https://www.google.com"));
         sampleDomain.setPubdate(LocalDateTime.now());
-        sampleDomain.setImageResId(com.omvp.data.R.mipmap.ic_launcher_round);
+        sampleDomain.setImageResId(R.mipmap.ic_launcher_round);
 
         mDisposableManager.add(mSaveSampleUseCase.execute(sampleDomain)
                 .subscribeOn(Schedulers.io())
@@ -184,15 +207,9 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
         }
     }
 
-    private void drawSampleList(List<SampleModel> sampleModelList) {
+    private void drawSampleList(List<Object> sampleModelList) {
         if (mView != null) {
-
-            List<Object> objectList = new ArrayList<>();
-            objectList.addAll(sampleModelList);
-            objectList.add(3, sampleModelList);
-            objectList.add(7, sampleModelList);
-
-            mView.drawSampleList(objectList);
+            mView.drawSampleList(sampleModelList);
         }
     }
 

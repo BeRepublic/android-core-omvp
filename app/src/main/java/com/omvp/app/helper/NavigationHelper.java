@@ -9,17 +9,16 @@ import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
 import com.omvp.app.ui.home.HomeActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.detail.SampleDetailActivity;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.list.SampleListActivity;
 import com.omvp.app.ui.samples.list_horizontal.SampleListHorizontalActivity;
 import com.omvp.app.ui.samples.locale.SampleLocaleActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
-import com.omvp.app.ui.samples.pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
+import com.omvp.app.ui.samples.pager.SamplePagerActivity;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
@@ -58,9 +57,9 @@ public class NavigationHelper {
                 .launch();
     }
 
-    public void launchDetail(long sampleItemId) {
+    public void launchDetail(String sampleItemId) {
         Bundle extras = getExtras();
-        extras.putLong(Long.class.getSimpleName(), sampleItemId);
+        extras.putString(String.class.getSimpleName(), sampleItemId);
         new NavigationManager.Builder(mActivity)
                 .putData(extras)
                 .navigateTo(SampleDetailActivity.class)
@@ -68,9 +67,9 @@ public class NavigationHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void launchDetailWithSharedViewTransition(long sampleItemId, View sharedView) {
+    public void launchDetailWithSharedViewTransition(String sampleItemId, View sharedView) {
         Bundle extras = getExtras();
-        extras.putLong(Long.class.getSimpleName(), sampleItemId);
+        extras.putString(String.class.getSimpleName(), sampleItemId);
 
         ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(
                 mActivity, sharedView, "item");

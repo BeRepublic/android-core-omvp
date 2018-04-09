@@ -23,6 +23,7 @@ import org.threeten.bp.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -152,7 +153,7 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
         if (mSampleDomainList == null) {
             mSampleDomainList = new ArrayList<>();
         }
-        sampleDomain.setId((long) (mSampleDomainList.size() + 1));
+        sampleDomain.setId(UUID.randomUUID().toString());
         sampleDomain.setTitle("item " + (mSampleDomainList.size() + 1));
         sampleDomain.setLink(Uri.parse("https://www.google.com"));
         sampleDomain.setPubdate(LocalDateTime.now());

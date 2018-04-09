@@ -97,7 +97,7 @@ android {
             storeFile file('../buildSystem/release.jks')
             storePassword 'android'
             keyAlias 'androiddebugkey'
-            keyPassword 'android1'
+            keyPassword 'android'
         }
     }
 

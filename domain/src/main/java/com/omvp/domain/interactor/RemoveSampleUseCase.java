@@ -8,6 +8,6 @@ import io.reactivex.Completable;
 
 public interface RemoveSampleUseCase {
 
-    Completable execute(long id);
+    Completable execute(String id);
 
 }
