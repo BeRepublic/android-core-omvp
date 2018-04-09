@@ -71,7 +71,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textCapSentences"
                 app:hintType="fixedToLeft"
-                app:hintWidth="@dimen/hint_witdh"
+                app:hintWidth="@dimen/hint_width"
                 app:layout_constraintBottom_toTopOf="@+id/input_fixed_center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

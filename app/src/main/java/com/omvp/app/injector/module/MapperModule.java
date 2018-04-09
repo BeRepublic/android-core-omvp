@@ -18,7 +18,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import timber.log.Timber;
 
 @Module
 public abstract class MapperModule {
@@ -110,14 +109,18 @@ public abstract class MapperModule {
         modelMapper.addConverter(new AbstractConverter<String, BigDecimal>() {
             @Override
             protected BigDecimal convert(String source) {
-                BigDecimal bigDecimal = null;
-                try {
-                    int value = Integer.parseInt(source);
-                    bigDecimal = BigDecimal.valueOf((float) value / 100);
-                } catch (NumberFormatException e) {
-                    Timber.e(e.getMessage(), e);
-                }
-                return bigDecimal;
+                return new BigDecimal(source);
+
+                // Not sure we need all this following conversion
+
+//                BigDecimal bigDecimal = null;
+//                try {
+//                    int value = Integer.parseInt(source);
+//                    bigDecimal = BigDecimal.valueOf((float) value / 100);
+//                } catch (NumberFormatException e) {
+//                    Timber.e(e.getMessage(), e);
+//                }
+//                return bigDecimal;
             }
         });
         modelMapper.createTypeMap(BigDecimal.class, String.class);
@@ -125,6 +128,54 @@ public abstract class MapperModule {
             @Override
             protected String convert(BigDecimal source) {
                 return source.toString();
+            }
+        });
+
+        modelMapper.createTypeMap(Float.class, BigDecimal.class);
+        modelMapper.addConverter(new AbstractConverter<Float, BigDecimal>() {
+            @Override
+            protected BigDecimal convert(Float source) {
+                return new BigDecimal(String.valueOf(source));
+            }
+        });
+
+        modelMapper.createTypeMap(BigDecimal.class, Float.class);
+        modelMapper.addConverter(new AbstractConverter<BigDecimal, Float>() {
+            @Override
+            protected Float convert(BigDecimal source) {
+                return source.floatValue();
+            }
+        });
+
+        modelMapper.createTypeMap(Double.class, BigDecimal.class);
+        modelMapper.addConverter(new AbstractConverter<Double, BigDecimal>() {
+            @Override
+            protected BigDecimal convert(Double source) {
+                return new BigDecimal(String.valueOf(source));
+            }
+        });
+
+        modelMapper.createTypeMap(BigDecimal.class, Double.class);
+        modelMapper.addConverter(new AbstractConverter<BigDecimal, Double>() {
+            @Override
+            protected Double convert(BigDecimal source) {
+                return source.doubleValue();
+            }
+        });
+
+        modelMapper.createTypeMap(Integer.class, BigDecimal.class);
+        modelMapper.addConverter(new AbstractConverter<Integer, BigDecimal>() {
+            @Override
+            protected BigDecimal convert(Integer source) {
+                return new BigDecimal(String.valueOf(source));
+            }
+        });
+
+        modelMapper.createTypeMap(BigDecimal.class, Integer.class);
+        modelMapper.addConverter(new AbstractConverter<BigDecimal, Integer>() {
+            @Override
+            protected Integer convert(BigDecimal source) {
+                return source.intValue();
             }
         });
     }
