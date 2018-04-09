@@ -3,9 +3,9 @@
 ext {
 
     // Android dependencies
-    supportLibraryVersion = '27.0.2'
-    servicesVersion = '11.8.0'
     multidexVersion = '1.0.1'
+    servicesVersion = '11.8.0'
+    supportLibraryVersion = '27.0.2'
 
     androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
     androidPreferencesVersion = '3.0.4'     // https://github.com/raxden/android-preferences
@@ -14,30 +14,30 @@ ext {
     androidCronsVersion = '3.0.11'          // https://github.com/raxden/android-crons
 
     // Libraries
+    androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
+    butterknifeVersion = '8.8.1'            // https://github.com/JakeWharton/butterknife
+    calligraphyVersion = '2.3.0'            // https://github.com/chrisjenx/Calligraphy
+    constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
+    crashlyticsVersion = '2.8.0'
+    daggerVersion = '2.15'                  // https://github.com/square/dagger
+    facebookVersion = '4.31.0'              // https://developers.facebook.com/docs/android/
+    glideVersion = '4.4.0'                  // https://github.com/bumptech/glide
+    lombokVersion = '1.16.10'               // https://projectlombok.org/setup/android.html
+    modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
+    okHttpVersion = '3.9.1'                 // https://github.com/square/okhttp
+    parcelerVersion = '1.1.9'               // https://github.com/johncarl81/parceler
     reactiveAndroidVersion = '2.0.1'        // https://github.com/ReactiveX/RxAndroid
     reactiveJavaVersion = '2.1.7'           // https://github.com/ReactiveX/RxAndroid
     retrofitVersion = '2.3.0'               // https://github.com/square/retrofit
-    okHttpVersion = '3.9.1'                 // https://github.com/square/okhttp
-    timberVersion = '4.6.0'                 // https://github.com/JakeWharton/timber
-    butterknifeVersion = '8.8.1'            // https://github.com/JakeWharton/butterknife
-    glideVersion = '4.4.0'                  // https://github.com/bumptech/glide
-    lombokVersion = '1.16.10'               // https://projectlombok.org/setup/android.html
-    parcelerVersion = '1.1.9'               // https://github.com/johncarl81/parceler
-    crashlyticsVersion = '2.8.0'
-    calligraphyVersion = '2.3.0'            // https://github.com/chrisjenx/Calligraphy
-    daggerVersion = '2.15'                  // https://github.com/square/dagger
-    androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
-    modelmapperVersion = '1.1.0'            // https://github.com/modelmapper/modelmapper
-    constraintsLayoutVersion = '1.0.2'      // https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
     rxPermissionsVersion = '0.9.5'          // https://github.com/tbruyelle/RxPermissions
+    timberVersion = '4.6.0'                 // https://github.com/JakeWharton/timber
     urbanAirshipVersion = '9.0.4'           // http://docs.urbanairship.com/platform/android.html
-    facebookVersion = '4.31.0'              // https://developers.facebook.com/docs/android/
 
     // Testing
-    jUnitVersion = '4.12'
     assertJVersion = '1.7.0'
-    robolectricVersion = '3.6.1'
+    jUnitVersion = '4.12'
     mockitoVersion = '1.10.19'
+    robolectricVersion = '3.6.1'
 
     // dependencies
     calligraphy = [
