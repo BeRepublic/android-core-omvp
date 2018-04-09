@@ -51,7 +51,8 @@ allprojects {
         betaDistributionGroupAliasesFilePath = 'group_aliases.txt'
         betaDistributionNotifications = true
 
-        // Facebook
+        // ============== Facebook configuration  ==================================================
+
         facebookId = "218954192185385"
         facebookSchemeId = "fb218954192185385"
     }
