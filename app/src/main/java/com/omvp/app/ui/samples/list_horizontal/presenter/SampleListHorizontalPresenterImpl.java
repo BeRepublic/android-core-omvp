@@ -189,6 +189,7 @@ public class SampleListHorizontalPresenterImpl extends BasePresenter<SampleListH
 
                     @Override
                     public void onComplete() {
+                        hideProgress();
                         mSampleDomainList.add(sampleDomain);
                         drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
                     }
