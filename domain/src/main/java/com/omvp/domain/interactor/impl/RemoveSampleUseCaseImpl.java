@@ -15,7 +15,7 @@ public class RemoveSampleUseCaseImpl extends BaseUseCaseImpl<SampleRepository> i
     }
 
     @Override
-    public Completable execute(long id) {
+    public Completable execute(String id) {
         return getRepository().remove(id);
     }
 

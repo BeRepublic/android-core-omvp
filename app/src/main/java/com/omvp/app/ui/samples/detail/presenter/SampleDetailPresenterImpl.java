@@ -18,7 +18,7 @@ public class SampleDetailPresenterImpl extends BasePresenter<SampleDetailView> i
     @Inject
     GetSampleUseCase mGetSampleUseCase;
 
-    private long mSampleId;
+    private String mSampleId;
 
     @Inject
     public SampleDetailPresenterImpl(SampleDetailView sampleDetailView) {
@@ -28,8 +28,8 @@ public class SampleDetailPresenterImpl extends BasePresenter<SampleDetailView> i
     @Override
     public void onHandleArguments(Bundle savedInstanceState, Bundle arguments) {
         super.onHandleArguments(savedInstanceState, arguments);
-        if (arguments.containsKey(Long.class.getSimpleName())) {
-            mSampleId = arguments.getLong(Long.class.getSimpleName());
+        if (arguments.containsKey(String.class.getSimpleName())) {
+            mSampleId = arguments.getString(String.class.getSimpleName());
         }
     }
 

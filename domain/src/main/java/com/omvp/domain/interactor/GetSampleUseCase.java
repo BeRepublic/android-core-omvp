@@ -10,6 +10,6 @@ import io.reactivex.Single;
 
 public interface GetSampleUseCase {
 
-    Single<SampleDomain> execute(final long id);
+    Single<SampleDomain> execute(final String id);
 
 }
