@@ -130,4 +130,4 @@
     2. Remove any permission (androidManifest.xml) that is not necessary for the project.
     3. Remove any dependencies that is not necessary for the project.
     4. Remove any zombie class due to the elimination of dependencies. (For example, if we remove
-    urbanairship dependency, we must remove clases or functionalities related with UrbanAirship).
+    urbanairship dependency, we must remove classes or functionalities related with UrbanAirship).

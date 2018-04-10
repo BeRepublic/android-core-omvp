@@ -235,6 +235,7 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
 
                     @Override
                     public void onComplete() {
+                        hideProgress();
                         mSampleDomainList.add(sampleDomain);
                         drawAddAnimation(mSampleModelDataMapper.transform(sampleDomain));
                     }
