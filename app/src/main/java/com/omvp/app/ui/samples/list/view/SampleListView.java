@@ -22,4 +22,6 @@ public interface SampleListView extends BaseView {
     void drawViewMoved(int oldPosition, int newPosition);
 
     void drawViewSwiped(int position);
+
+    void drawUpdatedItems(List<SampleModel> updatedList);
 }

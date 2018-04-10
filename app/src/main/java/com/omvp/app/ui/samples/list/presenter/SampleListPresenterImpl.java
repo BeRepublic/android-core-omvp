@@ -3,6 +3,7 @@ package com.omvp.app.ui.samples.list.presenter;
 
 
 import android.net.Uri;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.omvp.app.base.mvp.presenter.BasePresenter;
@@ -23,16 +24,21 @@ import org.threeten.bp.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.inject.Inject;
 
+import io.reactivex.Maybe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class SampleListPresenterImpl extends BasePresenter<SampleListView>
-        implements SampleListPresenter, SampleListAdapter.AdapterCallback, RecyclerDragHelper.ActionCompletionContract {
+        implements SampleListPresenter,
+        SampleListAdapter.AdapterCallback,
+        RecyclerDragHelper.ActionCompletionContract,
+        SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     GetSampleListUseCase mGetSampleListUseCase;
@@ -72,7 +78,6 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
         addItem();
     }
 
-
     @Override
     public void onViewMoved(int oldPosition, int newPosition) {
         Collections.swap(mSampleDomainList, oldPosition, newPosition);
@@ -83,6 +88,60 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     public void onViewSwiped(int position) {
         mSampleDomainList.remove(position);
         drawViewSwiped(position);
+    }
+
+    @Override
+    public void onRefresh() {
+        /*
+        *   This code edits a random item just to check the
+        *   efficiency of the Adapter update by DiffUtils.
+        */
+        mDisposableManager.add(Maybe.just(mSampleDomainList)
+                .map(new Function<List<SampleDomain>, List<SampleModel>>() {
+                    @Override
+                    public List<SampleModel> apply(List<SampleDomain> sampleDomains) throws Exception {
+                        return mSampleModelDataMapper.transform(sampleDomains);
+                    }
+                })
+                .map(new Function<List<SampleModel>, List<SampleModel>>() {
+                    @Override
+                    public List<SampleModel> apply(List<SampleModel> sampleModels) throws Exception {
+                        return editRandomItem(sampleModels);
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new BaseDisposableMaybeObserver<List<SampleModel>>(mContext) {
+                    @Override
+                    public void onSuccess(List<SampleModel> sampleModelList) {
+                        hideProgress();
+                        drawUpdatedItems(sampleModelList);
+                    }
+
+                    @Override
+                    protected void onError(int code, String title, String description) {
+                        hideProgress();
+                        showError(code, title, description);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        hideProgress();
+                        showEmptyView();
+                    }
+                }));
+    }
+
+    private List<SampleModel> editRandomItem(List<SampleModel> items) {
+        int max = items.size() - 1;
+        int min = 0;
+        Random random = new Random();
+        int index = random.nextInt(max - min + 1);
+
+        SampleModel model = items.get(index);
+        model.setTitle(String.valueOf(System.currentTimeMillis()));
+        items.set(index, model);
+        return items;
     }
 
     private void loadSampleList() {
@@ -197,6 +256,12 @@ public class SampleListPresenterImpl extends BasePresenter<SampleListView>
     private void drawSampleList(List<SampleModel> sampleModelList) {
         if (mView != null) {
             mView.drawSampleList(sampleModelList);
+        }
+    }
+
+    private void drawUpdatedItems(List<SampleModel> updatedList) {
+        if (mView != null) {
+            mView.drawUpdatedItems(updatedList);
         }
     }
 

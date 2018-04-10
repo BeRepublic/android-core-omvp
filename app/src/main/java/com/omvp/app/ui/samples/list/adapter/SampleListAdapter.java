@@ -1,6 +1,8 @@
 package com.omvp.app.ui.samples.list.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MotionEvent;
@@ -10,6 +12,10 @@ import android.view.ViewGroup;
 import com.omvp.app.model.SampleModel;
 import com.omvp.components.SampleItemView;
 import com.raxdenstudios.recycler.RecyclerAdapter;
+
+import org.parceler.Parcels;
+
+import java.util.List;
 
 public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAdapter.SampleListViewHolder> {
 
@@ -50,6 +56,33 @@ public class SampleListAdapter extends RecyclerAdapter<SampleModel, SampleListAd
                 return false;
             }
         });
+    }
+
+    /*
+       Override {@link #onBindViewHolder(ViewHolder, int, List)} if Adapter can handle efficient partial bind.
+    */
+    @Override
+    public void onBindViewHolder(final SampleListViewHolder holder, int position, List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            onBindViewItemHolder(holder, mData.get(position), position);
+
+        } else {
+            Bundle bundle = (Bundle) payloads.get(0);
+            if (bundle.containsKey("sample")) {
+                SampleModel sampleModel = Parcels.unwrap(bundle.getParcelable("sample"));
+                holder.bindView(sampleModel);
+            }
+        }
+    }
+
+    /*
+    * Add this method to update the adapter via DiffUtil.
+    */
+    public void onNewData(List<SampleModel> newData) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new SampleDiffUtilsCallback(newData, mData));
+        diffResult.dispatchUpdatesTo(this);
+        mData.clear();
+        mData.addAll(newData);
     }
 
     public void setTouchHelper(ItemTouchHelper touchHelper) {

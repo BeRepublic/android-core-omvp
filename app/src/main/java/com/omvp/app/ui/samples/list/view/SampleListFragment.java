@@ -1,6 +1,7 @@
 package com.omvp.app.ui.samples.list.view;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -30,6 +31,8 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
     RecyclerView mRecyclerView;
     @BindView(R.id.empty_view)
     View mEmptyView;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private SampleListAdapter mAdapter;
 
@@ -113,9 +116,20 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         mAdapter.removeItem(position);
     }
 
+    @Override
+    public void drawUpdatedItems(List<SampleModel> updatedList) {
+        mAdapter.onNewData(updatedList);
+    }
+
+    @Override
+    public void hideProgress() {
+        super.hideProgress();
+
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
     private void setupViews() {
-        mAdapter = new SampleListAdapter(getActivity(),
-                (SampleListAdapter.AdapterCallback) mPresenter);
+        mAdapter = new SampleListAdapter(getActivity(), (SampleListAdapter.AdapterCallback) mPresenter);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
@@ -124,5 +138,7 @@ public class SampleListFragment extends BaseViewFragment<SampleListPresenter, Sa
         ItemTouchHelper touchHelper = new ItemTouchHelper(dragHelper);
         mAdapter.setTouchHelper(touchHelper);
         touchHelper.attachToRecyclerView(mRecyclerView);
+
+        mSwipeRefreshLayout.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener) mPresenter);
     }
 }

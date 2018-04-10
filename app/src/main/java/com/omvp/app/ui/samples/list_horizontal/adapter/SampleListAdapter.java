@@ -23,6 +23,14 @@ public class SampleListAdapter extends RecyclerAdapter<Object, RecyclerView.View
 
     private AdapterCallback mAdapterCallback;
 
+    /*
+        Setting a single view pool for all the inner RecyclerViews. This can be useful if you have
+        multiple RecyclerViews with adapters that use the same view types. Now as all the inner
+        RecyclerViews have the same view pool, it can use each other’s scraped views.
+        Which gives much lesser view creation and better scroll performance.
+    */
+    private RecyclerView.RecycledViewPool mRecycledViewPool;
+
     public interface AdapterCallback {
         void sampleItemSelected(int position, View sharedView);
 
@@ -35,6 +43,7 @@ public class SampleListAdapter extends RecyclerAdapter<Object, RecyclerView.View
         super(context, -1);
 
         mAdapterCallback = callback;
+        mRecycledViewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -124,6 +133,10 @@ public class SampleListAdapter extends RecyclerAdapter<Object, RecyclerView.View
             mRecyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(),
                     LinearLayoutManager.HORIZONTAL, false));
             mRecyclerView.setHasFixedSize(true);
+
+            // Setting shared recyclerview pool
+            mRecyclerView.setRecycledViewPool(mRecycledViewPool);
+
             mAdapter.setAdapterCallback(new SampleListHorizontalAdapter.AdapterCallback() {
                 @Override
                 public void sampleItemSelected(int position, View sharedView) {

@@ -60,6 +60,7 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
                 .subscribeWith(new BaseDisposableSingleObserver<List<Locale>>(mContext) {
                     @Override
                     protected void onError(int code, String title, String description) {
+                        hideProgress();
                         showError(code, title, description);
                     }
 
@@ -70,6 +71,7 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
 
                     @Override
                     public void onSuccess(List<Locale> localeList) {
+                        hideProgress();
                         drawLocaleSelector(localeList);
                     }
                 }));
@@ -83,12 +85,19 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new BaseDisposableCompletableObserver(mContext) {
                     @Override
+                    protected void onStart() {
+                        showProgress();
+                    }
+
+                    @Override
                     protected void onError(int code, String title, String description) {
+                        hideProgress();
                         showError(code, title, description);
                     }
 
                     @Override
                     public void onComplete() {
+                        hideProgress();
                         LocaleHelper.updateConfiguration(mResources, mLocale);
                         drawLocale(mLocale);
                     }
@@ -109,6 +118,7 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
                 .subscribeWith(new BaseDisposableSingleObserver<Locale>(mContext) {
                     @Override
                     protected void onError(int code, String title, String description) {
+                        hideProgress();
                         showError(code, title, description);
                     }
 
@@ -119,6 +129,7 @@ public class SampleLocalePresenterImpl extends BasePresenter<SampleLocaleView> i
 
                     @Override
                     public void onSuccess(Locale locale) {
+                        hideProgress();
                         drawLocale(locale);
                     }
                 }));
