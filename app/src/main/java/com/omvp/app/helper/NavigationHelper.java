@@ -25,7 +25,7 @@ import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.vibration.VibrationActivity;
 import com.omvp.app.ui.splash.SplashActivity;
-import com.raxdenstudios.commons.manager.NavigationManager;
+import com.raxdenstudios.navigation.NavigationManager;
 
 public class NavigationHelper {
 
