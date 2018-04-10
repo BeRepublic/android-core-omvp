@@ -29,6 +29,7 @@ public class Constants {
     public static final String SOCIAL = "SOCIAL";
     public static final String NOTICE_DIALOG = "NOTICE_DIALOG";
     public static final String BOTTOM_NAV = "BOTTOM_NAV";
+    public static final String AUTH_PHONE = "AUTH_PHONE";
 
     // Patterns
     public static final Pattern PASSWORD_PATTERN = Pattern.compile("^[0-9A-Za-z!@#$%]{6,}$");

@@ -13,12 +13,10 @@ import com.omvp.app.service.AppFirebaseMessagingService;
 import com.omvp.app.service.AppFirebaseMessagingServiceModule;
 import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.home.HomeActivityModule;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
+import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
 import com.omvp.app.ui.samples.detail.SampleDetailActivity;
 import com.omvp.app.ui.samples.detail.SampleDetailActivityModule;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
-import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivityModule;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivityModule;
 import com.omvp.app.ui.samples.list.SampleListActivity;
@@ -31,10 +29,12 @@ import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.location.SampleLocationActivityModule;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivityModule;
-import com.omvp.app.ui.samples.pager.SamplePagerActivity;
-import com.omvp.app.ui.samples.pager.SamplePagerActivityModule;
 import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
 import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivityModule;
+import com.omvp.app.ui.samples.pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.pager.SamplePagerActivityModule;
+import com.omvp.app.ui.samples.request_phone.SampleRequestPhoneActivity;
+import com.omvp.app.ui.samples.request_phone.SampleRequestPhoneActivityModule;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.simple.SampleActivityModule;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
@@ -223,5 +223,13 @@ public abstract class InjectorModule {
     @PerActivity
     @ContributesAndroidInjector(modules = {BottomNavigationActivityModule.class})
     abstract BottomNavigationActivity bottomNavigationActivity();
+
+    /**
+     * Provides the injector for the {@link SampleRequestPhoneActivity}, which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerActivity
+    @ContributesAndroidInjector(modules = {SampleRequestPhoneActivityModule.class})
+    abstract SampleRequestPhoneActivity sampleRequestPhoneActivity();
 
 }

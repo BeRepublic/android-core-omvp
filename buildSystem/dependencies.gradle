@@ -65,7 +65,8 @@ ext {
     firebase = [
             implementation: [
                     "com.google.firebase:firebase-core:${servicesVersion}",
-                    "com.google.firebase:firebase-messaging:${servicesVersion}"
+                    "com.google.firebase:firebase-messaging:${servicesVersion}",
+                    "com.google.firebase:firebase-auth:${servicesVersion}"
             ]
     ]
 

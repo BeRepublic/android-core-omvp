@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="padding_size_12">12dp</dimen>
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_corner_radius">6dp</dimen>
+
+
     <dimen name="margin_size_10">10dp</dimen>
+    <dimen name="margin_size_12">12dp</dimen>
+    <dimen name="margin_size_20">20dp</dimen>
+    <dimen name="margin_size_40">40dp</dimen>
+
+
+    <dimen name="padding_size_12">12dp</dimen>
+    <dimen name="padding_size_14">14dp</dimen>
+
     <dimen name="padding_size_25">25dp</dimen>
+    <dimen name="padding_size_50">50dp</dimen>
     <dimen name="padding_size_0">0dp</dimen>
 
     <dimen name="dialog_corner_radius">6dp</dimen>
