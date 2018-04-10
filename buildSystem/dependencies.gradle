@@ -7,13 +7,13 @@ ext {
     servicesVersion = '11.8.0'
     supportLibraryVersion = '27.0.2'
 
-    androidCommonsVersion = '3.0.13'        // https://github.com/raxden/commons
+    // Libraries
+    androidCommonsVersion = '3.0.15'        // https://github.com/raxden/commons
+    androidNavigationVersion = '3.0.0'      // https://github.com/raxden/android-navigation
     androidPreferencesVersion = '3.0.4'     // https://github.com/raxden/android-preferences
     androidRecyclerVersion = '3.0.7'        // https://github.com/raxden/android-recycler
     androidSquareVersion = '3.0.83'         // https://github.com/raxden/square
     androidCronsVersion = '3.0.11'          // https://github.com/raxden/android-crons
-
-    // Libraries
     androidThreeTenVersion = '1.0.5'        // https://github.com/JakeWharton/ThreeTenABP
     butterknifeVersion = '8.8.1'            // https://github.com/JakeWharton/butterknife
     calligraphyVersion = '2.3.0'            // https://github.com/chrisjenx/Calligraphy
@@ -127,6 +127,7 @@ ext {
     raxden = [
             implementation: [
                     "com.github.raxden:android-commons:${androidCommonsVersion}@aar",
+                    "com.github.raxden:android-navigation:${androidNavigationVersion}@aar",
                     "com.github.raxden:android-recycler:${androidRecyclerVersion}@aar",
                     "com.github.raxden:android-preferences:${androidPreferencesVersion}@aar",
                     "com.github.raxden.android-crons:crons:${androidCronsVersion}@aar",
