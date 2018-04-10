@@ -63,4 +63,13 @@
 
     </style>
 
+    <style name="Content.RequestPhone">
+        <item name="android:layout_marginTop">?attr/actionBarSize</item>
+        <item name="android:paddingTop">@dimen/padding_size_50</item>
+    </style>
+
+    <style name="Content.RequestPhone.Phone">
+
+    </style>
+
 </resources>

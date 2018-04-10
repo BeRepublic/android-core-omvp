@@ -134,4 +134,9 @@ public class HomeActivity extends BaseFragmentActivity implements
         mNavigationHelper.launchBottomBarSample();
     }
 
+    @Override
+    public void onAuthPhoneViewSelected() {
+        mNavigationHelper.launchAuthPhoneView();
+    }
+
 }

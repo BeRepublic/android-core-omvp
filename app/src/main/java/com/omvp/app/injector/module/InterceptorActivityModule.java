@@ -6,6 +6,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.omvp.app.injector.scope.PerActivity;
 import com.omvp.app.interceptor.ToolbarActivityInterceptor;
+import com.omvp.app.interceptor.authPhone.AuthPhoneActivityInterceptor;
+import com.omvp.app.interceptor.authPhone.AuthPhoneInterceptor;
+import com.omvp.app.interceptor.authPhone.AuthPhoneInterceptorCallback;
 import com.omvp.app.interceptor.google.GoogleApiClientActivityInterceptor;
 import com.omvp.app.interceptor.google.GoogleApiClientInterceptor;
 import com.omvp.app.interceptor.google.GoogleApiClientInterceptorCallback;
@@ -124,5 +127,16 @@ public abstract class InterceptorActivityModule {
     static OperationBroadcastInterceptor operationBroadcastInterceptor(Activity activity) {
         return new OperationBroadcastActivityInterceptor(activity);
     }
+
+    @Provides
+    @PerActivity
+    static AuthPhoneInterceptor provideAuthPhoneInterceptor(Activity activity){
+        if (activity instanceof AuthPhoneInterceptorCallback){
+            return new AuthPhoneActivityInterceptor(activity, (AuthPhoneInterceptorCallback) activity);
+        } else {
+            return null;
+        }
+    }
+
 
 }

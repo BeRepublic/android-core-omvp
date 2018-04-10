@@ -5,7 +5,7 @@ import com.omvp.domain.SampleItem;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.omvp.commons.Constants.BOTTOM_NAV;
+import static com.omvp.commons.Constants.AUTH_PHONE;
 import static com.omvp.commons.Constants.BOTTOM_NAV;
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
 import static com.omvp.commons.Constants.INPUT;
@@ -13,7 +13,6 @@ import static com.omvp.commons.Constants.LIST;
 import static com.omvp.commons.Constants.LOCALE;
 import static com.omvp.commons.Constants.LOCATION;
 import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
-import static com.omvp.commons.Constants.NOTICE_DIALOG;
 import static com.omvp.commons.Constants.NOTICE_DIALOG;
 import static com.omvp.commons.Constants.PAGER;
 import static com.omvp.commons.Constants.PICTURE;
@@ -23,7 +22,7 @@ import static com.omvp.commons.Constants.VIEW;
 
 public class StaticHomeRepository {
 
-    private static final int NUM_ITEMS = 11;
+    private static final int NUM_ITEMS = 14;
 
     public static Map<Integer, SampleItem> sampleItemList = new LinkedHashMap<>(NUM_ITEMS);
 
@@ -41,7 +40,8 @@ public class StaticHomeRepository {
             sampleItemList.put(9, initSampleItem(INPUT, "A view with input layouts"));
             sampleItemList.put(10, initSampleItem(SOCIAL, "A view with socials connection"));
             sampleItemList.put(11, initSampleItem(NOTICE_DIALOG, "A view with Notice Dialog"));
-            sampleItemList.put(11, initSampleItem(BOTTOM_NAV, "A view with a bottom bar navigation"));
+            sampleItemList.put(12, initSampleItem(BOTTOM_NAV, "A view with a bottom bar navigation"));
+            sampleItemList.put(13, initSampleItem(AUTH_PHONE, "A view with check phone number validation"));
         }
     }
 
