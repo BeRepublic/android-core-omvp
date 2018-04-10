@@ -19,12 +19,13 @@ import com.omvp.app.ui.samples.location.SampleLocationActivity;
 import com.omvp.app.ui.samples.multiple.SampleMultipleActivity;
 import com.omvp.app.ui.samples.notice_dialog.SampleNoticeActivity;
 import com.omvp.app.ui.samples.pager.SamplePagerActivity;
+import com.omvp.app.ui.samples.request_phone.SampleRequestPhoneActivity;
 import com.omvp.app.ui.samples.simple.SampleActivity;
 import com.omvp.app.ui.samples.social.SampleSocialActivity;
 import com.omvp.app.ui.samples.take_picture.SampleTakePictureActivity;
 import com.omvp.app.ui.samples.vibration.VibrationActivity;
 import com.omvp.app.ui.splash.SplashActivity;
-import com.raxdenstudios.commons.manager.NavigationManager;
+import com.raxdenstudios.navigation.NavigationManager;
 
 public class NavigationHelper {
 
@@ -164,9 +165,15 @@ public class NavigationHelper {
                 .launch();
     }
 
+    public void launchAuthPhoneView() {
+        new NavigationManager.Builder(mActivity)
+                .putData(getExtras())
+                .navigateTo(SampleRequestPhoneActivity.class)
+                .launch();
+    }
+
     private Bundle getExtras() {
         return mActivity.getIntent() != null && mActivity.getIntent().getExtras() != null ? mActivity.getIntent().getExtras() : new Bundle();
     }
-
 
 }

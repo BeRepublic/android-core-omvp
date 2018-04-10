@@ -16,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.omvp.commons.Constants.AUTH_PHONE;
 import static com.omvp.commons.Constants.BOTTOM_NAV;
 import static com.omvp.commons.Constants.HORIZONTAL_LIST;
 import static com.omvp.commons.Constants.INPUT;
@@ -64,6 +65,8 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
         void onNoticeDialogViewSelected ();
 
         void onBottomNavigationViewSelected();
+
+        void onAuthPhoneViewSelected ();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -121,6 +124,9 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
                 break;
             case BOTTOM_NAV:
                 mCallback.onBottomNavigationViewSelected();
+                break;
+            case AUTH_PHONE:
+                mCallback.onAuthPhoneViewSelected();
                 break;
         }
     }

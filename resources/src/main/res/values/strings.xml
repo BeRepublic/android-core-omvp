@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">resources</string>
+
+    <!-- AuthPhoneInterceptor -->
+    <string name="prefix">Prefijo</string>
+    <string name="phone">Teléfono</string>
+    <string name="enter_your_phone">Introduce tu teléfono</string>
+    <string name="enter_your_phone_explanation">Para comprobar que nadie se está haciendo pasar por ti necesitamos tu teléfono para mandarte un SMS con un código para hacer la validación.</string>
+    <string name="invalid_prefix">Prefijo inválido</string>
+    <string name="invalid_code">Código inválido</string>
+    <string name="invalid_phone">Teléfono inválido</string>
+    <string name="quota_exceeded">Se ha alcanzado el límite máximo de peticiones, inténtalo más tarde.</string>
+    <string name="sign_in_success"> Sign in SUCCESS!!</string>
+    <string name="code_retrieved"> Code retrieved : </string>
 </resources>
