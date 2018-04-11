@@ -12,4 +12,7 @@ public interface SampleRequestPhoneView extends BaseView {
 
     void showPhoneInputSuccess();
 
+    void drawInputCode(String code);
+
+    void codeReceivedLayoutVisibility(int visibility);
 }

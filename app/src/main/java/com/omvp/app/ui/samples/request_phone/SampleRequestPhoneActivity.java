@@ -88,6 +88,7 @@ public class SampleRequestPhoneActivity extends BaseFragmentActivity implements
 
     @Override
     public void authPhoneUserRetrieved(FirebaseUser firebaseUser) {
+        hideProgress();
       if (firebaseUser != null) {
 
       }
@@ -96,6 +97,9 @@ public class SampleRequestPhoneActivity extends BaseFragmentActivity implements
     @Override
     public void authPhoneCodeRetrieved(String code) {
         Toast.makeText(this,getString(R.string.code_retrieved) + code, Toast.LENGTH_LONG ).show();
+        mFragment.codeReceivedLayoutVisibility(View.VISIBLE);
+        mFragment.changeButtonText("SENT");
+        mFragment.drawInputCode(code);
     }
 
     @Override
@@ -106,6 +110,7 @@ public class SampleRequestPhoneActivity extends BaseFragmentActivity implements
                 break;
             case STATE_INITIALIZED:
                 hideProgress();
+                showInitFragmentLayout ();
                 break;
             case STATE_SIGNIN_FAILED:
                 hideProgress();
@@ -123,7 +128,15 @@ public class SampleRequestPhoneActivity extends BaseFragmentActivity implements
         }
     }
 
+    private void showInitFragmentLayout() {
+        mFragment.codeReceivedLayoutVisibility(View.GONE);
+        mFragment.changeButtonText("GET");
+        mFragment.singOutButtonVisibility (View.GONE);
+        Toast.makeText(this,getString(R.string.sign_out_success), Toast.LENGTH_LONG ).show();
+    }
+
     private void authPhoneSignInSuccess() {
+        mFragment.singOutButtonVisibility (View.VISIBLE);
         Toast.makeText(this,getString(R.string.sign_in_success), Toast.LENGTH_LONG ).show();
     }
 
@@ -143,5 +156,11 @@ public class SampleRequestPhoneActivity extends BaseFragmentActivity implements
                 showError(0, getString(R.string.unespected_error_title), getString(R.string.quota_exceeded));
                 break;
         }
+    }
+
+    @Override
+    public void signOut() {
+        showProgress(0, "Loading");
+        mAuthPhoneInterceptor.signOut();
     }
 }

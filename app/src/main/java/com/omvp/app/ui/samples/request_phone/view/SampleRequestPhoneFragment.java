@@ -1,7 +1,9 @@
 package com.omvp.app.ui.samples.request_phone.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
@@ -19,9 +21,17 @@ public class SampleRequestPhoneFragment extends BaseViewFragment<SampleRequestPh
     InputLayoutView mInputPrefixView;
     @BindView(R.id.input_phone)
     InputLayoutView mInputPhoneView;
+    @BindView(R.id.code_received_layout)
+    RelativeLayout mCodeReceivedLayout;
+    @BindView (R.id.input_code)
+    InputLayoutView mInputCodeToSent;
+    @BindView(R.id.send)
+    AppCompatTextView mButtonGetSent;
+    @BindView(R.id.sign_out)
+    AppCompatTextView mButtonSignOut;
 
     public interface FragmentCallback extends BaseViewFragmentCallback {
-
+        void signOut ();
     }
 
     public static SampleRequestPhoneFragment newInstance(Bundle bundle) {
@@ -42,9 +52,16 @@ public class SampleRequestPhoneFragment extends BaseViewFragment<SampleRequestPh
 
     }
 
-    @OnClick(R.id.next)
+    @OnClick(R.id.send)
     public void onValidatePhoneClick(View view) {
         mPresenter.validatePhone(mInputPrefixView.getText(), mInputPhoneView.getText());
+    }
+
+    @OnClick(R.id.sign_out)
+    public void onSignOutClick(View view) {
+       if (mCallback != null) {
+           mCallback.signOut ();
+       }
     }
 
     @Override
@@ -67,6 +84,22 @@ public class SampleRequestPhoneFragment extends BaseViewFragment<SampleRequestPh
         mInputPhoneView.setSuccess();
     }
 
+    @Override
+    public void drawInputCode(String code) {
+        mInputCodeToSent.setText(code);
+    }
 
+    @Override
+    public void codeReceivedLayoutVisibility(int visibility) {
+        mCodeReceivedLayout.setVisibility(visibility);
+    }
+
+    public void changeButtonText (String title) {
+        mButtonGetSent.setText(title);
+    }
+
+    public void singOutButtonVisibility (int visibility) {
+        mButtonSignOut.setVisibility(visibility);
+    }
 
 }
