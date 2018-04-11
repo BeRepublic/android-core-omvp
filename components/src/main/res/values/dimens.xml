@@ -9,6 +9,7 @@
     <dimen name="margin_size_12">12dp</dimen>
     <dimen name="margin_size_20">20dp</dimen>
     <dimen name="margin_size_40">40dp</dimen>
+    <dimen name="margin_size_60">60dp</dimen>
 
 
     <dimen name="padding_size_12">12dp</dimen>
