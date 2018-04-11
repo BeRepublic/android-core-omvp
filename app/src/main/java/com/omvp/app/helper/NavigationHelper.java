@@ -8,9 +8,9 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.omvp.app.interceptor.operation.OperationBroadcastActivityInterceptor;
-import com.omvp.app.ui.home.HomeActivity;
 import com.omvp.app.ui.samples.bottom_navigation.BottomNavigationActivity;
 import com.omvp.app.ui.samples.detail.SampleDetailActivity;
+import com.omvp.app.ui.samples.home.HomeActivity;
 import com.omvp.app.ui.samples.inputs.SampleInputActivity;
 import com.omvp.app.ui.samples.list.SampleListActivity;
 import com.omvp.app.ui.samples.list_horizontal.SampleListHorizontalActivity;

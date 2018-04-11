@@ -6,15 +6,9 @@ import com.omvp.app.base.BaseActivity;
 import com.omvp.app.base.BaseActivityModule;
 import com.omvp.app.base.mvp.BaseFragmentActivityModule;
 import com.omvp.app.injector.scope.PerActivity;
-import com.omvp.app.injector.scope.PerFragment;
-import com.omvp.app.ui.home.HomeActivity;
-import com.omvp.app.ui.home.view.HomeFragment;
-import com.omvp.app.ui.home.view.HomeFragmentModule;
-import com.omvp.app.ui.splash.view.SplashFragment;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.android.ContributesAndroidInjector;
 
 /**
  * Provides splash activity dependencies

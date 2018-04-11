@@ -1,19 +1,15 @@
-package com.omvp.app.ui.home.adapter;
+package com.omvp.app.ui.samples.home.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.omvp.app.model.SampleItemModel;
-import com.omvp.app.model.SampleModel;
+import com.omvp.app.ui.samples.home.presenter.HomePresenterImpl;
 import com.omvp.components.SampleHomeItemView;
-import com.omvp.components.SampleItemView;
 import com.raxdenstudios.recycler.RecyclerAdapter;
 
-public class HomeListAdapter extends RecyclerAdapter<SampleItemModel, HomeListAdapter.HomeListViewHolder> {
+public class HomeListAdapter extends RecyclerAdapter<HomePresenterImpl.SampleItemModel, HomeListAdapter.HomeListViewHolder> {
 
     private AdapterCallback mAdapterCallback;
 
@@ -36,7 +32,7 @@ public class HomeListAdapter extends RecyclerAdapter<SampleItemModel, HomeListAd
     }
 
     @Override
-    public void onBindViewItemHolder(final HomeListViewHolder holder, SampleItemModel data, int position) {
+    public void onBindViewItemHolder(final HomeListViewHolder holder, HomePresenterImpl.SampleItemModel data, int position) {
         holder.bindView(data);
     }
 
@@ -51,7 +47,7 @@ public class HomeListAdapter extends RecyclerAdapter<SampleItemModel, HomeListAd
             mItemView.setOnClickListener(this);
         }
 
-        public void bindView(SampleItemModel data) {
+        public void bindView(HomePresenterImpl.SampleItemModel data) {
             mItemView.setSampleText(data.getTitle());
         }
 

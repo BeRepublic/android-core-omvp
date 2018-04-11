@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.samples.home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Home"
             android:windowSoftInputMode="adjustPan"/>

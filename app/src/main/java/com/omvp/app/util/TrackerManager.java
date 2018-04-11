@@ -6,7 +6,7 @@ import android.app.Fragment;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.omvp.app.ui.home.view.HomeFragment;
+import com.omvp.app.ui.samples.home.view.HomeFragment;
 import com.omvp.app.ui.splash.view.SplashFragment;
 import com.raxdenstudios.commons.util.Utils;
 

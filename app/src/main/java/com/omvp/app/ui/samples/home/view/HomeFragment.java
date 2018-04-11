@@ -1,4 +1,4 @@
-package com.omvp.app.ui.home.view;
+package com.omvp.app.ui.samples.home.view;
 
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -7,10 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import com.omvp.app.R;
 import com.omvp.app.base.mvp.view.BaseViewFragment;
 import com.omvp.app.base.mvp.view.BaseViewFragmentCallback;
-import com.omvp.app.model.SampleItemModel;
-import com.omvp.app.ui.home.adapter.HomeListAdapter;
-import com.omvp.app.ui.home.presenter.HomePresenter;
-import com.omvp.domain.SampleItem;
+import com.omvp.app.ui.samples.home.adapter.HomeListAdapter;
+import com.omvp.app.ui.samples.home.presenter.HomePresenter;
+import com.omvp.app.ui.samples.home.presenter.HomePresenterImpl;
 
 import java.util.List;
 
@@ -62,11 +61,11 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
 
         void onSocialViewSelected();
 
-        void onNoticeDialogViewSelected ();
+        void onNoticeDialogViewSelected();
 
         void onBottomNavigationViewSelected();
 
-        void onAuthPhoneViewSelected ();
+        void onAuthPhoneViewSelected();
     }
 
     public static HomeFragment newInstance(Bundle bundle) {
@@ -84,7 +83,7 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
     }
 
     @Override
-    public void itemSelected(SampleItem item) {
+    public void itemSelected(HomePresenterImpl.SampleItemModel item) {
         switch (item.getType()) {
             case VIEW:
                 mCallback.onSampleViewSelected();
@@ -132,7 +131,7 @@ public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.F
     }
 
     @Override
-    public void drawItems(List<SampleItemModel> itemList) {
+    public void drawItems(List<HomePresenterImpl.SampleItemModel> itemList) {
         mAdapter.setItems(itemList);
     }
 

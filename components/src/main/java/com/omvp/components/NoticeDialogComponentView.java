@@ -5,8 +5,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.View;
 
-import butterknife.ButterKnife;
-
 public class NoticeDialogComponentView extends BaseComponentView {
 
     AppCompatTextView mTitleTextView;
@@ -33,10 +31,10 @@ public class NoticeDialogComponentView extends BaseComponentView {
 
     @Override
     protected void bindViews() {
-        mTitleTextView = ButterKnife.findById(this, R.id.title);
-        mDescriptionTextView = ButterKnife.findById(this, R.id.description);
-        mAcceptTextView = ButterKnife.findById(this, R.id.accept);
-        mDenyTextView = ButterKnife.findById(this, R.id.deny);
+        mTitleTextView = findViewById(R.id.title);
+        mDescriptionTextView = findViewById(R.id.description);
+        mAcceptTextView = findViewById(R.id.accept);
+        mDenyTextView = findViewById(R.id.deny);
     }
 
     @Override

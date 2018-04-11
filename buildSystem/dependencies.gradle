@@ -5,7 +5,7 @@ ext {
     // Android dependencies
     multidexVersion = '1.0.1'
     servicesVersion = '11.8.0'
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '27.1.1'
 
     // Libraries
     androidCommonsVersion = '3.0.15'        // https://github.com/raxden/commons
@@ -164,6 +164,7 @@ ext {
     support = [
             implementation: [
                     "com.android.support:multidex:${multidexVersion}",
+                    "com.android.support:support-v4:${supportLibraryVersion}",
                     "com.android.support:support-v13:${supportLibraryVersion}",
                     "com.android.support:appcompat-v7:${supportLibraryVersion}",
                     "com.android.support:design:${supportLibraryVersion}",

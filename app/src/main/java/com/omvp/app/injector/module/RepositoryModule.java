@@ -2,18 +2,15 @@ package com.omvp.app.injector.module;
 
 import com.omvp.data.repository.CredentialsRepositoryImpl;
 import com.omvp.data.repository.DeviceRepositoryImpl;
-import com.omvp.data.repository.HomeRepositoryImpl;
 import com.omvp.data.repository.LocaleRepositoryImpl;
 import com.omvp.data.repository.SampleRepositoryImpl;
 import com.omvp.domain.repository.CredentialsRepository;
 import com.omvp.domain.repository.DeviceRepository;
-import com.omvp.domain.repository.HomeRepository;
 import com.omvp.domain.repository.LocaleRepository;
 import com.omvp.domain.repository.SampleRepository;
 
 import javax.inject.Singleton;
 
-import butterknife.BindView;
 import dagger.Binds;
 import dagger.Module;
 
@@ -38,11 +35,4 @@ public abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract SampleRepository sampleRepository(SampleRepositoryImpl repository);
-
-
-    // =============== HOME ======================================================================
-
-    @Binds
-    @Singleton
-    abstract HomeRepository homeRepository(HomeRepositoryImpl repository);
 }

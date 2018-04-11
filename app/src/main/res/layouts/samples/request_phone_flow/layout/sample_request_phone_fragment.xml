@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:id="@+id/root"
-        style="@style/Content.RequestPhone.Phone"
+        style="@style/Content.RequestPhone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
