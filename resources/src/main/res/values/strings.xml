@@ -10,6 +10,8 @@
     <string name="invalid_code">Código inválido</string>
     <string name="invalid_phone">Teléfono inválido</string>
     <string name="quota_exceeded">Se ha alcanzado el límite máximo de peticiones, inténtalo más tarde.</string>
-    <string name="sign_in_success"> Sign in SUCCESS!!</string>
-    <string name="code_retrieved"> Code retrieved : </string>
+    <string name="sign_in_success">Dispositivo logueado</string>
+    <string name="sign_out_success">Dispositivo no logueado</string>
+    <string name="code_retrieved">Código recibido: </string>
+    <string name="code_sent">Enviar código recibido: </string>
 </resources>
