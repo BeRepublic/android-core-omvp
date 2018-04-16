@@ -15,20 +15,20 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.omvp.commons.Constants.AUTH_PHONE;
-import static com.omvp.commons.Constants.BOTTOM_NAV;
-import static com.omvp.commons.Constants.HORIZONTAL_LIST;
-import static com.omvp.commons.Constants.INPUT;
-import static com.omvp.commons.Constants.LIST;
-import static com.omvp.commons.Constants.LOCALE;
-import static com.omvp.commons.Constants.LOCATION;
-import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
-import static com.omvp.commons.Constants.NOTICE_DIALOG;
-import static com.omvp.commons.Constants.PAGER;
-import static com.omvp.commons.Constants.PICTURE;
-import static com.omvp.commons.Constants.SOCIAL;
-import static com.omvp.commons.Constants.VIBRATION;
-import static com.omvp.commons.Constants.VIEW;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.AUTH_PHONE;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.BOTTOM_NAV;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.HORIZONTAL_LIST;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.INPUT;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.LIST;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.LOCALE;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.LOCATION;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.MULTIPLE_FRAGMENTS;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.NOTICE_DIALOG;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.PAGER;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.PICTURE;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.SOCIAL;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.VIBRATION;
+import static com.omvp.app.ui.samples.home.presenter.HomePresenterImpl.VIEW;
 
 public class HomeFragment extends BaseViewFragment<HomePresenter, HomeFragment.FragmentCallback>
         implements HomeView {

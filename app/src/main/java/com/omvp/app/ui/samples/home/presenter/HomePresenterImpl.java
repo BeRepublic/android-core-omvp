@@ -20,22 +20,23 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import lombok.Data;
 
-import static com.omvp.commons.Constants.AUTH_PHONE;
-import static com.omvp.commons.Constants.BOTTOM_NAV;
-import static com.omvp.commons.Constants.HORIZONTAL_LIST;
-import static com.omvp.commons.Constants.INPUT;
-import static com.omvp.commons.Constants.LIST;
-import static com.omvp.commons.Constants.LOCALE;
-import static com.omvp.commons.Constants.LOCATION;
-import static com.omvp.commons.Constants.MULTIPLE_FRAGMENTS;
-import static com.omvp.commons.Constants.NOTICE_DIALOG;
-import static com.omvp.commons.Constants.PAGER;
-import static com.omvp.commons.Constants.PICTURE;
-import static com.omvp.commons.Constants.SOCIAL;
-import static com.omvp.commons.Constants.VIBRATION;
-import static com.omvp.commons.Constants.VIEW;
-
 public class HomePresenterImpl extends BasePresenter<HomeView> implements HomePresenter, HomeListAdapter.AdapterCallback {
+
+    // HOME ITEMS
+    public static final String VIEW = "VIEW";
+    public static final String LIST = "LIST";
+    public static final String HORIZONTAL_LIST = "HORIZONTAL_LIST";
+    public static final String PAGER = "PAGER";
+    public static final String MULTIPLE_FRAGMENTS = "MULTIPLE_FRAGMENTS";
+    public static final String LOCATION = "LOCATION";
+    public static final String PICTURE = "PICTURE";
+    public static final String LOCALE = "LOCALE";
+    public static final String VIBRATION = "VIBRATION";
+    public static final String INPUT = "INPUT";
+    public static final String SOCIAL = "SOCIAL";
+    public static final String NOTICE_DIALOG = "NOTICE_DIALOG";
+    public static final String BOTTOM_NAV = "BOTTOM_NAV";
+    public static final String AUTH_PHONE = "AUTH_PHONE";
 
     private static final int NUM_ITEMS = 14;
 

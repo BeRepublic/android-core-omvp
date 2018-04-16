@@ -15,22 +15,6 @@ public class Constants {
     public static final int LOCATION_INTERVAL = 10000;
     public static final int LOCATION_FASTEST_INTERVAL = LOCATION_INTERVAL / 2;
 
-    // HOME ITEMS
-    public static final String VIEW = "VIEW";
-    public static final String LIST = "LIST";
-    public static final String HORIZONTAL_LIST = "HORIZONTAL_LIST";
-    public static final String PAGER = "PAGER";
-    public static final String MULTIPLE_FRAGMENTS = "MULTIPLE_FRAGMENTS";
-    public static final String LOCATION = "LOCATION";
-    public static final String PICTURE = "PICTURE";
-    public static final String LOCALE = "LOCALE";
-    public static final String VIBRATION = "VIBRATION";
-    public static final String INPUT = "INPUT";
-    public static final String SOCIAL = "SOCIAL";
-    public static final String NOTICE_DIALOG = "NOTICE_DIALOG";
-    public static final String BOTTOM_NAV = "BOTTOM_NAV";
-    public static final String AUTH_PHONE = "AUTH_PHONE";
-
     // Patterns
     public static final Pattern PASSWORD_PATTERN = Pattern.compile("^[0-9A-Za-z!@#$%]{6,}$");
 }
